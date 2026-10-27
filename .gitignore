@@ -1,0 +1,18 @@
+# Python caches
+__pycache__/
+*.py[cod]
+
+# FreeCAD automatic backups
+*.FCBak
+*.FCStd1
+
+# Local environment files
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+
+# Operating system files
+Thumbs.db
+.DS_Store
