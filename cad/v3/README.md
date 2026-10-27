@@ -14,6 +14,8 @@ For exact static poses, open **RibosomeV3.FCStd**, select the **V3 controls — 
 
 ![V3 with the emerged protein posed](bracelet.png)
 
-`bracelet_v3.py` is the geometry source. `validation_v3.py` writes the current results to `checks.json`, including actual bead-to-wheel alignment checks. The cuff and RNA arc need flex-capable plastic; a rigid PLA cuff is not assumed. The small axle, core and fasteners may be metal. Colours and dimensions are proposals.
+This is the actual saved CAD view. The [updated concept illustration](../../docs/images/toy-concept.png) is a separate AI appearance study based on V3; the early on-wrist reference is superseded, and the bead redesign remains pending.
+
+`bracelet_v3.py` is the geometry source. `validation_v3.py` includes actual bead-to-wheel alignment checks. Use the [headless development workflow](../../docs/development.md) to build and validate into the ignored `build/` directory; this folder's `checks.json` is the committed snapshot. The cuff and RNA arc need flex-capable plastic; a rigid PLA cuff is not assumed. The small axle, core and fasteners may be metal. Colours and dimensions are proposals.
 
 This is a geometric engineering prototype, not a print release. Reliable bidirectional handoff with the reduced bead wrap, feed torque, wire buckling and fatigue, detent life, cuff opening and final fasteners still need bench development. The posed strand is illustrative; gravity and elastic deformation are not simulated.

@@ -5,7 +5,6 @@ CAD checks are geometric; feeding, flex, wear and wire life need bench tests.
 """
 from pathlib import Path
 from functools import lru_cache
-import json
 import math
 import FreeCAD as App
 import Part
@@ -291,7 +290,7 @@ def stationary_shapes():
     for x, z in [(-12, SHAFT_Z-4), (12, SHAFT_Z-4)]:
         hole = cylinder(.85, 28, V(x, -11, z))
         front, rear = front.cut(hole), rear.cut(hole)
-    return front.removeSplitter(), rear.removeSplitter(), [guard, cam_guard, outlet, bearing, rail]
+    return front.removeSplitter(), rear.removeSplitter()
 
 
 def around_pivot(shape, angle):
@@ -300,7 +299,7 @@ def around_pivot(shape, angle):
     return s
 
 
-def upper_lobe(guards):
+def upper_lobe():
     outer = union([ellipsoid((0, .6, 52.5), (17, 12.5, 8.6)),
                    ellipsoid((-8, -4, 52.8), (8.5, 8, 7.1)),
                    ellipsoid((7.5, 4.5, 52.5), (9.5, 9.0, 7.6)),
@@ -382,7 +381,7 @@ def backbone(d, chain, i):
     o.setExpression('Placement.Rotation.Angle', 'acos(DeltaZ / Height)')
 
 
-def build():
+def build(save_path=None):
     if DOC_NAME in App.listDocuments():
         raise RuntimeError('Close '+DOC_NAME+' before rebuilding.')
     d = App.newDocument(DOC_NAME)
@@ -426,7 +425,7 @@ def build():
     swivel.setExpression('Placement.Rotation.Angle', 'Motion.SwivelDegrees * 1 deg')
     chain = group(d, 'Protein', '26 plain beads on a poseable copper core')
     print('V3: building concealed-track C cuff and RNA dial', flush=True)
-    front, rear, guards = stationary_shapes()
+    front, rear = stationary_shapes()
     feature(d, 'CuffFrame', 'Front cuff half + fixed bead keeper', front, fixed, 'cuff')
     feature(d, 'CuffRear', 'Rear cuff half + keeper lid — remove to load', rear, fixed, 'lid')
     feature(d, 'Rna', '128 RNA bases + concealed 144-pitch gear rail', rna_shape(), dial, 'rna')
@@ -466,7 +465,7 @@ def build():
     lever = lever.cut(capsule((0, 4.0), (0, 5.6), .7, -.1, 1.2))
     lever = lever.cut(cylinder(.85, 4, V(0, 0, 10), V(0, 0, 1)))
     feature(d, 'LeverPost', 'Radial slotted lever + vertical swivel post + square key', lever, swivel, 'gear')
-    feature(d, 'UpperLobe', 'Organic upper lobe — swivels about outward wrist axis', upper_lobe(guards), swivel, 'shell')
+    feature(d, 'UpperLobe', 'Organic upper lobe — swivels about outward wrist axis', upper_lobe(), swivel, 'shell')
     cap = union([cylinder(.75, 2.6, V(0, 0, 11.6), V(0, 0, 1)),
                  cylinder(2.6, .7, V(0, 0, 14.0), V(0, 0, 1))])
     feature(d, 'SwivelRetainer', 'Swivel-post retaining screw envelope', cap, swivel, 'metal')
@@ -485,7 +484,8 @@ def build():
         raise RuntimeError('Expression failures: '+str(bad))
     if App.GuiUp:
         present(d)
-    d.saveAs(str(HERE/MODEL_FILE))
+    destination = Path(save_path) if save_path is not None else HERE/MODEL_FILE
+    d.saveAs(str(destination))
     print('Saved V3 model', flush=True)
     return d
 
@@ -494,14 +494,6 @@ def world(o):
     s = o.Shape.copy()
     s.Placement = o.getGlobalPlacement()
     return s
-
-
-def common_volume(a, b):
-    if not a.BoundBox.intersect(b.BoundBox):
-        return 0.0
-    if a.distToShape(b)[0] > 1e-6:
-        return 0.0
-    return a.common(b).Volume
 
 
 def present(d, shell=True, rear=True):
@@ -518,7 +510,7 @@ def present(d, shell=True, rear=True):
             o.ViewObject.Visibility = True
             if o.Name in ['CuffFrame', 'CuffRear']:
                 o.ViewObject.DiffuseColor = [COLORS['lower'] if f.CenterOfMass.z > 36.5 and abs(f.CenterOfMass.x) < 19 else tuple(o.DisplayColour[:3]) for f in o.Shape.Faces]
-    # Four abstract base colours are confined to the crossbars, in codon triplets.
+    # Four provisional base colours are confined to the crossbars.
     base_colors = [(.38, .75, .74), (.87, .67, .34), (.71, .66, .84), (.88, .55, .48)]
     colors = []
     for f in d.Rna.Shape.Faces:
@@ -540,9 +532,9 @@ def present(d, shell=True, rear=True):
     Gui.activeDocument().activeView().fitAll()
 
 
-def validate(d):
+def validate(d, report_path=None):
     import validation_v3
-    return validation_v3.run(d)
+    return validation_v3.run(d, report_path=report_path)
 
 
 def open_controls(d):

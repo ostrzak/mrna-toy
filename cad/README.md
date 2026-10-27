@@ -1,5 +1,7 @@
 # mRNA toy versions
 
+Start with the [project overview](../README.md) for purpose and current status. This page covers viewing and operating the saved CAD.
+
 - **[V3 — same-direction feed](v3/README.md):** current development version. The protein leaves a short tangent outlet in the same local direction as the moving RNA. A close guide holds the beads against the feeder. No protein half-turn around the shaft.
 - **[V2 — opposite-direction feed](v2/README.md):** preserved comparison, including its source, model, images and historical checks. The chain makes a half-turn inside the ribosome.
 

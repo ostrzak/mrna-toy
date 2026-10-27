@@ -5,6 +5,7 @@ for the gear mesh, cam pin and swivel. No friction or elastic simulation.
 """
 import json
 import math
+from pathlib import Path
 import FreeCAD as App
 import Part
 import bracelet_v3 as b
@@ -64,7 +65,7 @@ def profile_clearance():
             'boundary': 'Actual sampled polygon, conservative maximum bead section in either fork lane.'}
 
 
-def run(d):
+def run(d, report_path=None):
     print('V3 checks: validity and continuous swept envelopes', flush=True)
     m = d.Motion
     m.PoseProtein, m.DialDegrees = False, 0
@@ -110,7 +111,7 @@ def run(d):
     print('  RNA gear mesh max overlap', mesh_max, flush=True)
     samples = sorted(set([0, 37.5, 82.5, 120, b.MAX_DIAL]+[7.5*j/16 for j in range(17)]))
     position_error, slot_error = 0.0, 0.0
-    gaps, invalid, cam_gaps = [], [], []
+    gaps, invalid = [], []
     for key in ['cam/follower', 'slider/frame', 'slider/rear', 'lever/frame', 'lever/rear',
                 'lobe/frame', 'lobe/rear', 'lobe/slider', 'lobe/lever', 'slider/lever', 'wire/bead', 'bead/feeder actual', 'leaf/frame', 'leaf/rear']:
         worst[key] = 0.0
@@ -195,7 +196,9 @@ def run(d):
             'Detent preload, elastic deflection, click sound and flexure life',
             'Comfort, pinch clearances, end retention and final assembly fasteners'],
         'validation_boundary': 'Native prescribed kinematics, sampled actual contacts and conservative rigid swept envelopes. No elastic, stress, friction or gravity simulation.'}
-    (b.HERE/'checks.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
+    destination = Path(report_path) if report_path is not None else b.HERE/'checks.json'
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(json.dumps(result, indent=2), encoding='utf-8')
     m.PoseProtein, m.DialDegrees = False, 0
     d.recompute()
     print(json.dumps({k: result[k] for k in ['status', 'maximum_unintended_overlap_mm3', 'stop_tests', 'bead_pocket_profile_clearance', 'position_expression_error_mm', 'posed_expression_error_mm']}, indent=2), flush=True)

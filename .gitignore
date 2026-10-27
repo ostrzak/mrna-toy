@@ -2,6 +2,9 @@
 __pycache__/
 *.py[cod]
 
+# Local CAD builds and validation reports
+/build/
+
 # FreeCAD automatic backups
 *.FCBak
 *.FCStd1
