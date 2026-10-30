@@ -1,0 +1,1048 @@
+{
+  "version": "5.0",
+  "status": "FOCUSED_PASS",
+  "runtime": "1.1.4",
+  "parts": {
+    "LowerBody": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 19271.22335
+    },
+    "LowerLid": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 6072.79096
+    },
+    "BeadKeeper": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2322.25206
+    },
+    "StopRing": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 193.28301
+    },
+    "CentreAxle": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 841.42061
+    },
+    "CapRetainer": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 49.323
+    },
+    "IdlerAxle": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 17.27876
+    },
+    "BeadDrum": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 6748.52896
+    },
+    "SunGear": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 5105.79674
+    },
+    "DriveHub": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 441.24925
+    },
+    "TravelPin": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.35758
+    },
+    "Ratchet": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 469.17279
+    },
+    "RnaIdler": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 132.46777
+    },
+    "Rna": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1359.87232
+    },
+    "Base000": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base001": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base002": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base003": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base004": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base005": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base006": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base007": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base008": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base009": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base010": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50762
+    },
+    "Base011": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base012": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base013": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base014": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base015": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.01432
+    },
+    "Base016": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base017": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72479
+    },
+    "Base018": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50764
+    },
+    "Base019": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base020": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base021": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72479
+    },
+    "Base022": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base023": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base024": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base025": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base026": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base027": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base028": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36288
+    },
+    "Base029": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base030": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base031": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base032": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36288
+    },
+    "Base033": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base034": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base035": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.01432
+    },
+    "Base036": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base037": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base038": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50764
+    },
+    "Base039": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base040": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base041": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72478
+    },
+    "Base042": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base043": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base044": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base045": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base046": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base047": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base048": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base049": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base050": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base051": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base052": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base053": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base054": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base055": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base056": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base057": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base058": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base059": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base060": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base061": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base062": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base063": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base064": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base065": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base066": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base067": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base068": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base069": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base070": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base071": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base072": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base073": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base074": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base075": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base076": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base077": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base078": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base079": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base080": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base081": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base082": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base083": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base084": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base085": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base086": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base087": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base088": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base089": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base090": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base091": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base092": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base093": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base094": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base095": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base096": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base097": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base098": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base099": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base100": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base101": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base102": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base103": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base104": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base105": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base106": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base107": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "Base108": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.36286
+    },
+    "Base109": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.72477
+    },
+    "Base110": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.50763
+    },
+    "Base111": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.0143
+    },
+    "UpperLobe": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 8223.67189
+    },
+    "DrivePawl": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 22.14712
+    },
+    "HoldPawl": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 19.02569
+    },
+    "HoldingPawlGuide": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 37.58052
+    },
+    "ReleaseYoke": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 200.36048
+    },
+    "CapSpringEnvelope": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 138.36831
+    },
+    "Bead00": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.66171
+    },
+    "Bead01": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.65231
+    },
+    "Bead02": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.64031
+    },
+    "Bead03": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.65231
+    },
+    "Bead04": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.66171
+    },
+    "Bead05": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.64031
+    },
+    "Bead06": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.64031
+    },
+    "Bead07": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.66171
+    },
+    "Bead08": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.65231
+    },
+    "Bead09": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.64031
+    },
+    "Bead10": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.65231
+    },
+    "Bead11": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.66171
+    },
+    "Bead12": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.64031
+    },
+    "Bead13": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.64031
+    },
+    "Bead14": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.66171
+    },
+    "Bead15": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.65231
+    },
+    "Bead16": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.64031
+    },
+    "Bead17": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.65231
+    },
+    "Bead18": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.66171
+    },
+    "Bead19": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.64031
+    },
+    "Bead20": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.64031
+    },
+    "Bead21": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.66171
+    },
+    "Bead22": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.65231
+    },
+    "Bead23": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.64031
+    },
+    "Bead24": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.65231
+    },
+    "Bead25": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.66171
+    },
+    "Wire00": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.61073
+    },
+    "Wire01": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire02": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire03": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire04": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire05": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire06": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire07": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire08": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire09": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire10": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire11": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire12": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire13": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire14": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire15": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire16": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire17": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire18": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire19": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire20": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire21": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire22": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire23": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    },
+    "Wire24": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.60945
+    }
+  },
+  "invalid_objects": [],
+  "maximum_unintended_overlap_mm3": {
+    "sun/idler mesh": 9.88754261217986e-06,
+    "RNA/idler mesh": 1.2159193834749402e-05,
+    "spherical bead/drum handoff": 0,
+    "actual bead/drum handoff": 0,
+    "actual bead/fixed keeper": 0,
+    "RNA base sweep/lower body": 0,
+    "drum outside declared sweep": 0,
+    "sun outside declared sweep": 0,
+    "idler outside declared sweep": 0,
+    "RNA outside declared sweep": 0,
+    "drum continuous sweep/LowerBody": 0,
+    "drum continuous sweep/LowerLid": 0,
+    "drum continuous sweep/BeadKeeper": 0,
+    "drum continuous sweep/StopRing": 0,
+    "sun continuous sweep/LowerBody": 0,
+    "sun continuous sweep/LowerLid": 0,
+    "sun continuous sweep/BeadKeeper": 0,
+    "sun continuous sweep/StopRing": 0,
+    "idler continuous sweep/LowerBody": 0,
+    "idler continuous sweep/LowerLid": 0,
+    "idler continuous sweep/BeadKeeper": 0,
+    "idler continuous sweep/StopRing": 0,
+    "RNA continuous sweep/LowerBody": 0,
+    "RNA continuous sweep/LowerLid": 0,
+    "RNA continuous sweep/BeadKeeper": 0,
+    "RNA continuous sweep/StopRing": 0,
+    "protein arc continuous sweep/LowerBody": 0,
+    "protein arc continuous sweep/LowerLid": 0,
+    "protein arc continuous sweep/BeadKeeper": 0,
+    "protein arc continuous sweep/StopRing": 0,
+    "protein straight continuous sweep/LowerBody": 0,
+    "protein straight continuous sweep/LowerLid": 0,
+    "protein straight continuous sweep/BeadKeeper": 0,
+    "protein straight continuous sweep/StopRing": 0,
+    "upper/LowerBody": 0,
+    "upper/LowerLid": 0,
+    "upper/BeadKeeper": 0,
+    "upper/StopRing": 0,
+    "upper/ratchet": 0,
+    "released DrivePawl/ratchet": 0,
+    "released HoldPawl/ratchet": 0
+  },
+  "overlap_tolerance_mm3": 1e-05,
+  "involute_contact_approximation_tolerance_mm3": 5e-05,
+  "collision_failures_mm3": {},
+  "actual_bead_handoff_samples": 27,
+  "spherical_envelope_handoff_samples": 27,
+  "sampled_gear_phases": 9,
+  "sampled_forward_poses": 12,
+  "sampled_reverse_poses": 12,
+  "native_position_error_mm": 1.2084449957466568e-13,
+  "native_wire_length_error_mm": 0.0,
+  "coupling_error": 2.2737367544323206e-13,
+  "bead_outside_spherical_bound_mm3": 0.0,
+  "retained_at_full_travel": {
+    "hidden_beads": 4,
+    "seated_beads": 3,
+    "hidden_indices": [
+      22,
+      23,
+      24,
+      25
+    ]
+  },
+  "travel_stops": [
+    {
+      "drum_degrees": -2,
+      "overlap_mm3": 0.601566025744159
+    },
+    {
+      "drum_degrees": 0,
+      "overlap_mm3": 0.0
+    },
+    {
+      "drum_degrees": 282.8571428571429,
+      "overlap_mm3": 0.0
+    },
+    {
+      "drum_degrees": 284.8571428571429,
+      "overlap_mm3": 0.6015660257441434
+    }
+  ],
+  "unloaded_ratchet_leaf_overlap_mm3": {
+    "drive_leaf/ratchet": 1.3534723864776557,
+    "holding_leaf/ratchet": 1.769608888514848
+  },
+  "design": {
+    "handheld": true,
+    "wearable": false,
+    "closed_RNA_loop": true,
+    "RNA_bases": 112,
+    "RNA_bases_per_bead": 3,
+    "drum_pockets": 28,
+    "protein_beads": 26,
+    "bead_pitch_mm": 6,
+    "bead_bound_mm": 4.4,
+    "maximum_feed_mm": 132,
+    "maximum_drum_degrees": 282.8571428571429,
+    "drum_pitch_diameter_mm": 53.47606087887684,
+    "gear_teeth": {
+      "RNA": 112,
+      "idler": 14,
+      "sun": 84
+    },
+    "tensioned_rewind": false,
+    "automatic_curling": false
+  },
+  "source_sha256": {
+    "bracelet_v5.py": "1e176ef4bc98fbcc2e08542a6def23178b3bbf92a6dcefb0577914f5d274d38e",
+    "validation_v5.py": "fbbbf77b06d797a8c348fc54295b3055bdd195932f80916ae84e8a7960908fed"
+  },
+  "validation_boundary": "Focused rigid solid, actual bead handoff, actual gear phase, housing, travel-stop and native prescribed motion checks. Ratchet leaves are unloaded elastic geometry; their overlaps are recorded separately. RNA shown on nominal circular path. No force, compliance, spring, manufacturing or physical qualification.",
+  "physical_tests_still_required": [
+    "Direct bead capture and bidirectional transfer under load",
+    "Bead pitch fixation, wire bending force and fatigue",
+    "Flexible RNA engagement, low stretch and retention",
+    "Click ratchet leaves, cap return spring selection and reverse-release linkage",
+    "Printed fits, fastening, strength, friction, wear and handling"
+  ],
+  "preserved_versions": {
+    "V4": "FOCUSED_PASS; preserved cuff comparison",
+    "V3": "INCOMPLETE_USER_STOPPED",
+    "V2": "HISTORICAL_PASS_INVALIDATED"
+  }
+}

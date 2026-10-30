@@ -1,0 +1,168 @@
+{
+  "version": "4.0",
+  "status": "FOCUSED_PASS",
+  "baseline_version": "3.0",
+  "baseline_full_validation": "INCOMPLETE_USER_STOPPED",
+  "runtime": "1.1.4",
+  "changed_parts": {
+    "CuffFrame": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 14209.649881446061
+    },
+    "CuffRear": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 9127.516590535257
+    },
+    "Rna": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2103.8760411923104
+    },
+    "UpperLobe": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 4568.167628479705
+    },
+    "BeadWheel": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 323.4227218059898
+    },
+    "SwivelCam": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 256.56482338067684
+    },
+    "FollowerSlider": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 19.036537316285884
+    },
+    "LeverPost": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 226.26139989391856
+    },
+    "DetentLeaf": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 27.72737681152595
+    },
+    "SwivelWasher": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 108.61114121990632
+    },
+    "AxlePlug": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 55.606779017161884
+    },
+    "Bead00": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 29.554253823358025
+    },
+    "Bead01": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 29.544877405946984
+    },
+    "Bead02": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 29.532970243711606
+    }
+  },
+  "maximum_unintended_overlap_mm3": {
+    "RNA envelope/frame": 0.0,
+    "protein envelope/frame": 0.0,
+    "RNA envelope/rear": 0.0,
+    "protein envelope/rear": 0.0,
+    "RNA/input mesh": 0,
+    "lobe/frame": 0,
+    "lobe/rear": 0,
+    "RNA envelope/lobe": 0,
+    "protein envelope/lobe": 0,
+    "actual bead/feeder": 0,
+    "cam/follower": 0,
+    "lever/frame": 0,
+    "lever/rear": 0,
+    "slider/frame": 0,
+    "slider/rear": 0,
+    "leaf/frame": 0,
+    "leaf/rear": 0,
+    "wire/bead": 0,
+    "actual crimp/feeder": 0,
+    "actual crimp/bead": 0,
+    "posed strand/housing": 0.0
+  },
+  "overlap_tolerance_mm3": 1e-05,
+  "sampled_coupled_poses": 10,
+  "sampled_gear_phases": 9,
+  "actual_bead_feeder_samples": 19,
+  "invalid_objects": [],
+  "position_expression_error_mm": 2.07157025572446e-13,
+  "posed_expression_error_mm": 7.280896430443987e-14,
+  "stop_tests": [
+    {
+      "dial_degrees": -1,
+      "pin_overlap_mm3": 0.37189817156603966
+    },
+    {
+      "dial_degrees": 0,
+      "pin_overlap_mm3": 0.0
+    },
+    {
+      "dial_degrees": 165.0,
+      "pin_overlap_mm3": 0.0
+    },
+    {
+      "dial_degrees": 166.0,
+      "pin_overlap_mm3": 0.37189817156605304
+    }
+  ],
+  "design": {
+    "visible_RNA_backbones": 1,
+    "free_ended_bases": 128,
+    "RNA_bases_per_bead": 3,
+    "RNA_backbone_diameter_mm": 1.8,
+    "base_tip_exposure_ahead_of_recessed_cuff_mm": [
+      4.5,
+      5.64
+    ],
+    "cuff_opening_degrees": 40.0,
+    "maximum_dial_degrees": 165.0,
+    "protein_feed_mm": 132.0,
+    "retained_beads": 4,
+    "same_direction_RNA_and_protein": true,
+    "automatic_protein_curling": false
+  },
+  "physical_tests_still_required": [
+    "Finger access and turning force",
+    "RNA retention and cuff flexibility",
+    "Bidirectional protein feeding and bead fixation",
+    "Printed fits, strength, fatigue, wear and comfort"
+  ],
+  "validation_boundary": "Focused rigid geometry and native motion checks for the manufacturing derivative. Physical operation, printed fits and assembly remain untested; V3 full validation remains incomplete.",
+  "variant": "V4 Print / A1 mini 0.4 mm",
+  "manufacturing_candidates": {
+    "bead_material": "TPU, assumed 95A",
+    "wire_diameter_mm": 0.25,
+    "central_bore_mm": 0.6,
+    "bore_test_diameters_mm": [
+      0.4,
+      0.5,
+      0.6,
+      0.8
+    ],
+    "crimp_maximum_envelope_diameter_mm": 1.5,
+    "keeper_diameter_mm": 5.2,
+    "channel_diameter_mm": 5.6,
+    "leaf_thickness_mm": 0.8,
+    "physical_print_tested": false
+  },
+  "desktop_reopen": "Checked separately in FreeCAD GUI; see handoff status."
+}

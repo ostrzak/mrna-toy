@@ -1,0 +1,108 @@
+{
+  "version": "4.0",
+  "status": "FOCUSED_PASS",
+  "baseline_version": "3.0",
+  "baseline_full_validation": "INCOMPLETE_USER_STOPPED",
+  "runtime": "1.1.4",
+  "changed_parts": {
+    "CuffFrame": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 13826.63230230185
+    },
+    "CuffRear": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 8248.41405229233
+    },
+    "Rna": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1705.5500832017156
+    },
+    "UpperLobe": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 4682.795874542582
+    }
+  },
+  "maximum_unintended_overlap_mm3": {
+    "RNA envelope/frame": 0.0,
+    "protein envelope/frame": 0.0,
+    "RNA envelope/rear": 0.0,
+    "protein envelope/rear": 0.0,
+    "RNA/input mesh": 0,
+    "lobe/frame": 0,
+    "lobe/rear": 0,
+    "RNA envelope/lobe": 0,
+    "protein envelope/lobe": 0,
+    "actual bead/feeder": 0,
+    "posed strand/housing": 0.0
+  },
+  "overlap_tolerance_mm3": 1e-05,
+  "sampled_coupled_poses": 10,
+  "sampled_gear_phases": 9,
+  "actual_bead_feeder_samples": 19,
+  "invalid_objects": [],
+  "position_expression_error_mm": 2.07157025572446e-13,
+  "posed_expression_error_mm": 7.280896430443987e-14,
+  "stop_tests": [
+    {
+      "dial_degrees": -1,
+      "pin_overlap_mm3": 0.28731636106677944
+    },
+    {
+      "dial_degrees": 0,
+      "pin_overlap_mm3": 0.0
+    },
+    {
+      "dial_degrees": 165.0,
+      "pin_overlap_mm3": 0.0
+    },
+    {
+      "dial_degrees": 166.0,
+      "pin_overlap_mm3": 0.2873163610667961
+    }
+  ],
+  "design": {
+    "visible_RNA_backbones": 1,
+    "free_ended_bases": 128,
+    "RNA_bases_per_bead": 3,
+    "RNA_backbone_diameter_mm": 1.6,
+    "base_tip_exposure_ahead_of_recessed_cuff_mm": [
+      4.5,
+      5.64
+    ],
+    "cuff_opening_degrees": 40.0,
+    "maximum_dial_degrees": 165.0,
+    "protein_feed_mm": 132.0,
+    "retained_beads": 4,
+    "same_direction_RNA_and_protein": true,
+    "automatic_protein_curling": false
+  },
+  "physical_tests_still_required": [
+    "Finger access and turning force",
+    "RNA retention and cuff flexibility",
+    "Bidirectional protein feeding and bead fixation",
+    "Printed fits, strength, fatigue, wear and comfort"
+  ],
+  "validation_boundary": "Focused rigid geometry and native motion checks for the four revised shapes. Actual saved bead-to-feeder phase checks retained. V3 full validation remains incomplete; no physical or manufacturing qualification.",
+  "model_sha256": "2dd43bc891cf976701a8b3527ec6f3940c749289fc4607177d4bfcf0a3177cde",
+  "copied_from_V3_model_sha256": "c72707379f396831a8269ea0043924cc80e5083b8f5397a03fbd9f245febef18",
+  "V3_files_preserved": true,
+  "native_motion_expressions_unchanged": true,
+  "desktop_open_check": {
+    "normal_GUI_reopen": "PASS",
+    "visible_parts": 63,
+    "objects": 109,
+    "invalid_objects": [],
+    "macro_controls_visible": true,
+    "one_codon": {
+      "dial_degrees": 7.5,
+      "bases": 3.0,
+      "bead_steps": 1.0
+    },
+    "home_reset": "PASS",
+    "V3_document_left_open": true
+  }
+}

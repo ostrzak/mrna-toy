@@ -1,0 +1,1371 @@
+{
+  "version": "V4 Print A1 mini prototype",
+  "printer": "Bambu Lab A1 mini",
+  "nozzle_mm": 0.4,
+  "build_volume_mm": [
+    180,
+    180,
+    180
+  ],
+  "physical_print_tested": false,
+  "central_bore_candidate_mm": 0.6,
+  "copper_wire_candidate_mm": 0.25,
+  "bead_variant_assembly_counts": {
+    "bilobed": 8,
+    "offset": 8,
+    "trilobed": 10
+  },
+  "spare_beads": 3,
+  "parts": [
+    {
+      "name": "CuffFrame",
+      "file": "stl/CuffFrame.stl",
+      "material": "PETG",
+      "bounds_mm": [
+        85.78870028773756,
+        97.2981650685071,
+        16.897558268256137
+      ],
+      "volume_mm3": 14209.64428124751,
+      "facets": 29864,
+      "orientation": "Mating seam down; remove accessible tree supports and clean channel."
+    },
+    {
+      "name": "CuffRear",
+      "file": "stl/CuffRear.stl",
+      "material": "PETG",
+      "bounds_mm": [
+        85.78870028773756,
+        97.30112125700316,
+        9.800000000000079
+      ],
+      "volume_mm3": 9127.518185707186,
+      "facets": 20464,
+      "orientation": "Mating seam down; remove supports and clean channel."
+    },
+    {
+      "name": "Rna",
+      "file": "stl/Rna.stl",
+      "material": "PETG",
+      "bounds_mm": [
+        73.59404383145346,
+        73.59590881079905,
+        9.298717373478384
+      ],
+      "volume_mm3": 2103.8760411923313,
+      "facets": 366100,
+      "orientation": "Concealed gear face down; bases point upwards; single colour."
+    },
+    {
+      "name": "InputDrive",
+      "file": "stl/InputDrive.stl",
+      "material": "PLA",
+      "bounds_mm": [
+        12.993460587100763,
+        12.993460587100763,
+        14.450000000000005
+      ],
+      "volume_mm3": 386.62854253841476,
+      "facets": 7844,
+      "orientation": "Pinion face down; keyed shaft upright."
+    },
+    {
+      "name": "SwivelCam",
+      "file": "stl/SwivelCam.stl",
+      "material": "PLA",
+      "bounds_mm": [
+        15.584291838044509,
+        15.6,
+        1.9000000000000021
+      ],
+      "volume_mm3": 256.5648233806769,
+      "facets": 3368,
+      "orientation": "Flat rear face down; open cam groove upwards."
+    },
+    {
+      "name": "FollowerSlider",
+      "file": "stl/FollowerSlider.stl",
+      "material": "PLA",
+      "bounds_mm": [
+        8.199807119047307,
+        3.750000000000007,
+        3.1500000000000004
+      ],
+      "volume_mm3": 19.036537316285887,
+      "facets": 586,
+      "orientation": "Slider broad face parallel to plate; accessible supports below transverse pin."
+    },
+    {
+      "name": "LeverPost",
+      "file": "stl/LeverPost.stl",
+      "material": "PLA",
+      "bounds_mm": [
+        6.4,
+        10.998187519774365,
+        13.6
+      ],
+      "volume_mm3": 226.26139989391854,
+      "facets": 1546,
+      "orientation": "Arm flat on plate; post upwards; clean side-loading nut pocket."
+    },
+    {
+      "name": "UpperLobe",
+      "file": "stl/UpperLobe.stl",
+      "material": "PLA",
+      "bounds_mm": [
+        36.799962704286514,
+        25.7940639164912,
+        23.956025190276634
+      ],
+      "volume_mm3": 4568.167628479709,
+      "facets": 16466,
+      "orientation": "Open cavity down; removable tree supports; clean swivel cavity."
+    },
+    {
+      "name": "SwivelWasher",
+      "file": "stl/SwivelWasher.stl",
+      "material": "PLA",
+      "bounds_mm": [
+        11.0,
+        10.988923731954461,
+        1.1999999999999993
+      ],
+      "volume_mm3": 108.6111412199063,
+      "facets": 560,
+      "orientation": "Flat retainer cap down."
+    },
+    {
+      "name": "FeedWheelFront",
+      "file": "stl/FeedWheelFront.stl",
+      "material": "PLA",
+      "bounds_mm": [
+        17.368935211212193,
+        17.368935211212197,
+        1.9500000000000037
+      ],
+      "volume_mm3": 161.71136090299396,
+      "facets": 6056,
+      "orientation": "Outer fork face down; split hub up."
+    },
+    {
+      "name": "FeedWheelRear",
+      "file": "stl/FeedWheelRear.stl",
+      "material": "PLA",
+      "bounds_mm": [
+        17.368935211212193,
+        17.368935211212197,
+        1.9500000000000144
+      ],
+      "volume_mm3": 161.71136090299456,
+      "facets": 6056,
+      "orientation": "Outer fork face down; split hub up."
+    },
+    {
+      "name": "Leaf-0p6",
+      "file": "stl/Leaf-0p6.stl",
+      "material": "PETG",
+      "bounds_mm": [
+        18.848392294375202,
+        4.399033840319348,
+        1.2000000000000006
+      ],
+      "volume_mm3": 24.407977048811844,
+      "facets": 792,
+      "orientation": "Leaf broad face flat; select force after bench test."
+    },
+    {
+      "name": "Leaf-0p8",
+      "file": "stl/Leaf-0p8.stl",
+      "material": "PETG",
+      "bounds_mm": [
+        18.848392294375202,
+        4.399033840319348,
+        1.2000000000000006
+      ],
+      "volume_mm3": 27.727376811525957,
+      "facets": 768,
+      "orientation": "Leaf broad face flat; select force after bench test."
+    },
+    {
+      "name": "Leaf-1p0",
+      "file": "stl/Leaf-1p0.stl",
+      "material": "PETG",
+      "bounds_mm": [
+        18.848392294375202,
+        4.399033840319348,
+        1.2000000000000006
+      ],
+      "volume_mm3": 31.085819655682922,
+      "facets": 764,
+      "orientation": "Leaf broad face flat; select force after bench test."
+    },
+    {
+      "name": "FitGauge",
+      "file": "stl/FitGauge.stl",
+      "material": "PETG",
+      "bounds_mm": [
+        56.0,
+        18.0,
+        3.0
+      ],
+      "volume_mm3": 2826.614337274087,
+      "facets": 1800,
+      "orientation": "Hole row left-to-right: 1.05,1.10,1.20,2.20,2.30,2.40; hex row 4.2,4.4,4.6 AF."
+    },
+    {
+      "name": "FeederTestFront",
+      "file": "stl/FeederTestFront.stl",
+      "material": "PETG",
+      "bounds_mm": [
+        38.0,
+        24.0,
+        5.200000000000003
+      ],
+      "volume_mm3": 3624.6891027391266,
+      "facets": 3013,
+      "orientation": "Mating seam down; actual curved entry and feeder pocket."
+    },
+    {
+      "name": "FeederTestRear",
+      "file": "stl/FeederTestRear.stl",
+      "material": "PETG",
+      "bounds_mm": [
+        38.0,
+        24.0,
+        5.200000000000005
+      ],
+      "volume_mm3": 3624.6877554778257,
+      "facets": 3096,
+      "orientation": "Mating seam down; clamp with two M2 x 14 screws and nuts (test fixture only)."
+    },
+    {
+      "name": "ChainPitchJig",
+      "file": "stl/ChainPitchJig.stl",
+      "material": "PLA",
+      "bounds_mm": [
+        160.0,
+        16.0,
+        3.0
+      ],
+      "volume_mm3": 6745.309379737152,
+      "facets": 7776,
+      "orientation": "26 centres at 6 mm pitch. Work one bead/stop pair first; jig does not set pull strength."
+    },
+    {
+      "name": "TestBead-0p4-bilobed",
+      "file": "stl/TestBead-0p4-bilobed.stl",
+      "material": "TPU",
+      "bounds_mm": [
+        4.177522133322113,
+        3.698996637278353,
+        3.659591794226543
+      ],
+      "volume_mm3": 29.82127387184516,
+      "facets": 5016,
+      "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+    },
+    {
+      "name": "TestBead-0p4-offset",
+      "file": "stl/TestBead-0p4-offset.stl",
+      "material": "TPU",
+      "bounds_mm": [
+        4.087984785650311,
+        3.7423335054401448,
+        3.659591794226543
+      ],
+      "volume_mm3": 29.811902036299763,
+      "facets": 4810,
+      "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+    },
+    {
+      "name": "TestBead-0p4-trilobed",
+      "file": "stl/TestBead-0p4-trilobed.stl",
+      "material": "TPU",
+      "bounds_mm": [
+        3.891411073899257,
+        3.990307107838268,
+        3.659591794226543
+      ],
+      "volume_mm3": 29.799983105811137,
+      "facets": 4876,
+      "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+    },
+    {
+      "name": "TestBead-0p5-bilobed",
+      "file": "stl/TestBead-0p5-bilobed.stl",
+      "material": "TPU",
+      "bounds_mm": [
+        4.177522133322113,
+        3.698996637278353,
+        3.659591794226543
+      ],
+      "volume_mm3": 29.70111561637935,
+      "facets": 5016,
+      "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+    },
+    {
+      "name": "TestBead-0p5-offset",
+      "file": "stl/TestBead-0p5-offset.stl",
+      "material": "TPU",
+      "bounds_mm": [
+        4.087984785650311,
+        3.7423335054401448,
+        3.659591794226543
+      ],
+      "volume_mm3": 29.69174148990113,
+      "facets": 4810,
+      "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+    },
+    {
+      "name": "TestBead-0p5-trilobed",
+      "file": "stl/TestBead-0p5-trilobed.stl",
+      "material": "TPU",
+      "bounds_mm": [
+        3.891411073899257,
+        3.990307107838268,
+        3.659591794226543
+      ],
+      "volume_mm3": 29.679828443539133,
+      "facets": 4876,
+      "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+    },
+    {
+      "name": "TestBead-0p6-bilobed",
+      "file": "stl/TestBead-0p6-bilobed.stl",
+      "material": "TPU",
+      "bounds_mm": [
+        4.177522133322113,
+        3.698996637278353,
+        3.659591794226543
+      ],
+      "volume_mm3": 29.55425382335802,
+      "facets": 5016,
+      "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+    },
+    {
+      "name": "TestBead-0p6-offset",
+      "file": "stl/TestBead-0p6-offset.stl",
+      "material": "TPU",
+      "bounds_mm": [
+        4.087984785650311,
+        3.7423335054401448,
+        3.659591794226543
+      ],
+      "volume_mm3": 29.54487740594698,
+      "facets": 4810,
+      "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+    },
+    {
+      "name": "TestBead-0p6-trilobed",
+      "file": "stl/TestBead-0p6-trilobed.stl",
+      "material": "TPU",
+      "bounds_mm": [
+        3.891411073899257,
+        3.990307107838268,
+        3.659591794226543
+      ],
+      "volume_mm3": 29.532970243711606,
+      "facets": 4876,
+      "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+    },
+    {
+      "name": "TestBead-0p8-bilobed",
+      "file": "stl/TestBead-0p8-bilobed.stl",
+      "material": "TPU",
+      "bounds_mm": [
+        4.177522133322113,
+        3.698996637278353,
+        3.659591794226543
+      ],
+      "volume_mm3": 29.180419624648824,
+      "facets": 5016,
+      "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+    },
+    {
+      "name": "TestBead-0p8-offset",
+      "file": "stl/TestBead-0p8-offset.stl",
+      "material": "TPU",
+      "bounds_mm": [
+        4.087984785650311,
+        3.7423335054401448,
+        3.659591794226543
+      ],
+      "volume_mm3": 29.171038625372155,
+      "facets": 4810,
+      "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+    },
+    {
+      "name": "TestBead-0p8-trilobed",
+      "file": "stl/TestBead-0p8-trilobed.stl",
+      "material": "TPU",
+      "bounds_mm": [
+        3.891411073899257,
+        3.990307107838268,
+        3.659591794226543
+      ],
+      "volume_mm3": 29.159143231390015,
+      "facets": 4876,
+      "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+    },
+    {
+      "name": "TestAxlePlug-4p1",
+      "file": "stl/TestAxlePlug-4p1.stl",
+      "material": "TPU",
+      "bounds_mm": [
+        6.593354239172678,
+        6.599999999999994,
+        2.7000000000000046
+      ],
+      "volume_mm3": 52.45438713882537,
+      "facets": 556,
+      "orientation": "Wide flange down; compare retention before selecting."
+    },
+    {
+      "name": "TestAxlePlug-4p25",
+      "file": "stl/TestAxlePlug-4p25.stl",
+      "material": "TPU",
+      "bounds_mm": [
+        6.593354239172678,
+        6.599999999999994,
+        2.7000000000000046
+      ],
+      "volume_mm3": 54.32343841817047,
+      "facets": 556,
+      "orientation": "Wide flange down; compare retention before selecting."
+    },
+    {
+      "name": "TestAxlePlug-4p35",
+      "file": "stl/TestAxlePlug-4p35.stl",
+      "material": "TPU",
+      "bounds_mm": [
+        6.593354239172678,
+        6.599999999999994,
+        2.7000000000000046
+      ],
+      "volume_mm3": 55.606779017161884,
+      "facets": 556,
+      "orientation": "Wide flange down; compare retention before selecting."
+    },
+    {
+      "name": "Bead-bilobed-0p6",
+      "file": "stl/Bead-bilobed-0p6.stl",
+      "material": "TPU",
+      "bounds_mm": [
+        4.177522133322113,
+        3.698996637278353,
+        3.659591794226543
+      ],
+      "volume_mm3": 29.55425382335802,
+      "facets": 5016,
+      "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+    },
+    {
+      "name": "Bead-offset-0p6",
+      "file": "stl/Bead-offset-0p6.stl",
+      "material": "TPU",
+      "bounds_mm": [
+        4.087984785650311,
+        3.7423335054401448,
+        3.659591794226543
+      ],
+      "volume_mm3": 29.54487740594698,
+      "facets": 4810,
+      "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+    },
+    {
+      "name": "Bead-trilobed-0p6",
+      "file": "stl/Bead-trilobed-0p6.stl",
+      "material": "TPU",
+      "bounds_mm": [
+        3.891411073899257,
+        3.990307107838268,
+        3.659591794226543
+      ],
+      "volume_mm3": 29.532970243711606,
+      "facets": 4876,
+      "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+    },
+    {
+      "name": "AxlePlug-4p35",
+      "file": "stl/AxlePlug-4p35.stl",
+      "material": "TPU",
+      "bounds_mm": [
+        6.593354239172678,
+        6.599999999999994,
+        2.7000000000000046
+      ],
+      "volume_mm3": 55.606779017161884,
+      "facets": 556,
+      "orientation": "Wide flange down. 4.35 mm candidate retention plug."
+    }
+  ],
+  "plates": [
+    {
+      "name": "10-PETG-cuff-front",
+      "material": "PETG",
+      "parts": [
+        {
+          "name": "CuffFrame",
+          "file": "stl/CuffFrame.stl",
+          "material": "PETG",
+          "bounds_mm": [
+            85.78870028773756,
+            97.2981650685071,
+            16.897558268256137
+          ],
+          "volume_mm3": 14209.64428124751,
+          "facets": 29864,
+          "orientation": "Mating seam down; remove accessible tree supports and clean channel."
+        }
+      ]
+    },
+    {
+      "name": "11-PETG-cuff-rear",
+      "material": "PETG",
+      "parts": [
+        {
+          "name": "CuffRear",
+          "file": "stl/CuffRear.stl",
+          "material": "PETG",
+          "bounds_mm": [
+            85.78870028773756,
+            97.30112125700316,
+            9.800000000000079
+          ],
+          "volume_mm3": 9127.518185707186,
+          "facets": 20464,
+          "orientation": "Mating seam down; remove supports and clean channel."
+        }
+      ]
+    },
+    {
+      "name": "12-PETG-RNA",
+      "material": "PETG",
+      "parts": [
+        {
+          "name": "Rna",
+          "file": "stl/Rna.stl",
+          "material": "PETG",
+          "bounds_mm": [
+            73.59404383145346,
+            73.59590881079905,
+            9.298717373478384
+          ],
+          "volume_mm3": 2103.8760411923313,
+          "facets": 366100,
+          "orientation": "Concealed gear face down; bases point upwards; single colour."
+        }
+      ]
+    },
+    {
+      "name": "13-PLA-mechanism",
+      "material": "PLA",
+      "parts": [
+        {
+          "name": "InputDrive",
+          "file": "stl/InputDrive.stl",
+          "material": "PLA",
+          "bounds_mm": [
+            12.993460587100763,
+            12.993460587100763,
+            14.450000000000005
+          ],
+          "volume_mm3": 386.62854253841476,
+          "facets": 7844,
+          "orientation": "Pinion face down; keyed shaft upright."
+        },
+        {
+          "name": "SwivelCam",
+          "file": "stl/SwivelCam.stl",
+          "material": "PLA",
+          "bounds_mm": [
+            15.584291838044509,
+            15.6,
+            1.9000000000000021
+          ],
+          "volume_mm3": 256.5648233806769,
+          "facets": 3368,
+          "orientation": "Flat rear face down; open cam groove upwards."
+        },
+        {
+          "name": "FollowerSlider",
+          "file": "stl/FollowerSlider.stl",
+          "material": "PLA",
+          "bounds_mm": [
+            8.199807119047307,
+            3.750000000000007,
+            3.1500000000000004
+          ],
+          "volume_mm3": 19.036537316285887,
+          "facets": 586,
+          "orientation": "Slider broad face parallel to plate; accessible supports below transverse pin."
+        },
+        {
+          "name": "LeverPost",
+          "file": "stl/LeverPost.stl",
+          "material": "PLA",
+          "bounds_mm": [
+            6.4,
+            10.998187519774365,
+            13.6
+          ],
+          "volume_mm3": 226.26139989391854,
+          "facets": 1546,
+          "orientation": "Arm flat on plate; post upwards; clean side-loading nut pocket."
+        },
+        {
+          "name": "UpperLobe",
+          "file": "stl/UpperLobe.stl",
+          "material": "PLA",
+          "bounds_mm": [
+            36.799962704286514,
+            25.7940639164912,
+            23.956025190276634
+          ],
+          "volume_mm3": 4568.167628479709,
+          "facets": 16466,
+          "orientation": "Open cavity down; removable tree supports; clean swivel cavity."
+        },
+        {
+          "name": "SwivelWasher",
+          "file": "stl/SwivelWasher.stl",
+          "material": "PLA",
+          "bounds_mm": [
+            11.0,
+            10.988923731954461,
+            1.1999999999999993
+          ],
+          "volume_mm3": 108.6111412199063,
+          "facets": 560,
+          "orientation": "Flat retainer cap down."
+        },
+        {
+          "name": "FeedWheelFront",
+          "file": "stl/FeedWheelFront.stl",
+          "material": "PLA",
+          "bounds_mm": [
+            17.368935211212193,
+            17.368935211212197,
+            1.9500000000000037
+          ],
+          "volume_mm3": 161.71136090299396,
+          "facets": 6056,
+          "orientation": "Outer fork face down; split hub up."
+        },
+        {
+          "name": "FeedWheelRear",
+          "file": "stl/FeedWheelRear.stl",
+          "material": "PLA",
+          "bounds_mm": [
+            17.368935211212193,
+            17.368935211212197,
+            1.9500000000000144
+          ],
+          "volume_mm3": 161.71136090299456,
+          "facets": 6056,
+          "orientation": "Outer fork face down; split hub up."
+        }
+      ]
+    },
+    {
+      "name": "01-PETG-fits-and-feeder-test",
+      "material": "PETG",
+      "parts": [
+        {
+          "name": "Leaf-0p6",
+          "file": "stl/Leaf-0p6.stl",
+          "material": "PETG",
+          "bounds_mm": [
+            18.848392294375202,
+            4.399033840319348,
+            1.2000000000000006
+          ],
+          "volume_mm3": 24.407977048811844,
+          "facets": 792,
+          "orientation": "Leaf broad face flat; select force after bench test."
+        },
+        {
+          "name": "Leaf-0p8",
+          "file": "stl/Leaf-0p8.stl",
+          "material": "PETG",
+          "bounds_mm": [
+            18.848392294375202,
+            4.399033840319348,
+            1.2000000000000006
+          ],
+          "volume_mm3": 27.727376811525957,
+          "facets": 768,
+          "orientation": "Leaf broad face flat; select force after bench test."
+        },
+        {
+          "name": "Leaf-1p0",
+          "file": "stl/Leaf-1p0.stl",
+          "material": "PETG",
+          "bounds_mm": [
+            18.848392294375202,
+            4.399033840319348,
+            1.2000000000000006
+          ],
+          "volume_mm3": 31.085819655682922,
+          "facets": 764,
+          "orientation": "Leaf broad face flat; select force after bench test."
+        },
+        {
+          "name": "FitGauge",
+          "file": "stl/FitGauge.stl",
+          "material": "PETG",
+          "bounds_mm": [
+            56.0,
+            18.0,
+            3.0
+          ],
+          "volume_mm3": 2826.614337274087,
+          "facets": 1800,
+          "orientation": "Hole row left-to-right: 1.05,1.10,1.20,2.20,2.30,2.40; hex row 4.2,4.4,4.6 AF."
+        },
+        {
+          "name": "FeederTestFront",
+          "file": "stl/FeederTestFront.stl",
+          "material": "PETG",
+          "bounds_mm": [
+            38.0,
+            24.0,
+            5.200000000000003
+          ],
+          "volume_mm3": 3624.6891027391266,
+          "facets": 3013,
+          "orientation": "Mating seam down; actual curved entry and feeder pocket."
+        },
+        {
+          "name": "FeederTestRear",
+          "file": "stl/FeederTestRear.stl",
+          "material": "PETG",
+          "bounds_mm": [
+            38.0,
+            24.0,
+            5.200000000000005
+          ],
+          "volume_mm3": 3624.6877554778257,
+          "facets": 3096,
+          "orientation": "Mating seam down; clamp with two M2 x 14 screws and nuts (test fixture only)."
+        }
+      ]
+    },
+    {
+      "name": "14-PLA-chain-pitch-jig",
+      "material": "PLA",
+      "parts": [
+        {
+          "name": "ChainPitchJig",
+          "file": "stl/ChainPitchJig.stl",
+          "material": "PLA",
+          "bounds_mm": [
+            160.0,
+            16.0,
+            3.0
+          ],
+          "volume_mm3": 6745.309379737152,
+          "facets": 7776,
+          "orientation": "26 centres at 6 mm pitch. Work one bead/stop pair first; jig does not set pull strength."
+        }
+      ]
+    },
+    {
+      "name": "00-TPU-bore-tests",
+      "material": "TPU",
+      "parts": [
+        {
+          "name": "TestBead-0p4-bilobed",
+          "file": "stl/TestBead-0p4-bilobed.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.177522133322113,
+            3.698996637278353,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.82127387184516,
+          "facets": 5016,
+          "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+        },
+        {
+          "name": "TestBead-0p4-offset",
+          "file": "stl/TestBead-0p4-offset.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.087984785650311,
+            3.7423335054401448,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.811902036299763,
+          "facets": 4810,
+          "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+        },
+        {
+          "name": "TestBead-0p4-trilobed",
+          "file": "stl/TestBead-0p4-trilobed.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            3.891411073899257,
+            3.990307107838268,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.799983105811137,
+          "facets": 4876,
+          "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+        },
+        {
+          "name": "TestBead-0p5-bilobed",
+          "file": "stl/TestBead-0p5-bilobed.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.177522133322113,
+            3.698996637278353,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.70111561637935,
+          "facets": 5016,
+          "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+        },
+        {
+          "name": "TestBead-0p5-offset",
+          "file": "stl/TestBead-0p5-offset.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.087984785650311,
+            3.7423335054401448,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.69174148990113,
+          "facets": 4810,
+          "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+        },
+        {
+          "name": "TestBead-0p5-trilobed",
+          "file": "stl/TestBead-0p5-trilobed.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            3.891411073899257,
+            3.990307107838268,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.679828443539133,
+          "facets": 4876,
+          "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+        },
+        {
+          "name": "TestBead-0p6-bilobed",
+          "file": "stl/TestBead-0p6-bilobed.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.177522133322113,
+            3.698996637278353,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.55425382335802,
+          "facets": 5016,
+          "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+        },
+        {
+          "name": "TestBead-0p6-offset",
+          "file": "stl/TestBead-0p6-offset.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.087984785650311,
+            3.7423335054401448,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.54487740594698,
+          "facets": 4810,
+          "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+        },
+        {
+          "name": "TestBead-0p6-trilobed",
+          "file": "stl/TestBead-0p6-trilobed.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            3.891411073899257,
+            3.990307107838268,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.532970243711606,
+          "facets": 4876,
+          "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+        },
+        {
+          "name": "TestBead-0p8-bilobed",
+          "file": "stl/TestBead-0p8-bilobed.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.177522133322113,
+            3.698996637278353,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.180419624648824,
+          "facets": 5016,
+          "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+        },
+        {
+          "name": "TestBead-0p8-offset",
+          "file": "stl/TestBead-0p8-offset.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.087984785650311,
+            3.7423335054401448,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.171038625372155,
+          "facets": 4810,
+          "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+        },
+        {
+          "name": "TestBead-0p8-trilobed",
+          "file": "stl/TestBead-0p8-trilobed.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            3.891411073899257,
+            3.990307107838268,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.159143231390015,
+          "facets": 4876,
+          "orientation": "Flat sole down; central bore vertical. Row order follows manifest."
+        },
+        {
+          "name": "TestAxlePlug-4p1",
+          "file": "stl/TestAxlePlug-4p1.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            6.593354239172678,
+            6.599999999999994,
+            2.7000000000000046
+          ],
+          "volume_mm3": 52.45438713882537,
+          "facets": 556,
+          "orientation": "Wide flange down; compare retention before selecting."
+        },
+        {
+          "name": "TestAxlePlug-4p25",
+          "file": "stl/TestAxlePlug-4p25.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            6.593354239172678,
+            6.599999999999994,
+            2.7000000000000046
+          ],
+          "volume_mm3": 54.32343841817047,
+          "facets": 556,
+          "orientation": "Wide flange down; compare retention before selecting."
+        },
+        {
+          "name": "TestAxlePlug-4p35",
+          "file": "stl/TestAxlePlug-4p35.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            6.593354239172678,
+            6.599999999999994,
+            2.7000000000000046
+          ],
+          "volume_mm3": 55.606779017161884,
+          "facets": 556,
+          "orientation": "Wide flange down; compare retention before selecting."
+        }
+      ]
+    },
+    {
+      "name": "15-TPU-production-beads",
+      "material": "TPU",
+      "parts": [
+        {
+          "name": "Bead-bilobed-0p6-01",
+          "file": "stl/Bead-bilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.177522133322113,
+            3.698996637278353,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.55425382335802,
+          "facets": 5016,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-bilobed-0p6-02",
+          "file": "stl/Bead-bilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.177522133322113,
+            3.698996637278353,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.55425382335802,
+          "facets": 5016,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-bilobed-0p6-03",
+          "file": "stl/Bead-bilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.177522133322113,
+            3.698996637278353,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.55425382335802,
+          "facets": 5016,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-bilobed-0p6-04",
+          "file": "stl/Bead-bilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.177522133322113,
+            3.698996637278353,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.55425382335802,
+          "facets": 5016,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-bilobed-0p6-05",
+          "file": "stl/Bead-bilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.177522133322113,
+            3.698996637278353,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.55425382335802,
+          "facets": 5016,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-bilobed-0p6-06",
+          "file": "stl/Bead-bilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.177522133322113,
+            3.698996637278353,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.55425382335802,
+          "facets": 5016,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-bilobed-0p6-07",
+          "file": "stl/Bead-bilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.177522133322113,
+            3.698996637278353,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.55425382335802,
+          "facets": 5016,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-bilobed-0p6-08",
+          "file": "stl/Bead-bilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.177522133322113,
+            3.698996637278353,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.55425382335802,
+          "facets": 5016,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-bilobed-0p6-09",
+          "file": "stl/Bead-bilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.177522133322113,
+            3.698996637278353,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.55425382335802,
+          "facets": 5016,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-offset-0p6-01",
+          "file": "stl/Bead-offset-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.087984785650311,
+            3.7423335054401448,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.54487740594698,
+          "facets": 4810,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-offset-0p6-02",
+          "file": "stl/Bead-offset-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.087984785650311,
+            3.7423335054401448,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.54487740594698,
+          "facets": 4810,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-offset-0p6-03",
+          "file": "stl/Bead-offset-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.087984785650311,
+            3.7423335054401448,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.54487740594698,
+          "facets": 4810,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-offset-0p6-04",
+          "file": "stl/Bead-offset-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.087984785650311,
+            3.7423335054401448,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.54487740594698,
+          "facets": 4810,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-offset-0p6-05",
+          "file": "stl/Bead-offset-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.087984785650311,
+            3.7423335054401448,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.54487740594698,
+          "facets": 4810,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-offset-0p6-06",
+          "file": "stl/Bead-offset-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.087984785650311,
+            3.7423335054401448,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.54487740594698,
+          "facets": 4810,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-offset-0p6-07",
+          "file": "stl/Bead-offset-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.087984785650311,
+            3.7423335054401448,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.54487740594698,
+          "facets": 4810,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-offset-0p6-08",
+          "file": "stl/Bead-offset-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.087984785650311,
+            3.7423335054401448,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.54487740594698,
+          "facets": 4810,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-offset-0p6-09",
+          "file": "stl/Bead-offset-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            4.087984785650311,
+            3.7423335054401448,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.54487740594698,
+          "facets": 4810,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-trilobed-0p6-01",
+          "file": "stl/Bead-trilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            3.891411073899257,
+            3.990307107838268,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.532970243711606,
+          "facets": 4876,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-trilobed-0p6-02",
+          "file": "stl/Bead-trilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            3.891411073899257,
+            3.990307107838268,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.532970243711606,
+          "facets": 4876,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-trilobed-0p6-03",
+          "file": "stl/Bead-trilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            3.891411073899257,
+            3.990307107838268,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.532970243711606,
+          "facets": 4876,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-trilobed-0p6-04",
+          "file": "stl/Bead-trilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            3.891411073899257,
+            3.990307107838268,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.532970243711606,
+          "facets": 4876,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-trilobed-0p6-05",
+          "file": "stl/Bead-trilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            3.891411073899257,
+            3.990307107838268,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.532970243711606,
+          "facets": 4876,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-trilobed-0p6-06",
+          "file": "stl/Bead-trilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            3.891411073899257,
+            3.990307107838268,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.532970243711606,
+          "facets": 4876,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-trilobed-0p6-07",
+          "file": "stl/Bead-trilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            3.891411073899257,
+            3.990307107838268,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.532970243711606,
+          "facets": 4876,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-trilobed-0p6-08",
+          "file": "stl/Bead-trilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            3.891411073899257,
+            3.990307107838268,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.532970243711606,
+          "facets": 4876,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-trilobed-0p6-09",
+          "file": "stl/Bead-trilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            3.891411073899257,
+            3.990307107838268,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.532970243711606,
+          "facets": 4876,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-trilobed-0p6-10",
+          "file": "stl/Bead-trilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            3.891411073899257,
+            3.990307107838268,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.532970243711606,
+          "facets": 4876,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "Bead-trilobed-0p6-11",
+          "file": "stl/Bead-trilobed-0p6.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            3.891411073899257,
+            3.990307107838268,
+            3.659591794226543
+          ],
+          "volume_mm3": 29.532970243711606,
+          "facets": 4876,
+          "orientation": "Flat sole down; 0.6 mm candidate central bore, 2 mm recessed stop pockets."
+        },
+        {
+          "name": "AxlePlug-4p35",
+          "file": "stl/AxlePlug-4p35.stl",
+          "material": "TPU",
+          "bounds_mm": [
+            6.593354239172678,
+            6.599999999999994,
+            2.7000000000000046
+          ],
+          "volume_mm3": 55.606779017161884,
+          "facets": 556,
+          "orientation": "Wide flange down. 4.35 mm candidate retention plug."
+        }
+      ]
+    }
+  ]
+}

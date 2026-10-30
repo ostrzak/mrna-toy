@@ -1,47 +1,62 @@
 # Project status and next decisions
 
-Handoff updated 2026-10-27. V3 is the active CAD prototype; no physical prototype results are recorded.
+## V5 handheld redesign — 2026-10-29
 
-## Immediate continuation plan
+The user authorized V5 after choosing a handheld ribosome and a closed RNA loop.
+V5 is a separate design in `cad/v5/`; V4 and all previous CAD/print files are
+preserved. The single-row drum directly carries returning beads in pockets,
+without a cord reel or tensioned spring take-up. The lower body is larger; the
+upper body is a smaller rocking input.
 
-The user plans a new local chat to work on the beads; cloud migration is deferred because of issues with that environment. This update regenerated the [current concept illustration](images/toy-concept.png) and corrected the documentation, without changing CAD. The early on-wrist illustration is superseded. The new image uses V3 as a reference and keeps the current rounded bead placeholders; it is not evidence that bead redesign or manufacturing preparation has been implemented. See [image provenance](images/README.md).
+The source, native motion, focused geometric checks and desktop presentation
+are being built together. Consult [V5 checks](../cad/v5/checks.json) for the exact
+result rather than reusing a V4 PASS. No V5 physical or slicer qualification is
+claimed. The upper-return spring is a space claim; ratchet leaf behaviour,
+reverse release, flexible RNA retention, bead fixation, fatigue and printed
+assembly remain open. See the [V5 guide](../cad/v5/README.md).
 
-## Implemented and checked
+The older status below is retained for the cuff comparisons.
 
-- Separate flexible-cuff and RNA-dial C arcs, a fixed ribosome, hidden protein storage, a direct same-direction outlet, a close bead keeper and bounded travel.
-- Three RNA bases per bead step, nominal click feedback and a mechanically linked upper-lobe swivel.
-- A saved FreeCAD model, procedural source, native motion expressions and a GUI control macro.
-- The committed V3 report records **63 valid one-solid components**, **21 coupled poses**, **9 gear phases**, sampled actual bead-to-feeder contacts, stop checks and profile clearance checks. Its smallest sampled bead-pocket clearance is approximately **0.119 mm**.
-- The check scope is geometric: prescribed motion, sampled interference and conservative swept envelopes. Wire segments and the posed output are visual approximations. The detent leaf is an unloaded shape with intentional cam preload; its elastic behaviour has not been solved.
+## A1 mini derivative - 2026-10-29
 
-See [the saved V3 report](../cad/v3/checks.json). A fresh run goes to `build/v3/checks.json` and is separate from that committed snapshot.
+The user authorized manufacturing preparation. [V4 Print](../cad/v4-print/README.md) is separate from V4, with TPU beads, candidate 0.6 mm bores and 0.25 mm copper wire; bore samples span 0.4-0.8 mm. The package includes oriented STL parts, fit and feeder fixtures, proposed M2 hardware and assembly instructions. Focused CAD checks passed. Export/slicer qualification is being saved at the user's request before all checks finish; consult [handoff status](../print/v4-a1-mini/handoff.json). No physical printing or assembly is demonstrated.
 
-The 2026-10-27 cleanup was checked with the repository checker, runtime doctor, a fresh V3 build, and a separate validation of the committed model on Windows / FreeCAD 1.1.4. Both CAD runs passed. The rebuilt part summaries, dimensions and kinematics matched the stored snapshot, and both committed CAD files retained their original hashes. Linux/cloud execution remains unverified.
 
-## Latest requests: analysed, not implemented
+Updated 2026-10-28. **V4 is the current working CAD**, copied from V3 at the user's request. V3 files are preserved as the preceding comparison; V2 retains its invalidated historical-validation warning. No physical prototype results are recorded.
 
-The user asked whether amino-acid beads could look more realistic, similar to earlier compact lobed forms, and how much work remained to make the toy printable. They then explicitly said **not to implement model changes yet**. The repository cleanup preserves the CAD geometry.
+## V4 changes
 
-The proposed bead direction is a small family of compact asymmetric shapes with consistent spacing and reliable feed contact geometry. The current beads remain spherical. The 4.4 mm bead / 4.9 mm keeper pairing provides only **0.25 mm radial clearance**. New lobes must be checked through the entire guide and in plausible rotated orientations; larger shapes may need guide and feeder changes. The three-to-one ratio should remain.
+- A rounded fixed front cover and curved upper pinion guard conceal the front mechanism. The upper lobe is cleared around a conservative full-swivel envelope.
+- The cuff edge is recessed beside the RNA. Retaining ledges and a recessed outer shield preserve guidance while hiding the gear rail.
+- One rounded RNA backbone carries 128 free-ended rounded bases. Their nominal tips project 4.5–5.64 mm ahead of the recessed cuff face. This is geometric finger access, not a usability test.
+- Protein beads, their pitch, the storage path and outlet, common drive shaft, click/swivel coupling, three bases per bead, bounded travel and the engaged hidden tail are retained. Protein shaping remains manual.
 
-V3 is a basis for printing prototype parts, **not a dependable print-and-assemble release**. The hardest uncertainties are bidirectional chain feeding and cuff flexibility, not the appearance of the beads.
+See the [V4 guide](../cad/v4/README.md), [current view](../cad/v4/bracelet.png), [RNA detail](../cad/v4/rna.png) and [covered mechanism](../cad/v4/mechanism.png). The older AI illustration predates these changes; it is not a geometry reference.
 
-## Decisions and bench work still needed
+## Check boundary
 
-| Area | What must be established |
+The local FreeCAD 1.1.4 V4 build passed focused checks for the four revised connected solids, RNA/protein envelopes, nine actual gear phases, ten coupled poses, actual saved bead-to-feeder contacts, native position expressions, travel stops and the illustrative hand-shaped strand. The report labels this **FOCUSED_PASS** and keeps V3's full baseline validation **INCOMPLETE_USER_STOPPED**.
+
+The saved model must include desktop visibility and colours and be checked by normal GUI close-and-reopen. Its report and views are promoted together. The repository checker checks source syntax, links, CAD containers and report boundaries; it does not prove physical operation.
+
+## Physical and manufacturing work still open
+
+V4 remains an engineering prototype, not a dependable print-and-assemble release. A1 mini prototype preparation is now authorized in the separate V4 Print derivative.
+
+| Area | Unresolved work |
 | --- | --- |
-| Manufacturing process | Target printer/service, nozzle or process resolution, materials, calibrated fits and print orientations. No printer or production material has been selected in the repository. |
-| Feeder and storage | Beads stay fixed at pitch; the close guide maintains engagement in both directions; the straightened wire does not buckle or jam when pushed into the curved store. |
-| Wire and beads | Pose retention, bore finish, bead fixation, repeated-bend fatigue, end retention and replacement/assembly method. |
-| Cuff and RNA dial | Force and strain needed to spread them at home, fatigue, track retention, wrist comfort and clearance while worn. |
-| Small mechanism | Printed gears, approximately 0.12 mm nominal pocket clearance, small pins, sliding fits, cam friction, torque and the 0.45 mm click leaf. |
-| Assembly | Actual fasteners, retention and service access; printable supports, wall thicknesses and final part preparation. |
+| RNA and cuff | Finger purchase, turning force, retention, spread force/strain at home, fatigue and comfort. |
+| Protein feed | Bead fixation at pitch, forward/reverse handoff, wire buckling, friction and end retention. |
+| Wire and beads | Bore finish, pose retention, repeated-bend fatigue and assembly/replacement method. |
+| Mechanism | Printed gears, approximately 0.12 mm nominal pocket clearance, cam/slider fits, torque, wear and the 0.45 mm click leaf. |
+| Manufacturing | Printer/process, materials, calibrated fits, wall thicknesses, support access, print orientations and final fasteners. |
 
-A useful proposed next engineering step is a short feeder-and-channel test assembly with a few beads and the intended core. It would establish practical fits and reverse-feed behaviour before a full wearable build. This is a recommendation, not an instruction to start that work without a new request.
+A short feeder-and-channel bench assembly with representative beads and wire remains a useful proposed next engineering step. A short feeder fixture is now included in the V4 Print package; no physical tests have been run. Full wearable reliability will require physical testing.
 
-## Version history worth retaining
+## Preserved comparisons
 
-- **V3:** current same-direction direct feed. The bead home phase is an integral number of pitches, and validation includes actual assembled bead-to-wheel checks.
-- **V2:** explicitly retained opposite-direction comparison. A later audit measured approximately **7.167 mm³** interference between a bead and the wheel at home, which its original profile-only check missed. The old PASS was invalidated in its report. Keep the warning and do not present V2 as a validated mechanism.
+**V3:** compact lobed beads and a shallow same-direction protein exit. The user stopped full validation and accepted an immediate save; its report remains incomplete. Its 2026-10-28 desktop repair restored visibility without changing geometry or native motion expressions. V4 is a separate copy.
 
-Other superseded concept studies are available in Git history, not in the active working tree. They are not alternatives to carry forward automatically.
+**V2:** opposite-direction feed comparison. A later audit found about 7.167 mm³ bead-to-wheel interference at home that its profile-only check missed. Keep `HISTORICAL_PASS_INVALIDATED`; it is not a validated baseline.
+
+Continue locally; cloud migration remains deferred. Superseded experiments belong in Git history, not new archive folders.

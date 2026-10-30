@@ -1,0 +1,20 @@
+"""Open V4: same-direction protein feed, RNA dial and swivel controls."""
+from pathlib import Path
+import sys
+import importlib
+import FreeCAD as App
+
+sys.dont_write_bytecode=True
+folder=Path(__file__).resolve().parent
+if str(folder) in sys.path:
+    sys.path.remove(str(folder))
+sys.path.insert(0,str(folder))
+import bracelet_v4
+bracelet=importlib.reload(bracelet_v4)
+target=(folder/bracelet.MODEL_FILE).resolve()
+doc=next((d for d in App.listDocuments().values() if d.FileName and Path(d.FileName).resolve()==target),None)
+if doc is None:
+    doc=App.openDocument(str(target))
+App.setActiveDocument(doc.Name)
+bracelet.present(doc)
+controls=bracelet.open_controls(doc)

@@ -1,0 +1,33 @@
+{
+  "status": "INCOMPLETE_USER_STOPPED",
+  "reason": "User requested immediate wrap-up. CAD and oriented parts saved; export and slicer review not yet fully accepted.",
+  "cad_check_status": "FOCUSED_PASS",
+  "physical_print_tested": false,
+  "bead_bore_candidate_mm": 0.6,
+  "copper_wire_candidate_mm": 0.25,
+  "known_open_items": [
+    "STL mesh-edge review on cuff exports",
+    "Bambu Studio plate/profile and bore toolpath inspection",
+    "Physical bore fit, bead/crimp assembly and wire grip",
+    "Forward/reverse feeding, cuff flex, click force and copper fatigue"
+  ],
+  "desktop_reopen": {
+    "visible_parts": 129,
+    "revised_parts_valid": true,
+    "macro_executed": true
+  },
+  "preserved_v4_hashes_match": true,
+  "stl_count": 37,
+  "geometry_plate_count": 8,
+  "mesh_edge_review_files": [
+    "Bead-offset-0p6.stl",
+    "CuffFrame.stl",
+    "FeederTestFront.stl",
+    "FeederTestRear.stl",
+    "TestBead-0p4-offset.stl",
+    "TestBead-0p5-offset.stl",
+    "TestBead-0p6-offset.stl",
+    "TestBead-0p8-offset.stl"
+  ],
+  "slicer_validation_complete": false
+}

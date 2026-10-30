@@ -23,6 +23,8 @@ GEAR_RATIO = BASES / PINION_TEETH
 SHAFT_Z = RNA_R + MODULE * PINION_TEETH / 2 + .12
 BEAD_PITCH = 6.0                    # distance along the nominal wire path
 BEAD_R = 2.2
+BEAD_SHOULDER_X = 1.5              # common spherical drive shoulders at both ends
+BEAD_FAMILY = ('bilobed', 'offset', 'trilobed')
 POCKETS = 8
 FEED_R = POCKETS * BEAD_PITCH / TAU
 STORE_R = SHAFT_Z - FEED_R
@@ -34,7 +36,8 @@ WIRE_R = .18
 BEADS = 26
 EMIT = 22
 MAX_DIAL = EMIT * 360 * 3 / BASES
-MOUTH_X = 14.7
+MOUTH_X = 17.0
+KEEPER_END = 11.0                  # close fixed keeper ends inside the lobe cleft
 HOME_S = 12.0                      # an integral bead pitch fixes pocket phase
 MOUTH_S = MOUTH_X
 GAP_START, GAP_END = 10.0, 50.0
@@ -45,8 +48,10 @@ CAM_Y = 9.2
 PIVOT = V(-11.5, 8.0, SHAFT_Z + 1.6)
 LEVER_ARM = 4.8
 SWIVEL_MAX = math.degrees(math.atan(CAM_A / LEVER_ARM))
-POSE_R = 28.0
-POSE_TILT = math.radians(65)
+# An example of hand shaping, never a prediction of automatic curling.
+# Arc length, radius and change of bending plane; all joins are tangent.
+POSE_STRAIGHT = 6.0
+POSE_ARCS = ((26.0, 36.0, -65.0), (44.0, 25.0, 45.0), (80.0, 31.0, -115.0))
 COLORS = {
     'cuff': (.10, .26, .36), 'lid': (.13, .32, .42),
     'rna': (.12, .57, .67), 'lower': (.39, .31, .54),
@@ -125,15 +130,34 @@ def group(d, name, label, parent=None):
     return o
 
 
+@lru_cache(maxsize=1)
+def posed_segments():
+    position, tangent, normal = V(MOUTH_X+POSE_STRAIGHT, CHAIN_Y, STORE_R), V(1, 0, 0), V(0, 0, 1)
+    distance, segments = 0.0, []
+    for length, radius, twist in POSE_ARCS:
+        normal = App.Rotation(tangent, twist).multVec(normal)
+        segments.append((distance, length, radius, position, tangent, normal))
+        a = length/radius
+        position = position + radius*math.sin(a)*tangent + radius*(1-math.cos(a))*normal
+        tangent, normal = math.cos(a)*tangent+math.sin(a)*normal, -math.sin(a)*tangent+math.cos(a)*normal
+        distance += length
+    return segments
+
+
+def posed_path(s):
+    for start, length, radius, p, t, n in posed_segments():
+        if s-MOUTH_S-POSE_STRAIGHT <= start+length:
+            a = max(0, s-MOUTH_S-POSE_STRAIGHT-start)/radius
+            return p+radius*math.sin(a)*t+radius*(1-math.cos(a))*n
+    raise ValueError('Example hand pose is shorter than the emerged chain.')
+
+
 def path(s, posed=False):
     """Stored wrist arc -> tangent outlet in the same local direction as RNA."""
     if s < 0:
         return V(STORE_R * math.sin(s/STORE_R), CHAIN_Y, STORE_R * math.cos(s/STORE_R))
-    if posed and s > MOUTH_S:
-        w = (s-MOUTH_S) / POSE_R
-        return V(MOUTH_X+POSE_R*math.sin(w),
-                 CHAIN_Y+POSE_R*math.sin(POSE_TILT)*(1-math.cos(w)),
-                 STORE_R+POSE_R*math.cos(POSE_TILT)*(1-math.cos(w)))
+    if posed and s > MOUTH_S+POSE_STRAIGHT:
+        return posed_path(s)
     return V(s, CHAIN_Y, STORE_R)
 
 
@@ -155,6 +179,40 @@ def protein_channel():
     entry = torus.common(sector(STORE_R-4, STORE_R+4, join-.5, 360, CHAIN_Y-4, 8))
     blend = Part.makeSphere(CHANNEL_R, path(KEEPER_START))
     return union([main, entry, blend, output_tube(KEEPER_R)])
+
+
+@lru_cache(maxsize=3)
+def bead_shape(kind=0):
+    """Compact lobed forms, bounded by the original sphere at every wire roll.
+
+    The two axial spherical shoulders and the flared bore are shared. Only the
+    middle contour varies; the feeder is still checked against the real beads.
+    """
+    sphere = Part.makeSphere(BEAD_R)
+    rings = []
+    for x in [-1.6, -1.4, -1.1, -.7, -.35, 0, .35, .7, 1.1, 1.4, 1.6]:
+        radius = math.sqrt(BEAD_R**2-x*x)
+        fade = max(0, 1-(x/1.35)**2)**2
+        points = []
+        for j in range(32):
+            a = j*TAU/32
+            phase = (.25, .8, -.55)[kind]
+            lobes = 3 if kind == 2 else 2
+            scallop = .72*(.5+.5*math.cos(lobes*a+phase+.3*x)) + .28*(.5+.5*math.sin(a-phase))
+            r = radius*(1-.34*fade*scallop)
+            points.append(V(x, r*math.cos(a), r*math.sin(a)))
+        curve = Part.BSplineCurve()
+        curve.interpolate(points, PeriodicFlag=True)
+        rings.append(Part.Wire([curve.toShape()]))
+    middle = Part.makeLoft(rings, True, False)
+    shoulders = sphere.cut(Part.makeBox(2*BEAD_SHOULDER_X, 8, 8, V(-BEAD_SHOULDER_X, -4, -4)))
+    bead = sphere.common(union([middle, shoulders])).removeSplitter()
+    bead = bead.cut(cylinder(.5, 6, V(-3, 0, 0), V(1, 0, 0)))
+    bead = bead.cut(Part.makeCone(1.1, .5, 1.5, V(-2.2, 0, 0), V(1, 0, 0)))
+    bead = bead.cut(Part.makeCone(.5, 1.1, 1.5, V(.7, 0, 0), V(1, 0, 0))).removeSplitter()
+    if not bead.isValid() or len(bead.Solids) != 1:
+        raise RuntimeError('Invalid lobed bead variant: '+BEAD_FAMILY[kind])
+    return bead
 
 
 def rna_shape():
@@ -248,7 +306,9 @@ def stationary_shapes():
     lower_outer = lower_outer.common(Part.makeBox(100, 70, SHAFT_Z+.5, V(-50, -30, 0)))
     guard = cylinder(11.9, 6.0, V(0, 1.4, SHAFT_Z))
     cam_guard = cylinder(8.8, 3.0, V(0, 8.8, SHAFT_Z))
-    outlet = cylinder(3.65, MOUTH_X+.5, V(-.5, CHAIN_Y, STORE_R), V(1, 0, 0))
+    # The internal keeper remains fixed. Outside it, the chain emerges from a
+    # shallow cleft between organic lips rather than a projecting round nozzle.
+    outlet = ellipsoid((10.2, CHAIN_Y, STORE_R-1.5), (8.2, 5.0, 4.5))
     bearing = cylinder(2.5, 7.6, V(PIVOT.x, PIVOT.y, SHAFT_Z+2.9), V(0, 0, 1))
     bearing_brace = Part.makeBox(5, 1.05, 12.5, V(PIVOT.x-2.5, 4.55, SHAFT_Z-2))
     rail = Part.makeBox(2.4, 2.2, 2.4, V(-9.6, 11.7, SHAFT_Z-1.2))
@@ -256,6 +316,8 @@ def stationary_shapes():
     front_bearing = cylinder(2.8, 7.0, V(0, -10.5, SHAFT_Z))
     outer = union([cuff, front_seat, rear_seat, front_lip, rear_lip,
                    lower_outer, guard, cam_guard, outlet, bearing, bearing_brace, rail, detent_socket, front_bearing])
+    lip_trim = Part.makeBox(25, 80, 35, V(KEEPER_END, -40, STORE_R+.2))
+    outer = outer.cut(lip_trim)
     # Full annuli avoid coincident angular seams during later booleans.
     rna_clear = cylinder(36.6, 5.7, V(0, -9.2, 0)).cut(cylinder(34.75, 6, V(0, -9.3, 0)))
     rear_clear = cylinder(36.85, 2.2, V(0, -3.65, 0)).cut(cylinder(32.55, 3, V(0, -4, 0)))
@@ -305,11 +367,16 @@ def upper_lobe():
                    ellipsoid((7.5, 4.5, 52.5), (9.5, 9.0, 7.6)),
                    ellipsoid((PIVOT.x, PIVOT.y, 54.8), (4.5, 4.5, 4.5))])
     outer = outer.common(Part.makeBox(120, 100, 50, V(-60, -40, SHAFT_Z+1.3)))
+    cheek = ellipsoid((11.0, CHAIN_Y, 43.2), (8.5, 7.1, 9.2))
+    # A fixed separating plane at the lip is invariant under the Z swivel.
+    outer = union([outer, cheek])
+    outer = outer.cut(Part.makeBox(70, 80, SHAFT_Z+1.3, V(-56.2, -40, 0)))
+    outer = outer.common(Part.makeBox(120, 100, 50, V(-60, -40, STORE_R+1.0)))
     # A spherical clearance cavity bounds the complete guard at every swivel
     # angle, including between the sampled inverse poses used for the ports.
     envelopes = [Part.makeSphere(14.0, V(0, CHAIN_Y, SHAFT_Z)),
                  cylinder(9.25, 4.0, V(0, 8.3, SHAFT_Z)),
-                 cylinder(4.1, MOUTH_X+4, V(-1, CHAIN_Y, STORE_R), V(1, 0, 0)),
+                 cylinder(KEEPER_R+.4, MOUTH_X+5, V(-1, CHAIN_Y, STORE_R), V(1, 0, 0)),
                  cylinder(2.85, 13, V(PIVOT.x, PIVOT.y, SHAFT_Z-2), V(0, 0, 1)),
                  Part.makeBox(12, 4, 5.4, V(-15, 11.2, SHAFT_Z-1.4)),
                  cylinder(6.95, 2.5, V(0, -3.85, SHAFT_Z)),
@@ -334,25 +401,34 @@ def chain_expressions(o, i):
     s = 'PathDistance'
     inside = f'{s} < 0'
     o.addProperty('App::PropertyInteger', 'PoseActive', 'Motion')
-    o.setExpression('PoseActive', f'Motion.PoseProtein ? ({s} > {MOUTH_S} ? 1 : 0) : 0')
+    o.setExpression('PoseActive', f'Motion.PoseProtein ? ({s} > {MOUTH_S+POSE_STRAIGHT} ? 1 : 0) : 0')
     posed = 'PoseActive'
     a = f'({s}/{STORE_R} * 1 rad)'
-    w = f'(({s}-{MOUTH_S})/{POSE_R} * 1 rad)'
-    xp = f'{MOUTH_X}+{POSE_R}*sin({w})'
-    yp = f'{CHAIN_Y}+{POSE_R*math.sin(POSE_TILT)}*(1-cos({w}))'
-    zp = f'{STORE_R}+{POSE_R*math.cos(POSE_TILT)}*(1-cos({w}))'
+    positions, directions = {}, {}
+    for axis in 'xyz':
+        position, direction = '0', '0'
+        for start, length, radius, p, t, n in reversed(posed_segments()):
+            w = f'(({s}-{MOUTH_S+POSE_STRAIGHT}-{start})/{radius} * 1 rad)'
+            v = f'({getattr(p, axis)}+{radius*getattr(t, axis)}*sin({w})+{radius*getattr(n, axis)}*(1-cos({w})))'
+            u = f'({getattr(t, axis)}*cos({w})+{getattr(n, axis)}*sin({w}))'
+            if position == '0':
+                position, direction = v, u
+            else:
+                condition = f'{s} <= {MOUTH_S+POSE_STRAIGHT+start+length}'
+                position, direction = f'({condition} ? {v} : {position})', f'({condition} ? {u} : {direction})'
+        positions[axis], directions[axis.upper()] = position, direction
     coords = {
-        'x': (f'{STORE_R}*sin({a})', s, xp),
-        'y': (str(CHAIN_Y), str(CHAIN_Y), yp),
-        'z': (f'{STORE_R}*cos({a})', str(STORE_R), zp),
+        'x': (f'{STORE_R}*sin({a})', s, positions['x']),
+        'y': (str(CHAIN_Y), str(CHAIN_Y), positions['y']),
+        'z': (f'{STORE_R}*cos({a})', str(STORE_R), positions['z']),
     }
     for axis, (st, out, po) in coords.items():
         expr = f'({inside} ? ({st}) : ({posed} ? ({po}) : ({out}))) * 1 mm'
         o.setExpression('Placement.Base.'+axis, expr)
     tangents = {
-        'X': f'{inside} ? cos({a}) : ({posed} ? cos({w}) : 1)',
-        'Y': f'{posed} ? {math.sin(POSE_TILT)}*sin({w}) : 0',
-        'Z': f'{inside} ? -sin({a}) : ({posed} ? {math.cos(POSE_TILT)}*sin({w}) : 0)',
+        'X': f'{inside} ? cos({a}) : ({posed} ? {directions["X"]} : 1)',
+        'Y': f'{posed} ? {directions["Y"]} : 0',
+        'Z': f'{inside} ? -sin({a}) : ({posed} ? {directions["Z"]} : 0)',
     }
     for axis, expr in tangents.items():
         o.addProperty('App::PropertyFloat', 'Tangent'+axis, 'Motion')
@@ -423,7 +499,7 @@ def build(save_path=None):
     swivel = group(d, 'Swivel', 'Upper lobe — groove cam, slider, slotted lever')
     swivel.Placement = App.Placement(PIVOT, App.Rotation(V(0, 0, 1), 0))
     swivel.setExpression('Placement.Rotation.Angle', 'Motion.SwivelDegrees * 1 deg')
-    chain = group(d, 'Protein', '26 plain beads on a poseable copper core')
+    chain = group(d, 'Protein', '26 compact lobed beads on a manually poseable copper core')
     print('V3: building concealed-track C cuff and RNA dial', flush=True)
     front, rear = stationary_shapes()
     feature(d, 'CuffFrame', 'Front cuff half + fixed bead keeper', front, fixed, 'cuff')
@@ -469,12 +545,13 @@ def build(save_path=None):
     cap = union([cylinder(.75, 2.6, V(0, 0, 11.6), V(0, 0, 1)),
                  cylinder(2.6, .7, V(0, 0, 14.0), V(0, 0, 1))])
     feature(d, 'SwivelRetainer', 'Swivel-post retaining screw envelope', cap, swivel, 'metal')
-    print('V3: building plain beads, flared core bores and native expressions', flush=True)
-    bead = Part.makeSphere(BEAD_R).cut(cylinder(.5, 6, V(-3, 0, 0), V(1, 0, 0)))
-    bead = bead.cut(Part.makeCone(1.1, .5, 1.5, V(-2.2, 0, 0), V(1, 0, 0)))
-    bead = bead.cut(Part.makeCone(.5, 1.1, 1.5, V(.7, 0, 0), V(1, 0, 0)))
+    print('V3: building three lobed bead variants, shared shoulders and native expressions', flush=True)
     for i in range(BEADS):
-        o = feature(d, f'Bead{i:02}', f'Amino-acid bead {i+1:02} — plain Ø4.4 mm', bead.copy(), chain, 'protein')
+        kind = (0, 1, 2, 1, 0, 2, 2)[i % 7]
+        o = feature(d, f'Bead{i:02}', f'Amino-acid bead {i+1:02} — {BEAD_FAMILY[kind]}, Ø4.4 mm envelope', bead_shape(kind).copy(), chain, 'protein')
+        o.addProperty('App::PropertyInteger', 'BeadVariant', 'Geometry')
+        o.BeadVariant = kind
+        o.setEditorMode('BeadVariant', 1)
         chain_expressions(o, i)
     for i in range(BEADS-1):
         backbone(d, chain, i)
@@ -509,7 +586,10 @@ def present(d, shell=True, rear=True):
             o.Visibility = True
             o.ViewObject.Visibility = True
             if o.Name in ['CuffFrame', 'CuffRear']:
-                o.ViewObject.DiffuseColor = [COLORS['lower'] if f.CenterOfMass.z > 36.5 and abs(f.CenterOfMass.x) < 19 else tuple(o.DisplayColour[:3]) for f in o.Shape.Faces]
+                o.ViewObject.DiffuseColor = [COLORS['lower'] if
+                    (f.CenterOfMass.z > 36.5 and abs(f.CenterOfMass.x) < 21) or
+                    (f.CenterOfMass.x > 9 and 30 < f.CenterOfMass.z < 38)
+                    else tuple(o.DisplayColour[:3]) for f in o.Shape.Faces]
     # Four provisional base colours are confined to the crossbars.
     base_colors = [(.38, .75, .74), (.87, .67, .34), (.71, .66, .84), (.88, .55, .48)]
     colors = []
@@ -559,7 +639,7 @@ def open_controls(d):
     shell = QtWidgets.QCheckBox('Show swivelling lobe')
     shell.setChecked(True)
     cut = QtWidgets.QCheckBox('Open storage / mechanism')
-    pose = QtWidgets.QCheckBox('Pose emerged protein (straighten before reverse)')
+    pose = QtWidgets.QCheckBox('Example hand-shaped chain (straighten before reverse)')
     pose.setChecked(bool(d.Motion.PoseProtein))
     row.addWidget(step)
     row.addWidget(home)

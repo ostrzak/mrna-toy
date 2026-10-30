@@ -1,386 +1,23 @@
 {
   "version": "3.0",
-  "status": "PASS",
-  "parts": {
-    "CuffFrame": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 16128.1642
-    },
-    "CuffRear": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 8291.3762
-    },
-    "Rna": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 1874.2895
-    },
-    "InputDrive": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 386.6285
-    },
-    "BeadWheel": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 300.8436
-    },
-    "SwivelCam": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 243.6703
-    },
-    "DetentLeaf": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 9.2403
-    },
-    "Axle": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 66.2876
-    },
-    "FollowerSlider": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 15.3199
-    },
-    "LeverPost": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 101.6355
-    },
-    "UpperLobe": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 4694.3283
-    },
-    "SwivelRetainer": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 19.1072
-    },
-    "Bead00": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead01": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead02": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead03": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead04": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead05": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead06": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead07": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead08": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead09": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead10": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead11": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead12": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead13": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead14": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead15": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead16": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead17": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead18": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead19": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead20": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead21": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead22": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead23": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead24": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Bead25": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 38.0909
-    },
-    "Wire00": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.6107
-    },
-    "Wire01": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.6107
-    },
-    "Wire02": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire03": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire04": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire05": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire06": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire07": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire08": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire09": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire10": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire11": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire12": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire13": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire14": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire15": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire16": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire17": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire18": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire19": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire20": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire21": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire22": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire23": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    },
-    "Wire24": {
-      "valid": true,
-      "solids": 1,
-      "volume_mm3": 0.61
-    }
-  },
-  "invalid_objects": [],
-  "sampled_coupled_poses": 21,
-  "overlap_tolerance_mm3": 1e-05,
-  "sampled_gear_phases": 9,
-  "maximum_unintended_overlap_mm3": {
-    "RNA sweep/frame": 0.0,
-    "drive sweep/frame": 0.0,
-    "feeder sweep/frame": 0.0,
-    "cam sweep/frame": 0.0,
-    "protein swept path/frame": 0.0,
-    "RNA sweep/rear": 0.0,
-    "drive sweep/rear": 0.0,
-    "feeder sweep/rear": 0.0,
-    "cam sweep/rear": 0.0,
-    "protein swept path/rear": 0.0,
-    "RNA/input mesh": 0.0,
-    "cam/follower": 0.0,
-    "slider/frame": 0.0,
-    "slider/rear": 0.0,
-    "lever/frame": 0.0,
-    "lever/rear": 0.0,
-    "lobe/frame": 0.0,
-    "lobe/rear": 0.0,
-    "lobe/slider": 0.0,
-    "lobe/lever": 0.0,
-    "slider/lever": 0.0,
-    "wire/bead": 0.0,
-    "bead/feeder actual": 0.0,
-    "leaf/frame": 0.0,
-    "leaf/rear": 0.0
-  },
-  "position_expression_error_mm": 2.0791723739534308e-13,
-  "posed_expression_error_mm": 8.556067554929069e-14,
-  "lever_slot_centreline_error_mm": 5.329070518200751e-15,
-  "posed_protein_lobe_overlap_mm3": 0.0,
-  "bead_pocket_profile_clearance": {
-    "samples": 236,
-    "minimum_mm": 0.11905698765490458,
-    "maximum_mm": 0.26227028084785475,
-    "boundary": "Actual sampled polygon, conservative maximum bead section in either fork lane."
-  },
-  "stop_tests": [
-    {
-      "dial_degrees": -1,
-      "pin_overlap_mm3": 0.28731636106677944
-    },
-    {
-      "dial_degrees": 0,
-      "pin_overlap_mm3": 0.0
-    },
-    {
-      "dial_degrees": 165.0,
-      "pin_overlap_mm3": 0.0
-    },
-    {
-      "dial_degrees": 166.0,
-      "pin_overlap_mm3": 0.2873163610667961
-    }
+  "status": "INCOMPLETE_USER_STOPPED",
+  "reason": "User requested immediate save and end of validation on 2026-10-27. No final PASS or failure result was obtained for this revision.",
+  "model_sha256": "c72707379f396831a8269ea0043924cc80e5083b8f5397a03fbd9f245febef18",
+  "runtime": "FreeCAD 1.1.4",
+  "observed_completed_work": [
+    "V3 generated and saved with three lobed bead variants, shared shoulders, blended inter-lobe outlet and manual pose expressions.",
+    "Swept frame/rear envelopes and RNA/input gear phase checks reported zero overlap.",
+    "All 21 coupled poses were visited; aggregate results were not written before the run was stopped.",
+    "Separate targeted neutral and swivel-extreme lobe-to-case checks reported zero overlap.",
+    "Separate variant checks found valid one-solid beads, zero envelope and bore overlap, and common shoulder volume difference below 1e-5 mm3."
   ],
-  "minimum_bead_centre_spacing_mm": 5.9925342470762395,
-  "maximum_bead_centre_spacing_mm": 6.0,
-  "minimum_wire_to_fork_axial_clearance_mm": 0.6699999999999999,
-  "wire_to_hub_radial_clearance_lower_bound_mm": 2.109437268410977,
+  "unfinished_checks": [
+    "Final aggregate motion/collision result",
+    "Continuous-roll envelope against feeder phases",
+    "Actual rotated guide contacts and final posed-strand acceptance"
+  ],
+  "invalid_objects": [],
+  "invalid_objects_boundary": "No aggregate validity result was saved; an empty list is not a full validation pass.",
   "kinematics": {
     "rna_bases_per_bead": 3,
     "rna_full_circle_base_pitch_count": 144,
@@ -419,5 +56,19 @@
     "Detent preload, elastic deflection, click sound and flexure life",
     "Comfort, pinch clearances, end retention and final assembly fasteners"
   ],
-  "validation_boundary": "Native prescribed kinematics, sampled actual contacts and conservative rigid swept envelopes. No elastic, stress, friction or gravity simulation."
+  "validation_boundary": "Unfinished geometric validation saved at the user request. No physical prototype, force, elastic, fatigue, friction or printability validation.",
+  "desktop_open_repair": {
+    "date": "2026-10-28",
+    "runtime": "FreeCAD 1.1.4",
+    "original_model_sha256": "53220be76183a9d4704e42f9af7f3b43fb92b28b3dc511fd45b2a90b5dcfc3bc",
+    "cause": "Headless save had no GUI document; all 63 model parts were hidden on direct desktop opening.",
+    "repair": "Saved native GUI display data, visibility, colours and view.",
+    "gui_close_and_reopen": "PASS",
+    "objects": 109,
+    "visible_parts": 63,
+    "invalid_objects_on_reopen": [],
+    "geometry_property_comparison": "63 parts unchanged",
+    "motion_expressions_unchanged": true,
+    "full_validation_resumed": false
+  }
 }

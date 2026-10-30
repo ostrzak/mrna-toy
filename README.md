@@ -1,50 +1,56 @@
 # mRNA toy
 
-A wearable mechanical fidget inspired by protein translation. Turning an RNA-like dial around a cuff makes a hidden amino-acid chain emerge from an organic ribosome. The user can shape the exposed chain into a protein-like fold, straighten it, and reverse the dial to retract it.
+A handheld mechanical fidget inspired by protein translation. Move a closed RNA-like loop around the larger lower subunit, or rock the smaller upper subunit: three bases advance and one bead of a hidden protein chain emerges. Straighten the chain, release the clicker and reverse the RNA to return it.
 
-**V3 is the current CAD prototype. It has geometric motion checks, but has not been physically built or qualified for printing.**
+**V5 is the current handheld design prototype.** Its direct bead-storage drum replaces the wrist cuff and tensioned rewind proposals. See the [V5 guide](cad/v5/README.md) and [focused report](cad/v5/checks.json) for the exact validation boundary. No physical or printing qualification is claimed. V4 and its separate print derivative are preserved.
 
-![Updated V3 concept illustration, with provisional rounded protein beads](docs/images/toy-concept.png)
+![Current V5 CAD](cad/v5/handheld.png)
 
-AI-generated appearance illustration based on V3. The [actual CAD view](cad/v3/bracelet.png) and saved model define the implemented geometry; [image provenance](docs/images/README.md) records the reference and prompt. The early on-wrist illustration is superseded.
+Actual CAD; source and saved model define geometry. [Open mechanism](cad/v5/mechanism.png) · [Bead drum](cad/v5/drum.png). The [earlier AI illustration](docs/images/toy-concept.png) depicts a superseded wearable concept; see [image provenance](docs/images/README.md).
 
 ## Start here
 
-- [Toy purpose and conceptual mechanics](docs/design.md)
-- [Current state, pending requests and engineering risks](docs/status.md)
-- [Development, local/headless CAD commands and handoff](docs/development.md)
-- [FreeCAD viewing and movement controls](cad/README.md)
-- [Repository instructions for coding agents](AGENTS.md)
+- [Toy purpose and mechanics](docs/design.md)
+- [Current state and engineering risks](docs/status.md)
+- [Development commands](docs/development.md)
+- [FreeCAD controls](cad/README.md)
+- [Repository guidance](AGENTS.md)
+
+## A1 mini print prototype
+
+[Printing package and assembly guide](print/v4-a1-mini/README.md) | [V4 Print CAD and macro](cad/v4-print/README.md). This is a separate manufacturing derivative using TPU beads, thin copper wire, PETG and PLA. **Calibration and export review remain required; no physical print or assembly has been tested.** See [handoff status](print/v4-a1-mini/handoff.json). V4 is preserved.
 
 ## CAD versions
 
-| Version | Model and controls | Role |
+| Version | Files | Role |
 | --- | --- | --- |
-| **V3** | [Model](cad/v3/RibosomeV3.FCStd) · [Macro](cad/v3/RibosomeV3.FCMacro) · [Guide](cad/v3/README.md) | Current: direct protein outlet, moving in the same local direction as RNA. |
-| **V2** | [Model](cad/v2/Ribosome.FCStd) · [Macro](cad/v2/Ribosome.FCMacro) · [Guide](cad/v2/README.md) | Preserved comparison. Its older validation missed bead-to-wheel interference; do not use it as the working baseline. |
+| **V5** | [Model](cad/v5/RibosomeV5.FCStd) · [Macro](cad/v5/RibosomeV5.FCMacro) · [Guide](cad/v5/README.md) | Current handheld: closed RNA loop, direct bead drum, upper clicker and reverse release. |
+| **V4** | [Model](cad/v4/RibosomeV4.FCStd) · [Macro](cad/v4/RibosomeV4.FCMacro) · [Guide](cad/v4/README.md) | Preserved cuff comparison: covered mechanism and projecting RNA bases. |
+| **V3** | [Model](cad/v3/RibosomeV3.FCStd) · [Macro](cad/v3/RibosomeV3.FCMacro) · [Guide](cad/v3/README.md) | Preserved comparison: lobed beads and same-direction outlet; full validation incomplete. |
+| **V2** | [Model](cad/v2/Ribosome.FCStd) · [Macro](cad/v2/Ribosome.FCMacro) · [Guide](cad/v2/README.md) | Preserved comparison with invalidated historical validation. |
 
-In FreeCAD, run the version's macro to open the model and controls. **Home** resets the dial, **One codon** animates a bead step, and the slider covers the intended range. **Open storage / mechanism** reveals the internals. See the [operating guide](cad/README.md) for exact steps.
+Open the V5 model directly, or execute its macro through **Macro → Macros…**. **Click upper subunit** animates one bead step, **Open lower body** reveals the internals, and the slider covers 0–22 steps. **Return one bead** requires the release checkbox; the physical strand must first be straightened. **Reset view / home** is a CAD reset.
 
-## Development quick start
+## Development
 
-Python 3.10+ can check the repository without FreeCAD:
+Python 3.10+ can check repository integrity without FreeCAD:
 
 ```sh
 python scripts/check_repo.py
 ```
 
-Geometry work requires a separate FreeCAD command-line runtime with `Part` and the bundled `fcgear` modules. The known local baseline is FreeCAD 1.1.4. With `FreeCADCmd` or `freecadcmd` on `PATH`:
+Geometry work requires FreeCAD with `Part` and bundled `fcgear`; the known local runtime is FreeCAD 1.1.4. With its command-line executable on PATH:
 
 ```sh
 python scripts/cad.py doctor
-python scripts/cad.py validate
-python scripts/cad.py build
+python scripts/cad.py build --version 5
+python scripts/cad.py validate --version 5
 ```
 
-The launcher also accepts `--freecad /path/to/FreeCADCmd` or the `FREECAD_CMD` environment variable. Generated models and reports go to the ignored `build/v3/` directory; the committed CAD is preserved. The [development guide](docs/development.md) explains prerequisites and validation limits.
+The launcher defaults to V5, accepts `--freecad PATH` or `FREECAD_CMD`, and writes to ignored `build/v5/`. Saved CAD and reports are protected from launcher overwrites. Use explicit versions for preserved comparisons.
 
-## What remains open
+## Current direction
 
-The next session is planned locally, with bead design as the intended focus; cloud migration is deferred. The user has requested more molecular-looking, asymmetric amino-acid beads. That request has been **analysed only**; the current model still uses spheres. The printer, nozzle/process, final materials, bead fixation, wire life, cuff flexibility, fasteners and reliable reverse feeding remain unresolved. These are recorded in [project status](docs/status.md), so work can continue without this chat.
+V5 is handheld. A loosely routed closed RNA loop passes through a covered drive station in the larger lower subunit. A fixed-axis idler links it to the bead drum. The smaller upper subunit rocks to operate the same drive through a releaseable ratchet. A fixed keeper supports the single-layer bead handoff. Protein shaping remains manual.
 
-Superseded layout studies and duplicate chat handoff files have been removed from the working tree. They remain recoverable from Git history. V2 is retained because it was explicitly requested as a comparison.
+Printer/process, flexible RNA manufacture, calibrated fits, bead fixation, wire life, spring/ratchet qualification, fasteners and reliable feeding remain unresolved. The existing A1 mini package applies to V4 Print, not V5. Cloud migration is deferred. V2, V3 and V4 remain explicit comparisons.

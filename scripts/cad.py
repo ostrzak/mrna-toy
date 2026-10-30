@@ -1,4 +1,4 @@
-"""Run V3 CAD work with FreeCAD's Python runtime, preserving committed artifacts."""
+"""Run versioned CAD work with FreeCAD's Python runtime, preserving saved artifacts."""
 from __future__ import annotations
 
 import argparse
@@ -10,8 +10,6 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / 'cad' / 'v3'
-MODEL = SOURCE / 'RibosomeV3.FCStd'
 COMPLETE = 'MRNA_CAD_COMPLETE'
 
 
@@ -35,20 +33,24 @@ def executable(explicit: str | None) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command', choices=('doctor', 'validate', 'build'))
+    parser.add_argument('--version', choices=('3','4','4-print','5'), default='5', help='CAD version; default: 5 handheld. Use 4-print for the preserved A1 mini cuff prototype.')
     parser.add_argument('--freecad', help='FreeCAD command-line executable (or set FREECAD_CMD).')
-    parser.add_argument('--output', type=Path, default=ROOT / 'build' / 'v3',
-                        help='Generated-output directory; default: build/v3.')
-    parser.add_argument('--model', type=Path, default=MODEL,
-                        help='Model to open for validate; default: committed V3 model.')
+    parser.add_argument('--output', type=Path, help='Generated-output directory; default: build/v<VERSION>.')
+    parser.add_argument('--model', type=Path, help='Model to open for validate; default: selected version model.')
     parser.add_argument('--force', action='store_true', help='Allow replacing a generated build model.')
     args = parser.parse_args()
-    output = args.output.expanduser().resolve()
+    source=ROOT/'cad'/('v'+args.version)
+    stem='RibosomeV4Print' if args.version=='4-print' else 'RibosomeV'+args.version
+    saved=source/(stem+'.FCStd')
+    output = (args.output or ROOT/'build'/('v'+args.version)).expanduser().resolve()
     report = output / 'checks.json'
-    generated = output / MODEL.name
-    model = args.model.expanduser().resolve()
+    generated = output / saved.name
+    model = (args.model or saved).expanduser().resolve()
     if args.command != 'doctor':
-        if report == SOURCE / 'checks.json' or generated == MODEL:
-            parser.error('Refusing to overwrite committed V3 artifacts. Use build/v3 or another output directory.')
+        protected_folders=('v2','v3','v4','v4-print','v5')
+        protected_models=[ROOT/'cad'/v/n for v,n in [('v2','Ribosome.FCStd'),('v3','RibosomeV3.FCStd'),('v4','RibosomeV4.FCStd'),('v4-print','RibosomeV4Print.FCStd'),('v5','RibosomeV5.FCStd')]]
+        if any(report == ROOT/'cad'/v/'checks.json' for v in protected_folders) or generated in protected_models:
+            parser.error('Refusing to overwrite saved CAD artifacts. Use build/ or another output directory.')
         if args.command == 'validate' and not model.is_file():
             parser.error(f'Model not found: {model}')
         if args.command == 'build' and generated.exists() and not args.force:
@@ -61,7 +63,7 @@ def main() -> int:
     code = [
         'import sys, json',
         'sys.dont_write_bytecode = True',
-        f'sys.path.insert(0, {str(SOURCE)!r})',
+        f'sys.path.insert(0, {str(source)!r})',
         'import FreeCAD as App',
         'import Part',
         'from fcgear import involute, fcgear',
@@ -71,33 +73,34 @@ def main() -> int:
         code.append("print('Geometry dependencies: FreeCAD, Part, fcgear OK', flush=True)")
     else:
         output.mkdir(parents=True, exist_ok=True)
-        code.append('import bracelet_v3 as model_source')
+        code.append('import bracelet_v'+args.version.replace('-','_')+' as model_source')
         if args.command == 'build':
             code.append(f'document = model_source.build(save_path={str(generated)!r})')
         else:
             code.append(f'document = App.openDocument({str(model)!r})')
         code.extend([
             f'result = model_source.validate(document, report_path={str(report)!r})',
-            "if result['status'] != 'PASS': raise RuntimeError('CAD checks require review; see the generated report.')",
+            "if result['status'] not in ('PASS','FOCUSED_PASS'): raise RuntimeError('CAD checks require review; see the generated report.')",
         ])
     code.append(f'print({COMPLETE!r}, flush=True)')
     env = os.environ.copy()
     if sys.platform.startswith('linux') and not env.get('DISPLAY'):
         env.setdefault('QT_QPA_PLATFORM', 'offscreen')
     print(f'{args.command}: {freecad}', flush=True)
-    completed = subprocess.run([freecad, '-c', '\n'.join(code)], cwd=ROOT, env=env,
-                               capture_output=True, text=True, errors='replace')
-    print(completed.stdout, end='')
-    if completed.stderr:
-        print(completed.stderr, end='', file=sys.stderr)
-    if completed.returncode or COMPLETE not in completed.stdout:
+    process = subprocess.Popen([freecad, '-c', '\n'.join(code)], cwd=ROOT, env=env,
+                               stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,errors='replace')
+    transcript=[]
+    for line in process.stdout:
+        transcript.append(line)
+        print(line,end='',flush=True)
+    if process.wait() or COMPLETE not in ''.join(transcript):
         print('FreeCAD did not complete successfully. A pre-existing report is not a fresh PASS.', file=sys.stderr)
         return 1
     if args.command != 'doctor':
         result = json.loads(report.read_text(encoding='utf-8'))
-        if result.get('status') != 'PASS':
+        if result.get('status') not in ('PASS','FOCUSED_PASS'):
             return 1
-        print(f'PASS - fresh report: {report}')
+        print(f"{result['status']} - fresh report: {report}")
     return 0
 
 

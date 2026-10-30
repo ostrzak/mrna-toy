@@ -1,71 +1,84 @@
-# Development and handoff
+# Development and local handoff
 
-## Repository map
+## Current V5 workflow
 
-| Path | Responsibility |
-| --- | --- |
-| [README](../README.md), [AGENTS](../AGENTS.md) | Entry point and concise repository guidance. |
-| [Design](design.md), [status](status.md) | Purpose, conceptual mechanics, accepted direction, pending requests and validation limits. |
-| [CAD guide](../cad/README.md) | FreeCAD viewing, version selection and movement controls. |
-| [V3 generator](../cad/v3/bracelet_v3.py) | Dimensions, shapes, native expressions, presentation and GUI controls. |
-| [V3 validator](../cad/v3/validation_v3.py) | Shape, contact, guide, stop and linkage checks. |
-| [V3 macro](../cad/v3/RibosomeV3.FCMacro) | Opens the adjacent saved model and its control dock. |
-| [V3 report](../cad/v3/checks.json) | Committed geometric validation snapshot, not physical acceptance. |
-| [V2](../cad/v2/README.md) | Preserved historical comparison with an invalidated-validation warning. |
-| [CAD launcher](../scripts/cad.py) | Portable command-line build and validation into an output directory. |
-| [Repository checker](../scripts/check_repo.py) | Python syntax, local Markdown links, CAD container and stored-report sanity checks without FreeCAD. |
-
-## Environment requirements
-
-The known working local runtime is **FreeCAD 1.1.4**. Geometry scripts require its `FreeCAD`, `Part`, and bundled `fcgear` modules. They are not installed by adding a normal Python package requirement. GUI presentation and the macro additionally use `FreeCADGui` and FreeCAD's PySide bindings.
-
-The launcher and repository checker use only the Python 3.10+ standard library. The launcher starts FreeCAD's own command-line executable in a separate process; it does not import FreeCAD into the host Python interpreter. Set `FREECAD_CMD`, supply `--freecad`, or place `FreeCADCmd` / `freecadcmd` on `PATH`.
+V5 is the handheld design in `cad/v5/`. Its source, validator, saved model,
+macro, report and actual CAD views belong together. It builds from its own
+source and does not import or modify V4. The launcher now defaults to V5:
 
 ```sh
 python scripts/check_repo.py
 python scripts/cad.py doctor
-python scripts/cad.py validate
-python scripts/cad.py build
+python scripts/cad.py build --version 5 --force
+python scripts/cad.py validate --version 5
 ```
 
-For the currently verified Windows installation, PowerShell can use:
+With the known local Windows runtime, append
+`--freecad "C:\Program Files\FreeCAD 1.1\bin\freecadcmd.exe"`.
+Generated files go to ignored `build/v5/`; saved version models and reports
+are protected. The same launcher retains explicit `3`, `4` and `4-print` modes.
+
+Before promoting V5, use its `present(document)` in the GUI and save display
+state, then close and reopen normally. Save `handheld.png`, `mechanism.png`,
+`drum.png` and `home.png` from that geometry. Run a fresh validation against the
+promoted model, then the repository checker. Never substitute an AI concept
+image or an old V4 report for current CAD evidence.
+
+V5 checks real bead solids and spherical bounds through the sampled pocket
+handoff, both actual involute gear meshes, native forward/reverse motion,
+housing clearances and geometric stops. Click leaves are unloaded elastic
+geometry; their preload overlaps are reported separately. The cap spring is a
+space claim. This does not qualify clicking, RNA flex, force, fatigue or printing.
+
+## Preserved V4 development
+
+## Files and versions
+
+V4 in `cad/v4/` is a preserved cuff comparison. Its [source](../cad/v4/bracelet_v4.py), [validator](../cad/v4/validation_v4.py), [model](../cad/v4/RibosomeV4.FCStd), [macro](../cad/v4/RibosomeV4.FCMacro), [report](../cad/v4/checks.json) and views belong together. V3 and V2 retain their original validation boundaries.
+
+The V4 build revises four shapes in its own copied model: cuff front, cuff rear, RNA and upper lobe. It retains the other mechanism shapes and native expressions and does not read or write V3. `build_from_scratch()` remains available for complete procedural generation. The version macro selects its adjacent saved model.
+
+## Runtime and commands
+
+Python 3.10+ runs the repository checker and launcher. Geometry requires FreeCAD's own runtime with `FreeCAD`, `Part` and bundled `fcgear`; installing a normal Python package is insufficient. The known local runtime is FreeCAD 1.1.4. GUI presentation additionally uses `FreeCADGui` and its PySide bindings.
+
+```sh
+python scripts/check_repo.py
+python scripts/cad.py doctor
+python scripts/cad.py build --version 4
+python scripts/cad.py validate --version 4
+```
+
+Select V4 explicitly. On this Windows installation:
 
 ```powershell
-python scripts/cad.py doctor --freecad "C:\Program Files\FreeCAD 1.1\bin\freecadcmd.exe"
-python scripts/cad.py validate --freecad "C:\Program Files\FreeCAD 1.1\bin\freecadcmd.exe"
+python scripts/cad.py build --version 4 --freecad "C:\Program Files\FreeCAD 1.1\bin\freecadcmd.exe"
 ```
 
-The executable path is an example of the local installation, not a repository dependency. In Linux/cloud, install or provision a compatible FreeCAD command-line runtime with the required modules, then run `doctor`. An installed package's version must be checked; package availability alone does not establish compatibility. A Linux/cloud runtime has not been verified by this Windows cleanup.
+That path is a local example, not a repository dependency. Alternatively set `FREECAD_CMD` or put `FreeCADCmd` / `freecadcmd` on PATH. In another environment provision a compatible runtime and run `doctor`; Linux/cloud execution remains unverified. The Windows GUI and MCP connection are local conveniences, not portable dependencies. Cloud migration remains deferred.
 
-## Commands and output boundaries
+## Output boundaries
 
-- `doctor` checks that FreeCAD and the geometry dependencies import, and prints the runtime version. It does not build or modify a CAD file.
-- `validate` opens the committed V3 model, checks it in memory, and writes `build/v3/checks.json`. It does not save changes to the model. Use `--model build/v3/RibosomeV3.FCStd` to check a previously generated model.
-- `build` regenerates V3 into `build/v3/RibosomeV3.FCStd` and validates it. Use `--force` to replace an existing generated model. It refuses to overwrite the committed CAD or report.
-- `--output PATH` selects another output directory. A `REVIEW` result or a failed FreeCAD process gives a nonzero launcher exit status.
+- `doctor` checks runtime imports and version; it does not build geometry.
+- `build` writes and checks `build/v4/RibosomeV4.FCStd` and `build/v4/checks.json`.
+- `validate` opens the saved version model in memory and writes a fresh report into `build/v4/`. Use `--model build/v4/RibosomeV4.FCStd` to check a generated model.
+- `--force` allows replacing generated CAD; `--output PATH` selects another output folder. The launcher refuses to overwrite saved version CAD or reports.
+- `--version 3` selects V3 explicitly. Its report remains incomplete unless a separate full run establishes otherwise.
 
-`build/`, Python caches and FreeCAD automatic backups are ignored. Compare the generated model, report and rendered motion before intentionally promoting files into `cad/v3/`. Refresh the committed image and report if a promoted geometry revision changes them. A documentation-only cleanup should preserve the binary CAD.
+Child output is streamed for progress. A failed runtime or `REVIEW` result is not a fresh PASS. Generated outputs, caches and FreeCAD backups stay out of Git.
 
-For interactive rebuilding inside FreeCAD's Python console, import the V3 module from its folder and call `build()` only with the V3 document closed. The default direct API still saves beside the source; the command-line launcher is the safer output-isolated workflow. `validate(document, report_path=...)` can write a chosen report path.
+Before promoting a generated model, open it in the GUI, put its source folder on `sys.path`, import `bracelet_v4 as model`, call `model.present(document)`, and save its display state. Verify a normal close-and-reopen. Headless files can otherwise load with all parts hidden; the repository checker rejects missing GUI data. Compare model, report and rendered views before intentionally promoting them together.
 
-To inspect a generated build, open `build/v3/RibosomeV3.FCStd` directly. The version macro deliberately selects its adjacent committed model, so it is not a launcher for a generated build. With `cad/v3` on the FreeCAD Python console's `sys.path`, use `import bracelet_v3 as model`, `model.present(App.ActiveDocument)`, and `controls = model.open_controls(App.ActiveDocument)` on the opened generated document. This also initializes its GUI visibility and colours. Interactive visual review requires a GUI-capable environment.
+To inspect a generated model interactively, open it directly; the version macro deliberately chooses the saved adjacent model. `model.open_controls(document)` adds controls. Do not close or overwrite unrelated unsaved GUI documents.
 
-## What validation establishes
+## Validation scope
 
-The geometry source defines a wrist axis along Y, dorsal direction +Z and local feed direction +X. At the ribosome, both RNA and the unposed protein outlet travel in +X during forward play. The swivel axis points outward along Z. Shape motion is prescribed using native expressions, not a force-driven simulation.
+V4 returns `FOCUSED_PASS` for its changed geometry: valid connected solids, continuous RNA/protein envelopes, cover clearance, nine actual gear phases, actual saved bead-to-feeder phase contacts, travel stops, prescribed native positions and the example hand pose. Ten coupled poses include both swivel extremes. The cover envelope conservatively bounds its complete inverse rotation range.
 
-The validator checks valid one-solid parts, swept guide/rotor clearance, sampled RNA mesh phases, actual bead-to-wheel contacts at selected phases, follower/lever alignment, lobe clearance, nominal limits and overtravel stops. It checks the illustrative posed strand against the cases and lobe. It does not solve elastic deformation, friction, gravity, force, fatigue, material strength or print tolerance.
+This does not complete V3's unfinished full validation. The copied baseline suite remains available separately in the V4 validator. No check proves friction, force, elasticity, print fits, fatigue, strength, comfort or reliable physical feeding. Wire segments are chords and the detent shape represents unloaded geometry with intentional preload.
 
-The closed-groove cam and its captured follower are modelled mechanically. The click leaf is represented in its unloaded state; intended cam preload is not counted as an unintended rigid collision. Its force and life need physical validation. Wire segments are shown as chords and are not a copper fatigue or forming model.
+For source edits run the repository checker. For geometry or motion edits also run appropriate CAD checks and inspect the result. If dependencies are unavailable, say so; a static check or old report is not a CAD run. A1 mini prototype preparation is now authorized in the separate V4 Print derivative.
 
-Run only the checks appropriate to the change. For geometry/motion edits, retain actual contact checks, inspect a generated model and record the runtime used. If FreeCAD is unavailable, run the repository checker and report that CAD validation was not performed; do not call a stored PASS a fresh run.
+## A1 mini derivative
 
-## Continuing in another environment
-
-The immediate plan is to continue in a new **local** chat, with bead design as the intended next focus. Cloud migration is deferred. The portable workflow below remains available; check runtime availability with `doctor` and do not assume an earlier GUI or MCP session is still connected.
-
-Start from the repository files, not this chat. Root `AGENTS.md` points to the current design and pending-work state; this follows the [official OpenAI guidance on repository context](https://developers.openai.com/cookbook/examples/codex/iterating-development-workflows-with-codex). Keep this context short and maintained rather than introducing a transcript or a large prompt bundle.
-
-The previous Windows GUI/MCP connection is not provided by cloning this repository. Headless builds do not require it. If the new environment has no usable FreeCAD runtime, documentation and source review remain possible, but geometry execution must be provisioned separately. No local credentials, user-specific paths or environment files are needed for the basic repository checks.
-
-The next chat should read [status](status.md) before proposing work. In particular, do not treat the earlier bead-shape analysis or manufacturing discussion as approval to alter the model. Ask what concrete task to tackle next if the new user prompt does not provide one.
+Use `python scripts/cad.py build --version 4-print --force` or `validate --version 4-print`. Outputs go to `build/v4-print/`. Source is `cad/v4-print/bracelet_v4_print.py`. Run `export_print.main()` in FreeCAD after adding that folder to `sys.path` to export the generated CAD. `python scripts/print_package.py profiles`, `author`, and `slice` generate the offline plate package, using installed Bambu Studio resources. Review mesh warnings and slicer checks before printing. Do not promote an unfinished export check to a physical PASS.
