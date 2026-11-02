@@ -1,0 +1,25 @@
+{
+  "model": "cad/v6/RibosomeV6.FCStd",
+  "model_sha256": "2aea01887d711b35336ca9d2a1433ff7945d65a123855bd00e0ae7a015a189c2",
+  "runtime": "1.1.4",
+  "image_size_px": [
+    2048,
+    1536
+  ],
+  "projection": "orthographic",
+  "common_camera_height_mm": 102.27632141113281,
+  "pose": {
+    "bead_steps": 11,
+    "strand_closed": true,
+    "cap_stroke": 0
+  },
+  "views": [
+    "front.png",
+    "rear.png",
+    "left.png",
+    "right.png",
+    "top.png",
+    "underside.png"
+  ],
+  "model_modified": false
+}

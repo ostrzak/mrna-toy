@@ -7,6 +7,13 @@ than assembling loose amino acids.
 [Saved model](RibosomeV5.FCStd) · [Controls macro](RibosomeV5.FCMacro) ·
 [Source](bracelet_v5.py) · [Focused checks](checks.json)
 
+The 2026-10-30 [proportion review](../../docs/v5-proportions.md) enlarges the
+upper shell into an asymmetric body/head/platform shape and adds a fixed
+underside palm swell. [Side view of the grip](grip.png). One hand is intended
+to cup the lower body while the other operates the cap or RNA. The closed RNA
+route remains open for reconsideration; this pass retains its drive geometry.
+Hand fit has not been physically tested.
+
 ## Interaction
 
 - Move the exposed closed RNA loop, or rock the smaller upper subunit. Both
@@ -45,6 +52,8 @@ The drum outline is relieved using the tangent bead path in its rotating frame.
 Validation checks actual saved solids at sub-step phases, not just ideal round
 pockets. Beads retain the 4.4 mm bound, common drive shoulders, three lobed
 variants, nominal 6 mm path pitch and an illustrative 0.36 mm copper core.
+The expanded clearance checks include nine rocker positions at three release
+heights, the lid/leaf/guide openings, the release yoke and the spring space.
 
 The ratchet leaves are shown unloaded. Their elastic contact overlaps are
 reported separately. The upper-cap return spring is a labelled space claim;

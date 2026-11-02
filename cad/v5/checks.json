@@ -6,12 +6,12 @@
     "LowerBody": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 19271.22335
+      "volume_mm3": 46416.59452
     },
     "LowerLid": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 6072.79096
+      "volume_mm3": 5402.54538
     },
     "BeadKeeper": {
       "valid": true,
@@ -636,7 +636,7 @@
     "UpperLobe": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 8223.67189
+      "volume_mm3": 12151.12452
     },
     "DrivePawl": {
       "valid": true,
@@ -656,7 +656,7 @@
     "ReleaseYoke": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 200.36048
+      "volume_mm3": 178.49021
     },
     "CapSpringEnvelope": {
       "valid": true,
@@ -666,132 +666,132 @@
     "Bead00": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.66171
+      "volume_mm3": 31.89717
     },
     "Bead01": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.65231
+      "volume_mm3": 31.64128
     },
     "Bead02": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.64031
+      "volume_mm3": 31.66043
     },
     "Bead03": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.65231
+      "volume_mm3": 31.64128
     },
     "Bead04": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.66171
+      "volume_mm3": 31.89717
     },
     "Bead05": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.64031
+      "volume_mm3": 31.66043
     },
     "Bead06": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.64031
+      "volume_mm3": 31.66043
     },
     "Bead07": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.66171
+      "volume_mm3": 31.89717
     },
     "Bead08": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.65231
+      "volume_mm3": 31.64128
     },
     "Bead09": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.64031
+      "volume_mm3": 31.66043
     },
     "Bead10": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.65231
+      "volume_mm3": 31.64128
     },
     "Bead11": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.66171
+      "volume_mm3": 31.89717
     },
     "Bead12": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.64031
+      "volume_mm3": 31.66043
     },
     "Bead13": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.64031
+      "volume_mm3": 31.66043
     },
     "Bead14": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.66171
+      "volume_mm3": 31.89717
     },
     "Bead15": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.65231
+      "volume_mm3": 31.64128
     },
     "Bead16": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.64031
+      "volume_mm3": 31.66043
     },
     "Bead17": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.65231
+      "volume_mm3": 31.64128
     },
     "Bead18": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.66171
+      "volume_mm3": 31.89717
     },
     "Bead19": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.64031
+      "volume_mm3": 31.66043
     },
     "Bead20": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.64031
+      "volume_mm3": 31.66043
     },
     "Bead21": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.66171
+      "volume_mm3": 31.89717
     },
     "Bead22": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.65231
+      "volume_mm3": 31.64128
     },
     "Bead23": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.64031
+      "volume_mm3": 31.66043
     },
     "Bead24": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.65231
+      "volume_mm3": 31.64128
     },
     "Bead25": {
       "valid": true,
       "solids": 1,
-      "volume_mm3": 31.66171
+      "volume_mm3": 31.89717
     },
     "Wire00": {
       "valid": true,
@@ -921,8 +921,8 @@
   },
   "invalid_objects": [],
   "maximum_unintended_overlap_mm3": {
-    "sun/idler mesh": 9.88754261217986e-06,
-    "RNA/idler mesh": 1.2159193834749402e-05,
+    "sun/idler mesh": 9.887542232703259e-06,
+    "RNA/idler mesh": 1.2159193011609438e-05,
     "spherical bead/drum handoff": 0,
     "actual bead/drum handoff": 0,
     "actual bead/fixed keeper": 0,
@@ -955,6 +955,31 @@
     "protein straight continuous sweep/LowerLid": 0,
     "protein straight continuous sweep/BeadKeeper": 0,
     "protein straight continuous sweep/StopRing": 0,
+    "LowerBody/BeadKeeper": 0,
+    "LowerBody/CentreAxle": 0,
+    "LowerBody/IdlerAxle": 0,
+    "LowerLid/HoldingPawlGuide": 0,
+    "rocker/release UpperLobe/LowerBody": 0,
+    "rocker/release UpperLobe/LowerLid": 0,
+    "rocker/release UpperLobe/BeadKeeper": 0,
+    "rocker/release UpperLobe/StopRing": 0,
+    "rocker/release UpperLobe/CentreAxle": 0,
+    "rocker/release UpperLobe/CapRetainer": 0,
+    "rocker/release UpperLobe/DriveHub": 0,
+    "rocker/release UpperLobe/Ratchet": 0,
+    "rocker/release UpperLobe/HoldingPawlGuide": 0,
+    "rocker/release UpperLobe/CapSpringEnvelope": 0,
+    "rocker/release UpperLobe/DrivePawl": 0,
+    "rocker/release UpperLobe/HoldPawl": 0,
+    "rocker/release UpperLobe/ReleaseYoke": 0,
+    "rocker/release LowerLid/DrivePawl": 0,
+    "rocker/release LowerLid/HoldPawl": 0,
+    "rocker/release LowerLid/ReleaseYoke": 0,
+    "rocker/release ReleaseYoke/DrivePawl": 0,
+    "rocker/release ReleaseYoke/HoldPawl": 0,
+    "rocker/release ReleaseYoke/Ratchet": 0,
+    "rocker/release ReleaseYoke/DriveHub": 0,
+    "rocker/release ReleaseYoke/HoldingPawlGuide": 0,
     "upper/LowerBody": 0,
     "upper/LowerLid": 0,
     "upper/BeadKeeper": 0,
@@ -968,6 +993,12 @@
   "collision_failures_mm3": {},
   "actual_bead_handoff_samples": 27,
   "spherical_envelope_handoff_samples": 27,
+  "sampled_rocker_clearance_poses": 9,
+  "sampled_release_heights_mm": [
+    0,
+    1.5,
+    3.0
+  ],
   "sampled_gear_phases": 9,
   "sampled_forward_poses": 12,
   "sampled_reverse_poses": 12,
@@ -988,7 +1019,7 @@
   "travel_stops": [
     {
       "drum_degrees": -2,
-      "overlap_mm3": 0.601566025744159
+      "overlap_mm3": 0.6015660257441591
     },
     {
       "drum_degrees": 0,
@@ -1000,12 +1031,12 @@
     },
     {
       "drum_degrees": 284.8571428571429,
-      "overlap_mm3": 0.6015660257441434
+      "overlap_mm3": 0.6015660257441375
     }
   ],
   "unloaded_ratchet_leaf_overlap_mm3": {
     "drive_leaf/ratchet": 1.3534723864776557,
-    "holding_leaf/ratchet": 1.769608888514848
+    "holding_leaf/ratchet": 1.7696088885148475
   },
   "design": {
     "handheld": true,
@@ -1028,11 +1059,33 @@
     "tensioned_rewind": false,
     "automatic_curling": false
   },
-  "source_sha256": {
-    "bracelet_v5.py": "1e176ef4bc98fbcc2e08542a6def23178b3bbf92a6dcefb0577914f5d274d38e",
-    "validation_v5.py": "fbbbf77b06d797a8c348fc54295b3055bdd195932f80916ae84e8a7960908fed"
+  "proportion_revision": "2026-10-30: fuller asymmetric upper and fixed underside palm swell",
+  "housing_dimensions_mm": {
+    "LowerBody": {
+      "width": 78.8,
+      "depth": 79.9,
+      "height": 26.5,
+      "minimum_z": -12.0,
+      "maximum_z": 14.5
+    },
+    "UpperLobe": {
+      "width": 61.0,
+      "depth": 62.0,
+      "height": 21.5,
+      "minimum_z": 16.7,
+      "maximum_z": 38.2
+    }
   },
-  "validation_boundary": "Focused rigid solid, actual bead handoff, actual gear phase, housing, travel-stop and native prescribed motion checks. Ratchet leaves are unloaded elastic geometry; their overlaps are recorded separately. RNA shown on nominal circular path. No force, compliance, spring, manufacturing or physical qualification.",
+  "intentional_assembly_intersections": {
+    "shared_rotor": "Drum, sun, drive sleeve, ratchet and travel pin are connected rigid carrier geometry.",
+    "axle_retainer": "Screw envelope intersects its self-tapping pilot; fastening is unqualified.",
+    "ratchet_leaves": "Unloaded elastic preload is reported separately; not rigid-body clearance."
+  },
+  "source_sha256": {
+    "bracelet_v5.py": "f7d0bf057ccf904ff5c074622bbd253ea777e1adc3770d261755522dcbe7b069",
+    "validation_v5.py": "be058858c23aaa454e0867489ce3b0d18a9364f28c95ad106ad3e7ae90ac7198"
+  },
+  "validation_boundary": "Focused rigid solid, actual bead handoff, actual gear phase, housing, sampled rocker/release clearance, spring-space clearance, travel-stop and native prescribed motion checks. Ratchet leaves are unloaded elastic geometry; their overlaps are recorded separately. RNA shown on nominal circular path. No force, compliance, spring, manufacturing, hand-fit or physical qualification.",
   "physical_tests_still_required": [
     "Direct bead capture and bidirectional transfer under load",
     "Bead pitch fixation, wire bending force and fatigue",

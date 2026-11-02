@@ -1,0 +1,28 @@
+{
+  "runtime": "1.1.4",
+  "controls": {
+    "forward_button_5_to_6": true,
+    "direct_reverse_button_6_to_5": true,
+    "open_closed_checkbox": true,
+    "blocked_forward_at_22": true,
+    "reverse_from_endpoint_22_to_21": true,
+    "observed_endpoint": {
+      "maximum_cap_angle": 6.0,
+      "maximum_feed": 22.0
+    }
+  },
+  "normal_GUI_close_reopen": true,
+  "native_update_without_source_directory": true,
+  "visible_coloured_parts": 276,
+  "saved_bead_steps": 11,
+  "side_route_view": true,
+  "housing_bolt_section_actual_solids": true,
+  "spindle_section_actual_solids": true,
+  "model_sha256": "2aea01887d711b35336ca9d2a1433ff7945d65a123855bd00e0ae7a015a189c2",
+  "source_sha256": {
+    "bracelet_v6.py": "b3ade223be22e7c91484c92cda2c9159d644eb5ff883ce8a68291194d1703545",
+    "rna_path.py": "0fdaa23c165a3a7ceb0d2192f5e4faa39ccac7ddf37d86898b8851d699eb88fe",
+    "presentation_v6.py": "04c003e7921f8d8653a9c17c9edd39d5d50b56131ef87f79ac4112b6e2fd11f7",
+    "RibosomeV6.FCMacro": "e688a7d6256b25f3a0fc41d18b681a41900741adf20cb72ee99805e4fb690d4d"
+  }
+}

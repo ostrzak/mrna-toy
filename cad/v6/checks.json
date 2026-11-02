@@ -1,0 +1,2201 @@
+{
+  "version": "6.0",
+  "status": "FOCUSED_PASS",
+  "runtime": "1.1.4",
+  "parts": {
+    "LowerBody": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 38328.995442
+    },
+    "LowerLid": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 8310.522359
+    },
+    "GearGuard": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3072.905051
+    },
+    "BeadKeeper": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2395.868391
+    },
+    "CentreAxle": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 941.278886
+    },
+    "CapRetainer": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 29.323863
+    },
+    "CapWasher": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 27.878493
+    },
+    "HousingScrew00": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 40.333788
+    },
+    "HousingScrew01": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 40.333788
+    },
+    "HousingScrew02": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 40.333788
+    },
+    "BeadDrum": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 6748.528965
+    },
+    "RnaDriveGear": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 5043.74443
+    },
+    "DriveHub": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 481.713852
+    },
+    "IndexSleeve": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 559.302453
+    },
+    "IndexWheel": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 574.907548
+    },
+    "FeedRatchet": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 395.326201
+    },
+    "TravelPin": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.357577
+    },
+    "RnaLink002": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base002": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink003": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base003": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink004": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base004": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink005": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base005": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink006": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base006": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink007": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base007": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink008": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base008": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink009": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base009": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink010": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base010": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink011": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base011": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink012": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base012": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink013": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base013": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink014": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base014": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink015": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base015": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink016": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base016": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink017": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base017": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink018": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base018": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink019": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base019": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink020": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base020": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink021": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base021": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink022": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base022": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink023": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base023": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink024": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base024": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink025": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base025": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink026": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base026": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink027": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base027": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink028": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base028": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink029": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base029": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink030": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base030": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink031": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base031": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink032": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base032": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink033": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base033": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink034": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base034": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink035": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base035": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink036": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base036": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink037": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base037": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink038": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base038": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink039": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base039": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink040": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base040": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink041": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base041": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink042": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base042": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink043": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base043": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink044": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base044": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink045": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base045": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink046": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base046": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink047": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base047": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink048": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base048": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink049": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base049": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink050": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base050": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink051": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base051": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink052": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base052": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink053": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base053": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink054": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base054": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink055": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base055": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink056": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base056": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink057": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base057": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink058": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base058": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink059": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base059": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink060": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base060": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink061": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base061": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink062": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base062": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink063": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base063": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink064": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base064": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink065": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base065": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink066": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base066": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink067": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base067": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink068": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base068": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink069": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base069": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink070": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base070": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink071": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base071": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink072": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base072": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink073": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base073": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink074": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base074": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink075": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base075": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink076": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base076": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink077": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base077": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink078": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base078": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink079": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base079": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink080": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base080": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink081": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base081": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink082": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base082": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink083": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base083": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink084": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base084": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink085": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base085": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink086": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base086": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink087": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base087": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink088": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base088": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink089": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base089": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink090": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base090": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink091": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base091": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink092": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base092": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink093": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base093": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink094": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base094": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "RnaLink095": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base095": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.322178
+    },
+    "RnaLink096": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base096": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.823418
+    },
+    "RnaLink097": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base097": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 2.100507
+    },
+    "RnaLink098": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 10.970824
+    },
+    "Base098": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 1.934254
+    },
+    "ClaspReceiver": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 38.336393
+    },
+    "ClaspButton": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 68.144351
+    },
+    "UpperLobe": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 11789.121142
+    },
+    "DriveCarrier": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 46.674085
+    },
+    "DetentTip": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.081914
+    },
+    "DetentLeaf0": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.30195
+    },
+    "DetentLeaf1": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.301829
+    },
+    "DetentLeaf2": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.3016
+    },
+    "DetentLeaf3": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.301284
+    },
+    "DetentLeaf4": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.300917
+    },
+    "DetentLeaf5": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.300545
+    },
+    "DetentLeaf6": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.300226
+    },
+    "DetentLeaf7": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.300028
+    },
+    "DetentAnchor": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.474808
+    },
+    "CapSpringEnvelope": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 123.543131
+    },
+    "CapFixedSpringLeg": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.94427
+    },
+    "CapMovingSpringLeg": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 3.945512
+    },
+    "PawlBiasSpringEnvelope": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 12.72345
+    },
+    "Bead00": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.897169
+    },
+    "Bead01": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.641282
+    },
+    "Bead02": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.660432
+    },
+    "Bead03": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.641282
+    },
+    "Bead04": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.897169
+    },
+    "Bead05": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.660432
+    },
+    "Bead06": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.660432
+    },
+    "Bead07": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.897169
+    },
+    "Bead08": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.641282
+    },
+    "Bead09": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.660432
+    },
+    "Bead10": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.641282
+    },
+    "Bead11": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.897169
+    },
+    "Bead12": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.660432
+    },
+    "Bead13": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.660432
+    },
+    "Bead14": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.897169
+    },
+    "Bead15": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.641282
+    },
+    "Bead16": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.660432
+    },
+    "Bead17": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.641282
+    },
+    "Bead18": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.897169
+    },
+    "Bead19": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.660432
+    },
+    "Bead20": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.660432
+    },
+    "Bead21": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.897169
+    },
+    "Bead22": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.641282
+    },
+    "Bead23": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.660432
+    },
+    "Bead24": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.641282
+    },
+    "Bead25": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 31.897169
+    },
+    "Wire00": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.610726
+    },
+    "Wire01": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire02": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire03": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire04": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire05": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire06": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire07": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire08": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire09": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire10": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire11": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire12": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire13": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire14": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire15": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire16": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire17": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire18": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire19": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire20": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire21": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire22": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire23": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    },
+    "Wire24": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 0.609445
+    }
+  },
+  "invalid_objects": [],
+  "collision_failures_mm3": {},
+  "maximum_unintended_overlap_mm3": {
+    "actual RNA rack / involute gear": 0,
+    "spherical protein / actual drum": 0,
+    "actual protein / actual drum": 0,
+    "actual protein / keeper": 0,
+    "drum continuous envelope/LowerBody": 0,
+    "drum continuous envelope/BeadKeeper": 0,
+    "drum continuous envelope/CentreAxle": 0,
+    "drum continuous envelope/HousingScrew02": 0,
+    "RNA gear continuous envelope/LowerLid": 0,
+    "RNA gear continuous envelope/GearGuard": 0,
+    "RNA gear continuous envelope/CentreAxle": 0,
+    "RNA gear continuous envelope/HousingScrew00": 0,
+    "RNA gear continuous envelope/HousingScrew01": 0,
+    "RNA gear continuous envelope/HousingScrew02": 0,
+    "protein arc continuous envelope/LowerBody": 0,
+    "protein arc continuous envelope/BeadKeeper": 0,
+    "protein arc continuous envelope/CentreAxle": 0,
+    "protein arc continuous envelope/HousingScrew02": 0,
+    "protein straight continuous envelope/LowerBody": 0,
+    "protein straight continuous envelope/BeadKeeper": 0,
+    "drum outside conservative envelope": 0,
+    "RNA gear outside conservative envelope": 0,
+    "continuous RNA tube / lower body": 0,
+    "continuous open RNA tails / lower body": 0,
+    "RNA rail nominal / guide throat": 0,
+    "RNA base nominal / guide throat": 0,
+    "travelling RNA cell/LowerLid": 0,
+    "travelling RNA base/LowerLid": 0,
+    "travelling RNA cell/GearGuard": 0,
+    "travelling RNA base/GearGuard": 0,
+    "closed clasp rigid fit": 0,
+    "travelling clasp/BeadKeeper": 0,
+    "actual travelling clasp / guide": 0,
+    "travelling clasp/LowerLid": 0,
+    "travelling clasp/HousingScrew01": 0,
+    "resting DriveCarrier / reversing feed ratchet": 0,
+    "travelling clasp/HousingScrew00": 0,
+    "actual RNA / upper shell": 0,
+    "upper shell/GearGuard": 0,
+    "upper shell/CentreAxle": 0,
+    "upper shell/CapRetainer": 0,
+    "upper shell/CapSpringEnvelope": 0,
+    "upper shell/CapFixedSpringLeg": 0,
+    "upper shell/DetentAnchor": 0,
+    "upper shell/CapWasher": 0,
+    "DriveCarrier/GearGuard": 0,
+    "DriveCarrier / feed ratchet": 0,
+    "DriveCarrier / upper shell": 0,
+    "PawlBiasSpringEnvelope/GearGuard": 0,
+    "PawlBiasSpringEnvelope / feed ratchet": 0,
+    "PawlBiasSpringEnvelope / upper shell": 0,
+    "DetentTip / click wheel": 0,
+    "DetentTip / upper shell": 0,
+    "DetentLeaf0 / click wheel": 0,
+    "DetentLeaf0 / upper shell": 0,
+    "DetentLeaf1 / click wheel": 0,
+    "DetentLeaf1 / upper shell": 0,
+    "DetentLeaf2 / click wheel": 0,
+    "DetentLeaf2 / upper shell": 0,
+    "DetentLeaf3 / click wheel": 0,
+    "DetentLeaf3 / upper shell": 0,
+    "DetentLeaf4 / click wheel": 0,
+    "DetentLeaf4 / upper shell": 0,
+    "DetentLeaf5 / click wheel": 0,
+    "DetentLeaf5 / upper shell": 0,
+    "DetentLeaf6 / click wheel": 0,
+    "DetentLeaf6 / upper shell": 0,
+    "DetentLeaf7 / click wheel": 0,
+    "DetentLeaf7 / upper shell": 0,
+    "moving cap-spring terminal/GearGuard": 0,
+    "moving spring terminal / cap anchor": 0,
+    "fixed spring terminal / moving cap": 0,
+    "moving cap-spring terminal/CentreAxle": 0,
+    "assembly LowerBody/BeadKeeper": 0,
+    "assembly LowerBody/HousingScrew00": 0,
+    "assembly LowerBody/HousingScrew01": 0,
+    "assembly LowerBody/HousingScrew02": 0,
+    "assembly LowerBody/BeadDrum": 0,
+    "assembly LowerBody/DriveHub": 0,
+    "assembly LowerBody/TravelPin": 0,
+    "assembly LowerBody/ClaspReceiver": 0,
+    "assembly LowerBody/ClaspButton": 0,
+    "assembly LowerLid/GearGuard": 0,
+    "assembly LowerLid/BeadKeeper": 0,
+    "assembly LowerLid/CentreAxle": 0,
+    "assembly LowerLid/HousingScrew00": 0,
+    "assembly LowerLid/HousingScrew01": 0,
+    "assembly LowerLid/HousingScrew02": 0,
+    "assembly LowerLid/RnaDriveGear": 0,
+    "assembly LowerLid/DriveHub": 0,
+    "assembly LowerLid/IndexSleeve": 0,
+    "assembly LowerLid/ClaspButton": 0,
+    "assembly GearGuard/CentreAxle": 0,
+    "assembly GearGuard/CapRetainer": 0,
+    "assembly GearGuard/HousingScrew00": 0,
+    "assembly GearGuard/HousingScrew01": 0,
+    "assembly GearGuard/HousingScrew02": 0,
+    "assembly GearGuard/RnaDriveGear": 0,
+    "assembly GearGuard/DriveHub": 0,
+    "assembly GearGuard/IndexSleeve": 0,
+    "assembly GearGuard/IndexWheel": 0,
+    "assembly GearGuard/FeedRatchet": 0,
+    "assembly GearGuard/UpperLobe": 0,
+    "assembly GearGuard/DriveCarrier": 0,
+    "assembly GearGuard/DetentTip": 0,
+    "assembly GearGuard/CapSpringEnvelope": 0,
+    "assembly GearGuard/CapFixedSpringLeg": 0,
+    "assembly GearGuard/CapMovingSpringLeg": 0,
+    "assembly GearGuard/PawlBiasSpringEnvelope": 0,
+    "assembly BeadKeeper/CentreAxle": 0,
+    "assembly BeadKeeper/HousingScrew00": 0,
+    "assembly BeadKeeper/HousingScrew01": 0,
+    "assembly BeadKeeper/HousingScrew02": 0,
+    "assembly BeadKeeper/BeadDrum": 0,
+    "assembly BeadKeeper/DriveHub": 0,
+    "assembly BeadKeeper/ClaspReceiver": 0,
+    "assembly BeadKeeper/ClaspButton": 0,
+    "assembly CentreAxle/CapRetainer": 0,
+    "assembly CentreAxle/CapWasher": 0,
+    "assembly CentreAxle/BeadDrum": 0,
+    "assembly CentreAxle/RnaDriveGear": 0,
+    "assembly CentreAxle/DriveHub": 0,
+    "assembly CentreAxle/IndexSleeve": 0,
+    "assembly CentreAxle/IndexWheel": 0,
+    "assembly CentreAxle/FeedRatchet": 0,
+    "assembly CentreAxle/UpperLobe": 0,
+    "assembly CentreAxle/CapSpringEnvelope": 0,
+    "assembly CapRetainer/CapWasher": 0,
+    "assembly CapRetainer/UpperLobe": 0,
+    "assembly CapWasher/UpperLobe": 0,
+    "assembly HousingScrew00/RnaDriveGear": 0,
+    "assembly HousingScrew01/RnaDriveGear": 0,
+    "assembly HousingScrew02/BeadDrum": 0,
+    "assembly HousingScrew02/RnaDriveGear": 0,
+    "assembly IndexSleeve/UpperLobe": 0,
+    "assembly IndexWheel/UpperLobe": 0,
+    "assembly IndexWheel/DetentTip": 0,
+    "assembly FeedRatchet/UpperLobe": 0,
+    "assembly FeedRatchet/DriveCarrier": 0,
+    "assembly ClaspReceiver/ClaspButton": 0,
+    "assembly UpperLobe/DriveCarrier": 0,
+    "assembly UpperLobe/DetentTip": 0,
+    "assembly UpperLobe/DetentAnchor": 0,
+    "assembly UpperLobe/CapSpringEnvelope": 0,
+    "assembly UpperLobe/CapFixedSpringLeg": 0,
+    "assembly UpperLobe/CapMovingSpringLeg": 0,
+    "assembly UpperLobe/PawlBiasSpringEnvelope": 0,
+    "assembly DriveCarrier/PawlBiasSpringEnvelope": 0
+  },
+  "overlap_tolerance_mm3": 1e-05,
+  "involute_approximation_tolerance_mm3": 5e-05,
+  "logical_checks": {
+    "retention_witnesses": true,
+    "continuous_RNA_bound": true,
+    "continuous_TPU_cell_laps": true,
+    "clasp_guides_clear": true,
+    "clasp_roots_connected": true,
+    "positive_drum_stops": true,
+    "positive_cap_stops": true,
+    "cap_endpoint": true,
+    "extra_feed_physically_blocked": true,
+    "resting_cap_disengaged": true,
+    "drive_face_contact": true,
+    "no_external_release": true,
+    "retained_tail": true,
+    "native_accuracy": true,
+    "bead_spherical_bound": true,
+    "assembly_fastening_and_roots": true
+  },
+  "native_errors": {
+    "three bases per bead": 0,
+    "RNA translation ratio mm": 8.526512829121202e-14,
+    "drum ratio deg": 9.094947017729282e-13,
+    "RNA native position mm": 1.0613579748987244e-12,
+    "RNA native orientation": 9.959141454184113e-14,
+    "protein native position mm": 1.2084449957466568e-13,
+    "native wire length mm": 0,
+    "FeedRatchet saved periodicity mm": 2.3869536836643392e-14,
+    "IndexWheel saved periodicity mm": 1.7874245903380366e-14,
+    "cap drives exact feed step": 3.552713678800501e-15,
+    "cap actual protein feed mm": 3.351623381340333e-14,
+    "cap actual RNA feed mm": 5.417859239488578e-13
+  },
+  "actual_bead_handoff_samples": 27,
+  "spherical_bead_handoff_samples": 27,
+  "actual_RNA_gear_phase_samples": 18,
+  "sampled_forward_poses_per_mode": 12,
+  "sampled_direct_reverse_poses_per_mode": 12,
+  "sampled_cap_cycle_poses": 120,
+  "actual_cap_clearance_poses": 40,
+  "unique_upper_shell_fixed_clearance_angles": 20,
+  "unique_internal_cap_clearance_lifts": 16,
+  "RNA_envelope_certificate": {
+    "radius_mm": 4.65,
+    "link_required_radius_mm": 2.6356499313291706,
+    "base_required_radius_mm": 4.524045,
+    "clasp_required_radius_mm": 4.134441020371192,
+    "minimum_bend_radius_mm": 10.0,
+    "nominal_path_only": true
+  },
+  "retention_solid_witnesses": [
+    {
+      "guide_x": 0,
+      "action": "forbidden side escape",
+      "overlap_mm3": 2.459468842161252
+    },
+    {
+      "guide_x": 0,
+      "action": "receiver stop",
+      "overlap_mm3": 14.454893663966642
+    },
+    {
+      "guide_x": 0,
+      "action": "button stop",
+      "overlap_mm3": 20.23728705201598
+    }
+  ],
+  "minimum_actual_clasp_guide_clearance_mm": 19.810108299180246,
+  "minimum_same_strip_cell_lap_mm3": 0.8755195744990882,
+  "retained_at_full_travel": {
+    "hidden_beads": 4,
+    "seated_beads": 3
+  },
+  "minimum_clasp_to_strip_root_lap_mm3": 6.267923882152301,
+  "drum_travel_stops": [
+    {
+      "drum_degrees": -2,
+      "overlap_mm3": 0.6015660257441591
+    },
+    {
+      "drum_degrees": 0,
+      "overlap_mm3": 0.0
+    },
+    {
+      "drum_degrees": 282.8571428571429,
+      "overlap_mm3": 0.0
+    },
+    {
+      "drum_degrees": 284.8571428571429,
+      "overlap_mm3": 0.6015660257441375
+    }
+  ],
+  "cap_travel_stops": [
+    {
+      "cap_degrees": -2,
+      "overlap_mm3": 1.4297913626540524
+    },
+    {
+      "cap_degrees": 0,
+      "overlap_mm3": 0.0
+    },
+    {
+      "cap_degrees": 18.857142857142858,
+      "overlap_mm3": 0.0
+    },
+    {
+      "cap_degrees": 20.857142857142858,
+      "overlap_mm3": 1.4297913626540246
+    }
+  ],
+  "full_feed_cap": {
+    "effective_steps": 22.0,
+    "cap_angle": 6.0,
+    "allowed_entry_angle": 6.0,
+    "attempted_extra_drive_contact_mm3": 0.16527782348176862
+  },
+  "maximum_face_ramp_return_lift_mm": 0.89,
+  "maximum_internal_cam_lift_mm": 2.0,
+  "minimum_resting_pawl_clearance_mm": 1.3616131397660933,
+  "maximum_feed_face_contact_gap_mm": 1.0568802777388697e-14,
+  "housing_dimensions_mm": {
+    "LowerBody": {
+      "width": 78.8,
+      "depth": 79.9,
+      "height": 22.6,
+      "minimum_z": -8.1,
+      "maximum_z": 14.5
+    },
+    "UpperLobe": {
+      "width": 60.914,
+      "depth": 62.0,
+      "height": 18.3,
+      "minimum_z": 21.9,
+      "maximum_z": 40.2
+    }
+  },
+  "assembly_audit": {
+    "passed": true,
+    "checks": {
+      "HousingScrew00 unobstructed coaxial passage": true,
+      "HousingScrew00 local section preserves screw column": true,
+      "HousingScrew00 continuous pilot wall": true,
+      "HousingScrew00 body / keeper lower seat": true,
+      "HousingScrew00 body / keeper upper seat": true,
+      "HousingScrew00 keeper / lid lower seat": true,
+      "HousingScrew00 keeper / lid upper seat": true,
+      "HousingScrew00 lid / cover lower seat": true,
+      "HousingScrew00 lid / cover upper seat": true,
+      "HousingScrew00 conical head seated": true,
+      "HousingScrew00 thread envelope engages pilot": true,
+      "HousingScrew00 continuous cover wall": true,
+      "HousingScrew00 driver access with cap removed": true,
+      "HousingScrew01 unobstructed coaxial passage": true,
+      "HousingScrew01 local section preserves screw column": true,
+      "HousingScrew01 continuous pilot wall": true,
+      "HousingScrew01 body / keeper lower seat": true,
+      "HousingScrew01 body / keeper upper seat": true,
+      "HousingScrew01 keeper / lid lower seat": true,
+      "HousingScrew01 keeper / lid upper seat": true,
+      "HousingScrew01 lid / cover lower seat": true,
+      "HousingScrew01 lid / cover upper seat": true,
+      "HousingScrew01 conical head seated": true,
+      "HousingScrew01 thread envelope engages pilot": true,
+      "HousingScrew01 continuous cover wall": true,
+      "HousingScrew01 driver access with cap removed": true,
+      "HousingScrew02 unobstructed coaxial passage": true,
+      "HousingScrew02 local section preserves screw column": true,
+      "HousingScrew02 continuous pilot wall": true,
+      "HousingScrew02 body / keeper lower seat": true,
+      "HousingScrew02 body / keeper upper seat": true,
+      "HousingScrew02 keeper / lid lower seat": true,
+      "HousingScrew02 keeper / lid upper seat": true,
+      "HousingScrew02 lid / cover lower seat": true,
+      "HousingScrew02 lid / cover upper seat": true,
+      "HousingScrew02 conical head seated": true,
+      "HousingScrew02 thread envelope engages pilot": true,
+      "HousingScrew02 continuous cover wall": true,
+      "HousingScrew02 driver access with cap removed": true,
+      "CentreAxle integral connection to LowerBody": true,
+      "DetentAnchor integral connection to GearGuard": true,
+      "cap washer seated on fixed spindle": true,
+      "cap screw head seated on washer": true,
+      "cap screw thread envelope engages pilot": true,
+      "cap positive axial endplay": true,
+      "cap screw blind pilot bottom clearance": true,
+      "lower rotor is one connected part": true,
+      "upper rotor is one connected part": true,
+      "two rotor parts have no rigid overlap": true,
+      "D key transmits torque in both directions": true,
+      "cover and click leaf form one connected part": true,
+      "BeadDrum contained in insertion envelope": true,
+      "RnaDriveGear contained in insertion envelope": true,
+      "lower rotor sampled vertical insertion": true,
+      "bead keeper sampled vertical insertion": true,
+      "lower lid sampled vertical insertion": true,
+      "keyed upper rotor sampled vertical insertion": true,
+      "cover and integral click leaf sampled vertical insertion": true,
+      "upper subunit and lifted input sampled vertical insertion": true
+    },
+    "housing_screws": [
+      {
+        "name": "HousingScrew00",
+        "axis_xy_mm": [
+          -32.0,
+          -14.0
+        ],
+        "nominal_screw": "M2 x 12 countersunk",
+        "tip_z_mm": 9.3,
+        "head_top_z_mm": 21.3,
+        "nominal_pilot_engagement_mm": 4.2,
+        "pilot_bottom_clearance_mm": 0.4,
+        "head_recess_below_cover_mm": 0.4,
+        "shaft_passage_overlap_mm3": {
+          "BeadKeeper": 0.0,
+          "LowerLid": 0.0,
+          "GearGuard": 0.0
+        },
+        "actual_lid_column_half_section_volume_mm3": 127.93012676001769,
+        "pilot_wall_witness_missing_mm3": 0,
+        "clamped_stack_seats": [
+          {
+            "interface": "body / keeper",
+            "z_mm": 13.5,
+            "verified_bearing_area_mm2": 25.281966879763864,
+            "missing_lower_mm3": 0,
+            "missing_upper_mm3": 0
+          },
+          {
+            "interface": "keeper / lid",
+            "z_mm": 14.6,
+            "verified_bearing_area_mm2": 25.281966879763864,
+            "missing_lower_mm3": 0,
+            "missing_upper_mm3": 0
+          },
+          {
+            "interface": "lid / cover",
+            "z_mm": 20.25,
+            "verified_bearing_area_mm2": 25.281966879763864,
+            "missing_lower_mm3": 0,
+            "missing_upper_mm3": 0
+          }
+        ],
+        "head_to_seat_gap_mm": 0.0,
+        "intentional_thread_envelope_overlap_mm3": 3.661526237758914,
+        "cover_wall_witness_missing_mm3": 0,
+        "driver_access_overlap_cap_removed_mm3": {
+          "LowerBody": 0.0,
+          "LowerLid": 0.0,
+          "BeadKeeper": 0.0,
+          "GearGuard": 0.0,
+          "CentreAxle": 0.0
+        }
+      },
+      {
+        "name": "HousingScrew01",
+        "axis_xy_mm": [
+          32.0,
+          -14.0
+        ],
+        "nominal_screw": "M2 x 12 countersunk",
+        "tip_z_mm": 9.3,
+        "head_top_z_mm": 21.3,
+        "nominal_pilot_engagement_mm": 4.2,
+        "pilot_bottom_clearance_mm": 0.4,
+        "head_recess_below_cover_mm": 0.4,
+        "shaft_passage_overlap_mm3": {
+          "BeadKeeper": 0.0,
+          "LowerLid": 0.0,
+          "GearGuard": 0.0
+        },
+        "actual_lid_column_half_section_volume_mm3": 116.30689925020984,
+        "pilot_wall_witness_missing_mm3": 0,
+        "clamped_stack_seats": [
+          {
+            "interface": "body / keeper",
+            "z_mm": 13.5,
+            "verified_bearing_area_mm2": 25.281966879763864,
+            "missing_lower_mm3": 0,
+            "missing_upper_mm3": 0
+          },
+          {
+            "interface": "keeper / lid",
+            "z_mm": 14.6,
+            "verified_bearing_area_mm2": 25.281966879763864,
+            "missing_lower_mm3": 0,
+            "missing_upper_mm3": 0
+          },
+          {
+            "interface": "lid / cover",
+            "z_mm": 20.25,
+            "verified_bearing_area_mm2": 25.281966879763864,
+            "missing_lower_mm3": 0,
+            "missing_upper_mm3": 0
+          }
+        ],
+        "head_to_seat_gap_mm": 0.0,
+        "intentional_thread_envelope_overlap_mm3": 3.661526237758892,
+        "cover_wall_witness_missing_mm3": 0,
+        "driver_access_overlap_cap_removed_mm3": {
+          "LowerBody": 0.0,
+          "LowerLid": 0.0,
+          "BeadKeeper": 0.0,
+          "GearGuard": 0.0,
+          "CentreAxle": 0.0
+        }
+      },
+      {
+        "name": "HousingScrew02",
+        "axis_xy_mm": [
+          -23.0,
+          26.0
+        ],
+        "nominal_screw": "M2 x 12 countersunk",
+        "tip_z_mm": 9.3,
+        "head_top_z_mm": 21.3,
+        "nominal_pilot_engagement_mm": 4.2,
+        "pilot_bottom_clearance_mm": 0.4,
+        "head_recess_below_cover_mm": 0.4,
+        "shaft_passage_overlap_mm3": {
+          "BeadKeeper": 0.0,
+          "LowerLid": 0.0,
+          "GearGuard": 0.0
+        },
+        "actual_lid_column_half_section_volume_mm3": 92.76143508542887,
+        "pilot_wall_witness_missing_mm3": 0,
+        "clamped_stack_seats": [
+          {
+            "interface": "body / keeper",
+            "z_mm": 13.5,
+            "verified_bearing_area_mm2": 25.281966879763864,
+            "missing_lower_mm3": 0,
+            "missing_upper_mm3": 0
+          },
+          {
+            "interface": "keeper / lid",
+            "z_mm": 14.6,
+            "verified_bearing_area_mm2": 25.281966879763864,
+            "missing_lower_mm3": 0,
+            "missing_upper_mm3": 0
+          },
+          {
+            "interface": "lid / cover",
+            "z_mm": 20.25,
+            "verified_bearing_area_mm2": 25.281966879763864,
+            "missing_lower_mm3": 0,
+            "missing_upper_mm3": 0
+          }
+        ],
+        "head_to_seat_gap_mm": 0.0,
+        "intentional_thread_envelope_overlap_mm3": 3.6615262377589124,
+        "cover_wall_witness_missing_mm3": 0,
+        "driver_access_overlap_cap_removed_mm3": {
+          "LowerBody": 0.0,
+          "LowerLid": 0.0,
+          "BeadKeeper": 0.0,
+          "GearGuard": 0.0,
+          "CentreAxle": 0.0
+        }
+      }
+    ],
+    "integral_connections": [
+      {
+        "features": [
+          "CentreAxle",
+          "LowerBody"
+        ],
+        "positive_overlap_mm3": 57.62859023928778,
+        "fused_solid_count": 1,
+        "fused_valid": true
+      },
+      {
+        "features": [
+          "DetentAnchor",
+          "GearGuard"
+        ],
+        "positive_overlap_mm3": 1.9454891742154155,
+        "fused_solid_count": 1,
+        "fused_valid": true
+      }
+    ],
+    "rotor_coupling": {
+      "two_connected_parts": true,
+      "nominal_D_key_radial_clearance_mm": 0.12,
+      "torque_blocking_witnesses": [
+        {
+          "attempted_relative_degrees": -5,
+          "blocking_overlap_mm3": 0.02457092507984381
+        },
+        {
+          "attempted_relative_degrees": 5,
+          "blocking_overlap_mm3": 0.024570925079845218
+        }
+      ]
+    },
+    "sampled_assembly_insertions": [
+      {
+        "part": "lower rotor",
+        "sampled_lifts_mm": [
+          0,
+          0.1,
+          0.3,
+          0.6,
+          1,
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "maximum_unintended_overlap_mm3": 0.0,
+        "failures": []
+      },
+      {
+        "part": "bead keeper",
+        "sampled_lifts_mm": [
+          0,
+          0.1,
+          0.3,
+          0.6,
+          1,
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "maximum_unintended_overlap_mm3": 0.0,
+        "failures": []
+      },
+      {
+        "part": "lower lid",
+        "sampled_lifts_mm": [
+          0,
+          0.1,
+          0.3,
+          0.6,
+          1,
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "maximum_unintended_overlap_mm3": 0.0,
+        "failures": []
+      },
+      {
+        "part": "keyed upper rotor",
+        "sampled_lifts_mm": [
+          0,
+          0.1,
+          0.3,
+          0.6,
+          1,
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "maximum_unintended_overlap_mm3": 0.0,
+        "failures": []
+      },
+      {
+        "part": "cover and integral click leaf",
+        "sampled_lifts_mm": [
+          0,
+          0.1,
+          0.3,
+          0.6,
+          1,
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "maximum_unintended_overlap_mm3": 0.0,
+        "failures": []
+      },
+      {
+        "part": "upper subunit and lifted input",
+        "sampled_lifts_mm": [
+          0,
+          0.1,
+          0.3,
+          0.6,
+          1,
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "maximum_unintended_overlap_mm3": 0.0,
+        "failures": []
+      }
+    ],
+    "cap_retainer": {
+      "nominal_screw": "M2 x 4 pan head",
+      "separate_washer": true,
+      "washer_to_fixed_shoulder_gap_mm": 0.0,
+      "screw_head_to_washer_gap_mm": 0.0,
+      "actual_cap_axial_endplay_mm": 0.14999999999999858,
+      "nominal_thread_engagement_mm": 3.4,
+      "intentional_thread_overlap_mm3": 2.9640926686619684
+    },
+    "boundary": "Actual coaxial passages, continuous wall/seat witnesses, head seating, access with upper cap removed, integral roots, fixed-spindle retention, keyed rotor fit/torque witnesses and sampled rigid vertical insertions. Threads are major-diameter envelopes. Printed fits, key backlash, insertion under friction/compliance, screw standard selection, preload, stripping, stiffness and strength need physical qualification."
+  },
+  "housing_refinement": {
+    "central_RNA_capture_only": true,
+    "outer_RNA_holders": false,
+    "protruding_guide_brackets": false,
+    "bottom_grip_rails": false,
+    "open_underside_groove": true,
+    "guide_centres_x_mm": [
+      0
+    ],
+    "straight_drive_span_mm": 18.0,
+    "RNA_route_width_mm": 84.0,
+    "RNA_route_depth_mm": 47.553093477052,
+    "nominal_shoulder_bend_radius_mm": 33.0,
+    "nominal_minimum_bend_radius_mm": 10.0,
+    "nominal_palm_dome_minimum_z_mm": -8.1,
+    "RNA_route_angle_degrees": 38.0,
+    "nominal_return_centre_y_mm": 5.672349027182637,
+    "nominal_return_centre_z_mm": -9.676607686380773
+  },
+  "engineering_estimates": {
+    "status": "ILLUSTRATIVE_ESTIMATE_ONLY",
+    "units": "N, mm, N\u00b7mm, radians",
+    "assumptions": {
+      "leaf_effective_modulus_N_per_mm2": 1700.0,
+      "spring_shear_modulus_N_per_mm2": 79000.0,
+      "spring_elastic_modulus_N_per_mm2": 200000.0,
+      "friction_included": false,
+      "printed_anisotropy_included": false,
+      "dynamics_included": false
+    },
+    "detent": {
+      "length_mm": 12.0,
+      "radial_thickness_mm": 1.0,
+      "height_mm": 2.0,
+      "stiffness_N_per_mm": 0.49189814814814814,
+      "approx_preload_deflection_mm": 0.29,
+      "approx_peak_deflection_mm": 0.89,
+      "preload_force_N": 0.14265046296296294,
+      "peak_force_N": 0.43778935185185186,
+      "peak_resisting_torque_Nmm": 2.7908723004522282,
+      "approximate_peak_outer_fibre_strain": 0.009270833333333332
+    },
+    "axial_bias_candidate": {
+      "wire_mm": 0.15,
+      "mean_coil_diameter_mm": 2.5,
+      "active_turns": 8,
+      "free_length_mm": 6.5,
+      "stiffness_N_per_mm": 0.03999375,
+      "installed_length_range_mm": [
+        2.7,
+        4.7
+      ],
+      "approximate_solid_height_mm": 1.5,
+      "resting_force_N": 0.15197625,
+      "maximum_coast_return_force_N": 0.1075831875
+    },
+    "cap_return_candidate": {
+      "wire_mm": 0.6,
+      "mean_coil_diameter_mm": 12.1,
+      "active_turns": 3,
+      "preload_degrees": 22,
+      "rate_Nmm_per_rad": 11.15702479338843,
+      "resting_torque_Nmm": 4.2839899821679,
+      "full_stroke_torque_Nmm": 7.955981395454671,
+      "coil_stack_height_mm": 1.7999999999999998
+    },
+    "comparisons": {
+      "ideal_face_ramp_return_torque_Nmm": 0.5992838629472522,
+      "ideal_rest_entry_cam_torque_Nmm": 2.902532570408359,
+      "detent_peak_to_return_torque_ratio": 4.657012265818135,
+      "cap_restoring_to_entry_torque_ratio": 1.4759489784347821,
+      "ideal_RNA_force_to_overcome_detent_N": 0.0922907506763303
+    },
+    "boundary": "Starting dimensions and force-order checks only. Spring legs/anchors, real grades, friction, printed leaf behavior, wear and dynamic return require design review and physical measurement. No strength, fatigue, acoustic, retention or reliable-feed qualification."
+  },
+  "design": {
+    "handheld": true,
+    "wearable": false,
+    "open_or_closed_captive_RNA": true,
+    "external_open_underside_return": true,
+    "parking_clip": false,
+    "external_reverse_release": false,
+    "direct_RNA_reverse": true,
+    "RNA_bases_per_bead": 3,
+    "RNA_lattice_positions": 100,
+    "visible_RNA_bases": 97,
+    "RNA_pitch_mm": 2.261946710584651,
+    "RNA_travel_mm": 149.28848289858698,
+    "RNA_nominal_loop_length_mm": 226.1946710584651,
+    "RNA_drive_teeth": 84,
+    "bead_pitch_mm": 6,
+    "drum_pockets": 28,
+    "protein_beads": 26,
+    "maximum_bead_steps": 22,
+    "maximum_protein_feed_mm": 132,
+    "tensioned_rewind": false,
+    "automatic_curling": false,
+    "input_cap_entry_degrees": 6.0,
+    "input_cap_total_degrees": 18.857142857142858
+  },
+  "intentional_connections": {
+    "rotor": "Drum/hub/travel pin form the lower rotor; RNA gear/input sleeve/click wheel/feed wheel form the upper rotor. A D-key couples the two, with separate assembly and torque witnesses.",
+    "TPU": "Neighboring nominal RNA cells, their base roots and clasp roots represent one continuous flexible strip.",
+    "flexures": "Connected click-leaf chords depict prescribed bending, not separate manufactured links.",
+    "spring_studies": "Coil reservation and terminal stubs represent one proposed deforming spring; their shared endpoints overlap intentionally.",
+    "integral_roots": "Lower-body/spindle and cover/detent-anchor features overlap and fuse to one solid each.",
+    "fastener": "Only bounded nominal thread envelopes overlap their pilots. Coaxial passages, conical seats, clamped stack and fixed washer shoulder are checked; thread strength and preload are unqualified."
+  },
+  "source_sha256": {
+    "bracelet_v6.py": "b3ade223be22e7c91484c92cda2c9159d644eb5ff883ce8a68291194d1703545",
+    "rna_path.py": "0fdaa23c165a3a7ceb0d2192f5e4faa39ccac7ddf37d86898b8851d699eb88fe",
+    "validation_v6.py": "960e49b46cfbfa071decba4d7bda5ee8dd16b4be0b9558ce574dcc2bb667b3e7",
+    "assembly_v6.py": "5dd37971b35193a801009e060161240a27c805453202aea7807ab8c145977778",
+    "engineering_v6.py": "e1798c49839b6ca5735853f933f773962f91bb0aef1fc2b2abf9642b7de8ae73"
+  },
+  "validation_boundary": "Focused actual bead/drum, actual rack/gear including shoulder bends, conservative continuous envelopes, central RNA captivity, reusable-clasp fit, native open/closed forward/reverse, cap feed/return, cam clearance, positive travel stops, actual screw passages/seats/wall sections, integral roots, keyed rotor fit/torque and sampled assembly insertion checks. TPU cells and flexure chords are prescribed deformation; native coupling omits physical key backlash and axial float. Spring volumes are space claims. No force, click acoustics, compliance, strain, snap retention, fatigue, manufacturing, hand-fit or physical-operation qualification.",
+  "physical_tests_still_required": [
+    "RNA TPU bending, pitch stability, mesh friction and guide escape under hand loads",
+    "Clasp snap force, retention, peeling release and repeated-cycle fatigue",
+    "Closed-loop clasp travel, grip clearance and open-tail handling",
+    "Bidirectional detent force, audible click and long-term wear",
+    "Cap follower friction, axial bias and return springs, reliable one-step engagement and face-ramp return",
+    "End-of-feed force transmission and protection against pawl skip or damage under overload",
+    "Direct bead capture/retraction, wire pitch fixation, buckling and bend fatigue",
+    "Printed fits, fastening, material selection, assembly and durability"
+  ],
+  "preserved_versions": {
+    "V5": "FOCUSED_PASS; preserved circular RNA and external-release comparison",
+    "V4": "FOCUSED_PASS; cuff comparison",
+    "V3": "INCOMPLETE_USER_STOPPED",
+    "V2": "HISTORICAL_PASS_INVALIDATED"
+  }
+}

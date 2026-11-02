@@ -24,7 +24,16 @@ def run() -> int:
         'cad/v4-print/bracelet_v4_print.py','cad/v4-print/validation_v4_print.py',
         'cad/v4-print/RibosomeV4Print.FCMacro','print/v4-a1-mini/README.md',
         'cad/v5/bracelet_v5.py','cad/v5/validation_v5.py','cad/v5/RibosomeV5.FCMacro',
-        'cad/v5/README.md','cad/v5/handheld.png','cad/v5/mechanism.png','cad/v5/drum.png','cad/v5/home.png',
+        'cad/v5/README.md','cad/v5/handheld.png','cad/v5/mechanism.png','cad/v5/drum.png','cad/v5/home.png','cad/v5/grip.png',
+        'docs/v5-proportions.md',
+        'cad/v6/bracelet_v6.py','cad/v6/rna_path.py','cad/v6/validation_v6.py','cad/v6/presentation_v6.py',
+        'cad/v6/engineering_v6.py','cad/v6/engineering.md',
+        'cad/v6/assembly_v6.py','docs/v6-assembly.md','cad/v6/fasteners.png','cad/v6/spindle.png',
+        'cad/v6/gui-checks.json',
+        'cad/v6/RibosomeV6.FCMacro','cad/v6/README.md',
+        'cad/v6/handheld.png','cad/v6/open.png','cad/v6/underside.png',
+        'cad/v6/mechanism.png','cad/v6/cap-input.png','cad/v6/home.png',
+        'cad/v6/side.png',
         'print/v4-a1-mini/manifest.json','print/v4-a1-mini/handoff.json',
         'cad/v2/bracelet.py', 'cad/v2/Ribosome.FCMacro',
     ]
@@ -60,7 +69,7 @@ def run() -> int:
                 errors.append(f'{path.relative_to(ROOT)}: broken link {target}')
             link_count += 1
 
-    for relative in ('cad/v2/Ribosome.FCStd', 'cad/v3/RibosomeV3.FCStd','cad/v4/RibosomeV4.FCStd','cad/v4-print/RibosomeV4Print.FCStd','cad/v5/RibosomeV5.FCStd'):
+    for relative in ('cad/v2/Ribosome.FCStd', 'cad/v3/RibosomeV3.FCStd','cad/v4/RibosomeV4.FCStd','cad/v4-print/RibosomeV4Print.FCStd','cad/v5/RibosomeV5.FCStd','cad/v6/RibosomeV6.FCStd'):
         try:
             with zipfile.ZipFile(ROOT / relative) as archive:
                 if 'Document.xml' not in archive.namelist() or archive.testzip() is not None:
@@ -75,6 +84,43 @@ def run() -> int:
         historical = json.loads((ROOT / 'cad/v2/checks.json').read_text(encoding='utf-8-sig'))
         v4=json.loads((ROOT/'cad/v4/checks.json').read_text(encoding='utf-8-sig'))
         v5=json.loads((ROOT/'cad/v5/checks.json').read_text(encoding='utf-8-sig'))
+        v6=json.loads((ROOT/'cad/v6/checks.json').read_text(encoding='utf-8-sig'))
+        gui6=json.loads((ROOT/'cad/v6/gui-checks.json').read_text(encoding='utf-8-sig'))
+        if not gui6.get('normal_GUI_close_reopen') or not gui6.get('native_update_without_source_directory'):
+            errors.append('V6 requires a normal GUI reopen and native update without a source directory.')
+        if not (gui6.get('housing_bolt_section_actual_solids') and gui6.get('spindle_section_actual_solids')):
+            errors.append('V6 requires current actual-solid housing and spindle sections.')
+        if not gui6.get('side_route_view'):
+            errors.append('V6 requires its current side-route CAD view.')
+        if hashlib.sha256((ROOT/'cad/v6/RibosomeV6.FCStd').read_bytes()).hexdigest()!=gui6.get('model_sha256'):
+            errors.append('V6 GUI evidence no longer matches the saved CAD container.')
+        for name,digest in gui6.get('source_sha256',{}).items():
+            source=ROOT/'cad/v6'/name
+            if not source.is_file() or hashlib.sha256(source.read_bytes()).hexdigest()!=digest:
+                errors.append('V6 GUI source/evidence mismatch: '+name)
+        if v6.get('version')!='6.0' or v6.get('status')!='FOCUSED_PASS' or not v6.get('logical_checks') or not all(v6.get('logical_checks',{}).values()):
+            errors.append('V6 requires its own complete focused geometry result; no earlier PASS may substitute.')
+        v6design=v6.get('design',{})
+        assembly6=v6.get('assembly_audit',{})
+        if not assembly6.get('passed') or not assembly6.get('checks') or not all(assembly6.get('checks',{}).values()):
+            errors.append('V6 requires its actual fastener, bearing-seat, integral-root and assembly audit.')
+        if len(assembly6.get('housing_screws',[]))!=3 or len(assembly6.get('sampled_assembly_insertions',[]))!=6:
+            errors.append('V6 must check all three screw stacks and six insertion stages.')
+        routing6=v6.get('housing_refinement',{})
+        if routing6.get('outer_RNA_holders') is not False or not routing6.get('central_RNA_capture_only'):
+            errors.append('V6 must retain the central RNA channel with both outer holders removed.')
+        if not (v6design.get('open_or_closed_captive_RNA') and v6design.get('external_open_underside_return') and v6design.get('direct_RNA_reverse')):
+            errors.append('V6 must preserve captive open/closed RNA, external underside return and direct reversal.')
+        if any(v6design.get(k) is not False for k in ('parking_clip','external_reverse_release','tensioned_rewind')) or v6design.get('RNA_bases_per_bead')!=3:
+            errors.append('V6 must retain three bases per bead, with no parking clip, external release or tensioned rewind.')
+        if v6.get('retained_at_full_travel',{}).get('hidden_beads')!=4 or not v6.get('actual_bead_handoff_samples') or v6.get('actual_RNA_gear_phase_samples')!=18:
+            errors.append('V6 must retain its four-bead tail and actual bead/drum and RNA/gear phase evidence.')
+        if not v6.get('sampled_direct_reverse_poses_per_mode') or not v6.get('sampled_cap_cycle_poses') or not v6.get('physical_tests_still_required'):
+            errors.append('V6 must retain direct reverse, upper-input motion and physical-test boundaries.')
+        for name,digest in v6.get('source_sha256',{}).items():
+            source=ROOT/'cad/v6'/name
+            if not source.is_file() or hashlib.sha256(source.read_bytes()).hexdigest()!=digest:
+                errors.append('V6 source/report mismatch: '+name)
         if v5.get('version')!='5.0' or v5.get('status')!='FOCUSED_PASS':
             errors.append('V5 must have a fresh focused geometry result; unfinished checks cannot be promoted as a PASS.')
         design=v5.get('design',{})
@@ -82,6 +128,8 @@ def run() -> int:
             errors.append('V5 no longer describes the accepted handheld / closed RNA / direct bead-drive contract.')
         if not v5.get('actual_bead_handoff_samples') or not v5.get('sampled_reverse_poses') or not v5.get('physical_tests_still_required'):
             errors.append('V5 must retain actual bead phase checks, reverse-motion evidence and physical-test limitations.')
+        if v5.get('sampled_rocker_clearance_poses')!=9 or v5.get('sampled_release_heights_mm')!=[0,1.5,3.0]:
+            errors.append('V5 proportion pass requires its expanded rocker/release clearance evidence.')
         if v5.get('retained_at_full_travel',{}).get('hidden_beads')!=4:
             errors.append('V5 must retain four hidden protein beads at full travel.')
         for name,digest in v5.get('source_sha256',{}).items():
@@ -111,7 +159,7 @@ def run() -> int:
         print('\n'.join('ERROR: ' + error for error in errors))
         return 1
     print(f'PASS - {code_count} Python/macro files parsed, {link_count} local Markdown links checked, '
-          'five CAD containers readable, report snapshots consistent.')
+          'six CAD containers readable, report snapshots consistent.')
     print('This is repository integrity checking, not a fresh FreeCAD or physical-mechanism test.')
     if current.get('status') != 'PASS':
         print('V3 CAD validation is incomplete: '+current['status'])

@@ -1,12 +1,21 @@
 # mRNA toy
 
-A handheld mechanical fidget inspired by protein translation. Move a closed RNA-like loop around the larger lower subunit, or rock the smaller upper subunit: three bases advance and one bead of a hidden protein chain emerges. Straighten the chain, release the clicker and reverse the RNA to return it.
+A handheld mechanical fidget inspired by protein translation. Move a captive RNA-like strand, or rock the upper subunit: three bases advance and one bead of a hidden protein chain emerges. Straighten the protein and move the RNA backward to retract it. Join the RNA ends underneath for a compact loop, or disconnect them for an open strand.
 
-**V5 is the current handheld design prototype.** Its direct bead-storage drum replaces the wrist cuff and tensioned rewind proposals. See the [V5 guide](cad/v5/README.md) and [focused report](cad/v5/checks.json) for the exact validation boundary. No physical or printing qualification is claimed. V4 and its separate print derivative are preserved.
+**V6 is the current handheld CAD prototype.** It has open-or-closed captive RNA, an external underside return, direct reversal without a release lever, and a cap input that disengages at rest. See the [V6 guide](cad/v6/README.md) and [focused report](cad/v6/checks.json) for the exact evidence boundary. Physical operation, click feel, clasp retention and printing remain unqualified. V5 and all older versions are preserved.
 
-![Current V5 CAD](cad/v5/handheld.png)
+![Current V6 CAD](cad/v6/handheld.png)
 
-Actual CAD; source and saved model define geometry. [Open mechanism](cad/v5/mechanism.png) · [Bead drum](cad/v5/drum.png). The [earlier AI illustration](docs/images/toy-concept.png) depicts a superseded wearable concept; see [image provenance](docs/images/README.md).
+Actual CAD; source and saved model define geometry. [Side route](cad/v6/side.png) · [Open strand](cad/v6/open.png) · [External underside return](cad/v6/underside.png) · [Mechanism](cad/v6/mechanism.png) · [Cap input](cad/v6/cap-input.png). The [earlier AI illustration](docs/images/toy-concept.png) depicts a superseded wearable concept; see [image provenance](docs/images/README.md).
+
+V6 retains the fuller asymmetric upper subunit introduced in the
+[V5 proportion pass](docs/v5-proportions.md). Both outer RNA holders are now
+removed: the strand leaves a short central capture channel, crosses the curved
+side and returns through a shallow groove beneath the flatter palm dome. The
+longer closed route keeps the drive entry, mechanism and clasp geometry.
+The [fastening and assembly review](docs/v6-assembly.md) covers the aligned
+screws, supported spindle and two keyed rotor parts. Its exact flexible outline
+is secondary to handling and compact guidance.
 
 ## Start here
 
@@ -24,12 +33,17 @@ Actual CAD; source and saved model define geometry. [Open mechanism](cad/v5/mech
 
 | Version | Files | Role |
 | --- | --- | --- |
-| **V5** | [Model](cad/v5/RibosomeV5.FCStd) · [Macro](cad/v5/RibosomeV5.FCMacro) · [Guide](cad/v5/README.md) | Current handheld: closed RNA loop, direct bead drum, upper clicker and reverse release. |
+| **V6** | [Model](cad/v6/RibosomeV6.FCStd) · [Macro](cad/v6/RibosomeV6.FCMacro) · [Guide](cad/v6/README.md) | Current: captive open/closed RNA, external underside return, direct reverse and idle-disengaged upper input. |
+| **V5** | [Model](cad/v5/RibosomeV5.FCStd) · [Macro](cad/v5/RibosomeV5.FCMacro) · [Guide](cad/v5/README.md) | Preserved handheld comparison: circular RNA, direct bead drum and external reverse release. |
 | **V4** | [Model](cad/v4/RibosomeV4.FCStd) · [Macro](cad/v4/RibosomeV4.FCMacro) · [Guide](cad/v4/README.md) | Preserved cuff comparison: covered mechanism and projecting RNA bases. |
 | **V3** | [Model](cad/v3/RibosomeV3.FCStd) · [Macro](cad/v3/RibosomeV3.FCMacro) · [Guide](cad/v3/README.md) | Preserved comparison: lobed beads and same-direction outlet; full validation incomplete. |
 | **V2** | [Model](cad/v2/Ribosome.FCStd) · [Macro](cad/v2/Ribosome.FCMacro) · [Guide](cad/v2/README.md) | Preserved comparison with invalidated historical validation. |
 
-Open the V5 model directly, or execute its macro through **Macro → Macros…**. **Click upper subunit** animates one bead step, **Open lower body** reveals the internals, and the slider covers 0–22 steps. **Return one bead** requires the release checkbox; the physical strand must first be straightened. **Reset view / home** is a CAD reset.
+Open the V6 model directly, or execute its macro through **Macro → Macros…**.
+The RNA slider works in both directions, **Rock upper subunit** animates one
+bead step, and **Clasp joined** selects the external loop or captive open
+tails. **Open mechanism** reveals the internals. Straighten the physical
+protein before reversing. **Home** resets the CAD study.
 
 ## Development
 
@@ -43,14 +57,22 @@ Geometry work requires FreeCAD with `Part` and bundled `fcgear`; the known local
 
 ```sh
 python scripts/cad.py doctor
-python scripts/cad.py build --version 5
-python scripts/cad.py validate --version 5
+python scripts/cad.py build --version 6
+python scripts/cad.py validate --version 6
 ```
 
-The launcher defaults to V5, accepts `--freecad PATH` or `FREECAD_CMD`, and writes to ignored `build/v5/`. Saved CAD and reports are protected from launcher overwrites. Use explicit versions for preserved comparisons.
+The launcher defaults to V6, accepts `--freecad PATH` or `FREECAD_CMD`, and writes to ignored `build/v6/`. Saved CAD and reports are protected from launcher overwrites. Use explicit versions for preserved comparisons.
 
 ## Current direction
 
-V5 is handheld. A loosely routed closed RNA loop passes through a covered drive station in the larger lower subunit. A fixed-axis idler links it to the bead drum. The smaller upper subunit rocks to operate the same drive through a releaseable ratchet. A fixed keeper supports the single-layer bead handoff. Protein shaping remains manual.
+V6 is intended for two-handed use. One TPU-candidate strip can be joined with
+a reusable underside clasp or left open. Its clasp shoulders and captured
+guide throats retain it in either mode. A straight rack engages the bead
+drum's gear directly. RNA reverses without an extra control. The upper input
+uses an internal lift cam and a separate symmetric click detent. Protein
+shaping remains manual.
 
-Printer/process, flexible RNA manufacture, calibrated fits, bead fixation, wire life, spring/ratchet qualification, fasteners and reliable feeding remain unresolved. The existing A1 mini package applies to V4 Print, not V5. Cloud migration is deferred. V2, V3 and V4 remain explicit comparisons.
+Printer/process, TPU pitch stability, clasp retention, calibrated fits, bead
+fixation, wire life, spring/pawl/detent behavior, fasteners and reliable feeding
+remain unresolved. The existing A1 mini package applies to V4 Print. V5 and
+older versions remain explicit comparisons.

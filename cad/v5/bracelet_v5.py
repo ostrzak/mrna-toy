@@ -241,7 +241,13 @@ def lower_outer():
                 ellipsoid((-21,-10,9),(18.8,22.0,10.4)),
                 ellipsoid((19,4,10),(20.0,27,10.2)),
                 ellipsoid((0,-34.7,6),(13.0,9.0,5.0))])
-    return body.common(Part.makeBox(100,100,14.5,V(-50,-50,0)))
+    body=body.common(Part.makeBox(100,100,14.5,V(-50,-50,0)))
+    # A fixed palm swell below the RNA plane gives the support hand purchase
+    # without squeezing the moving loop. Keep the original mechanism datums.
+    palm=union([ellipsoid((-2,-3,-1.5),(33,29,10.5)),
+                ellipsoid((-15,-8,-.5),(22,24,9))])
+    palm=palm.common(Part.makeBox(100,100,14.7,V(-50,-50,-12)))
+    return union([body,palm])
 
 
 def body_shape():
@@ -262,6 +268,14 @@ def body_shape():
     for x,y in ((-29,-18),(29,-18),(-23,26)):
         body=body.cut(cylinder(1.0,14,V(x,y,1)))
     body=body.cut(cylinder(1.1,8,V(0,-IDLER_R,2.5)))
+    # Seats for separately modelled fixed parts; no embedded keeper tabs or
+    # axle solid inside the shell. The mechanism keeps its original location.
+    keeper_seat=keeper_shape()
+    keeper_seat.translate(V(0,0,-.2))
+    body=body.cut(keeper_seat)
+    keeper_seat.translate(V(0,0,.4))
+    body=body.cut(keeper_seat)
+    body=body.cut(cylinder(3.15,32,V(0,0,.8)))
     # The port Boolean can leave a sub-0.001 mm3 BSpline sliver. Never keep it
     # as a second printable body, and never discard a meaningful component.
     pieces=sorted(body.Solids,key=lambda s:s.Volume,reverse=True)
@@ -274,28 +288,41 @@ def lid_shape():
     lid=union([ellipsoid((0,-1,14.2),(35.4,33.8,4.4)),
                ellipsoid((-19,-9,14.4),(17,19,4.2))])
     lid=lid.common(Part.makeBox(90,90,3.0,V(-45,-45,14.8)))
-    lid=lid.cut(cylinder(13.5,7,V(0,0,14.2)))
+    lid=lid.cut(cylinder(14.3,7,V(0,0,14.2)))
     lid=lid.cut(Part.makeBox(80,10,10,V(MOUTH_X,STORE_R-5,7)))
     for x,y in ((-29,-18),(29,-18),(-23,26)):
         lid=lid.cut(cylinder(1.15,5,V(x,y,14)))
     # Windows for the drive and holding leaves, and the release yoke.
-    lid=lid.cut(Part.makeBox(37,10,6,V(0,-7,14)))
-    lid=lid.cut(Part.makeBox(22,5,6,V(-19,10,14)))
+    lid=lid.cut(Part.makeBox(37,20,6,V(0,-8,14)))
+    lid=lid.cut(Part.makeBox(22,5.6,6,V(-19,9.4,14)))
     return lid.removeSplitter()
 
 
 def cap_shape():
-    outer=union([ellipsoid((0,-2,25.4),(25.6,22.4,8.4)),
-                 ellipsoid((-13,-7,24.6),(15.5,15.2,7.4))])
-    inner=union([ellipsoid((0,-2,22.9),(23.8,20.6,7.3)),cylinder(22,7.4,V(0,0,18))])
-    cap=outer.cut(inner).common(Part.makeBox(80,80,18,V(-40,-40,19.0)))
+    # Simplified small-subunit body, offset head and side platform. The fuller
+    # asymmetric silhouette follows ribosome morphology without molecular
+    # surface texture; it remains one rocker on the existing axis and pawl.
+    outer=union([ellipsoid((0,-6,25.7),(28,25,10.1)),
+                 ellipsoid((-10,14,29),(19,17,9.2)),
+                 ellipsoid((18,-8,24.8),(14,18,7))])
+    inner=union([ellipsoid((0,-6,23.4),(25.8,22.8,8.8)),
+                 ellipsoid((-10,14,26.7),(16.8,14.8,8)),
+                 ellipsoid((18,-8,22.5),(11.8,15.8,5.8)),
+                 cylinder(22,7.4,V(0,0,18))])
+    cap=outer.cut(inner).common(Part.makeBox(90,90,25,V(-45,-45,19.0)))
     hub=annulus(3.5,5.1,18.9,10.5)
-    bridge=Part.makeBox(4,25,2.0,V(-2,-24,26.0))
-    carrier=Part.makeBox(15,3.2,1.0,V(4,-1.6,24.5))
+    bridge=Part.makeBox(4,31,2.0,V(-2,-30,26.0))
+    # Bridge above the spring space, then drop to the unchanged driving pin.
+    carrier=union([Part.makeBox(11,3.2,1,V(8,-1.6,24.5)),
+                   Part.makeBox(2,3.2,3.5,V(8,-1.6,24.5)),
+                   Part.makeBox(15,3.2,2,V(4,-1.6,26))])
     pin=cylinder(.75,8.0,V(17.7,0,16.7))
     cap=union([cap,hub,bridge,carrier,pin])
+    # Conservative circular clearance for the fixed release tab, including
+    # its full 3 mm lift while the larger cap turns through a complete stroke.
+    cap=cap.cut(annulus(28.8,35.4,15.5,7.1))
     cap=cap.cut(cylinder(3.3,20,V(0,0,17)))
-    return cap.cut(cylinder(4.35,6,V(0,0,31.4))).removeSplitter()
+    return cap.cut(cylinder(4.35,20,V(0,0,31.4))).removeSplitter()
 
 
 def pawl_shape(driving=True):
@@ -310,6 +337,23 @@ def pawl_shape(driving=True):
     return union([Part.makeBox(15.5,.65,.8,V(-15.5,10.675,RATCHET_Z+.25)),
                   cylinder(.52,.8,V(0,11.0,RATCHET_Z+.25)),
                   Part.makeBox(2.5,3,2.2,V(-17.3,10.5,RATCHET_Z-.4))]).cut(cylinder(.9,4,V(-16,12,16.4)))
+
+
+def release_shape():
+    # Contact the leaf undersides, rather than interpenetrating a leaf boss
+    # or the ratchet. The low bridge passes below the existing rocker pin.
+    # The lift ring stays outside the ratchet's 12.3 mm tip radius. An inner
+    # ring clears only at the endpoints and passes through the ratchet mid-lift.
+    yoke=union([annulus(12.8,14.0,15.9,.6),
+                  Part.makeBox(19.2,2,.6,V(12.8,-1,15.9)),
+                  Part.makeBox(8,4,.6,V(14,-1,15.9)),
+                  Part.makeBox(2,8,.6,V(16.7,-1,15.9)),
+                  Part.makeBox(2,5,RATCHET_Z+.28-15.9,V(16.7,2,15.9)),
+                  Part.makeBox(2,2.8,RATCHET_Z+.25-15.9,V(-10,10.5,15.9)),
+                  cylinder(2.6,3.2,V(32,0,16))])
+    # Detour around the driving pin's full angular sweep at every release
+    # height. The bridge on the positive-Y side keeps the yoke connected.
+    return yoke.cut(sector(16.5,18.9,86,107,15.6,7.2)).removeSplitter()
 
 
 def rna_shape():
@@ -451,13 +495,7 @@ def build(save_path=None):
     for o in (drive,hold):
         o.setExpression('Placement.Base.z','Motion.ReleaseLift')
     feature(d,'HoldingPawlGuide','Axial release guide for holding leaf',union([cylinder(2.3,1.4,V(-16,12,15.3)),cylinder(.75,8.3,V(-16,12,16.5))]),fixed,'gear')
-    release=union([annulus(6.9,8.2,15.9,.9),
-                   Part.makeBox(24.5,2.0,.9,V(7.5,-1,15.9)),
-                   Part.makeBox(2.0,6,.9,V(-7,6.3,15.9)),
-                   Part.makeBox(2.0,7.0,1.65,V(16.7,0,15.9)),
-                   Part.makeBox(2,2.8,1.65,V(-7,10.5,15.9)),
-                   cylinder(2.6,3.2,V(32,0,16.0))])
-    button=feature(d,'ReleaseYoke','Lift-to-release yoke — clears both ratchet leaves',release,fixed,'pawl')
+    button=feature(d,'ReleaseYoke','Lift-to-release yoke — clears both ratchet leaves',release_shape(),fixed,'pawl')
     button.setExpression('Placement.Base.z','Motion.ReleaseLift')
     # Torsion return spring space claim only; it returns the cap, not protein.
     spring=annulus(5.4,6.7,22.4,2.8)

@@ -1,5 +1,60 @@
 # Project status and next decisions
 
+## V6 captive open/closed RNA — 2026-10-31
+
+The user authorized a separate V6 after choosing open-strand play with an
+optional joined underside loop. V5 and all earlier CAD/print files are
+preserved. The latest contract removes the user-operated reverse release:
+backward RNA directly retracts the protein through the same drum. The clasp
+halves also act as end stops; captured ports keep either open end from leaving
+the setup. The underside return remains external and open, without a parking
+clip.
+
+The current in-place refinement removes both outer RNA holders. A short central
+capture channel retains the strand; broad curves cross the lower flank before
+passing under the flatter dome through an open groove. Its 226.195 mm nominal
+material length retains the full 149.288 mm travel. Exact loop shape is secondary
+to handling and compact guidance. The side-route adjustment lengthens the strip
+by 22.619 mm and keeps the drive entry, fastening, mechanism and clasp geometry.
+
+The [assembly audit](v6-assembly.md) found obstructed housing-screw passages,
+a floating spindle and an unsupported washer seat in the preceding V6.
+The current design has one aligned three-screw stack, an analytic load-bearing
+lid plate, an integral spindle root and a separate seated cap washer. Two keyed
+rotor parts permit the lid and cover to be inserted. Checks include real shaft
+passages, finite bearing seats, local material sections, integral roots,
+key torque blocking and sampled insertion poses, in addition to motion.
+
+V6 replaces the large RNA ring/idler with a straight rack and one shared
+84-tooth gear. It retains the 28-pocket bead drum and 22-step / 132 mm protein
+feed with four hidden beads. A separate symmetric detent permits bidirectional
+clicking. The upper input has an internal cam-lifted pawl, disengaged at rest.
+The clasp travels across the underside and stays outside the drive ports.
+
+Consult the [V6 guide](../cad/v6/README.md), [current model](../cad/v6/RibosomeV6.FCStd),
+[open mode](../cad/v6/open.png), [underside return](../cad/v6/underside.png)
+and [focused report](../cad/v6/checks.json) for the actual result and boundary.
+RNA/leaf deformations are nominal prescribed poses and the two input springs
+are space claims. TPU behavior, clasp retention, click sound and force,
+cap engagement/return under load, overload resistance, hand fit, manufacturing
+and reliable physical feeding remain unqualified.
+
+## Preserved V5 proportions and clearance review — 2026-10-30
+
+The upper shell now has a fuller asymmetric head/body/platform silhouette,
+guided by RCSB ribosome references. A fixed underside palm swell gives the
+supporting hand a surface below the moving RNA plane. The drive architecture
+and native motion are retained. Local lid, keeper, axle, cap support and yoke
+clearance corrections address clashes omitted by the earlier focused suite.
+The expanded checks include nine rocker positions at three release heights.
+See the [review and references](v5-proportions.md),
+[current CAD](../cad/v5/handheld.png), [grip side view](../cad/v5/grip.png)
+and [report](../cad/v5/checks.json). Physical hand fit remains untested.
+
+The user is reconsidering whether the RNA should form a complete loop. It is
+retained here to avoid changing the mechanism during the proportion pass;
+the final RNA route is not settled.
+
 ## V5 handheld redesign — 2026-10-29
 
 The user authorized V5 after choosing a handheld ribosome and a closed RNA loop.

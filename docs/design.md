@@ -1,11 +1,61 @@
 # Purpose and conceptual mechanics
 
-## Current V5 handheld design
+## Current V6 captive open/closed RNA
+
+V6 implements the user's 2026-10-30 direction: a single TPU-candidate RNA strip
+passes along the front cleft between the two subunits. Its ends can be joined
+underneath for a compact loop, or separated for an open strand. The underside
+return sits externally in a shallow groove in the flatter palm dome.
+There is no parking clip. Enlarged clasp shoulders cannot pass through the
+central capture throat, so the open strand stays threaded.
+
+Both outer RNA holders are removed. Only the rounded central capture channel
+at the drive peak remains. Broad shoulder bends cross the curved flank at a
+38-degree inclination, then pass underneath through the open groove. The longer
+closed route retains the entry and mechanism. The lower dome remains
+flat, without bottom rails. The exact flexible outline is secondary to
+comfortable handling, smooth movement and compact guidance.
+
+The fastening audit corrected obstructed screw paths, a floating spindle and
+an unsupported retainer seat. One aligned three-screw stack now clamps the
+keeper, analytic elliptical lid plate and cover. The spindle is integral with
+the lower body and supports a separate retaining washer. Two keyed rotor parts
+and a larger concealed cover opening permit insertion in sequence. See the
+[assembly review](v6-assembly.md) for actual-solid witnesses and test boundaries.
+
+Moving RNA backward directly reverses the same bead drum. No external release,
+cord reel, take-up spring or automatic protein winding is used. A symmetric
+detent provides the proposed click in either direction. The upper subunit
+retains one-step feed input through a cam-lifted pawl that is clear at rest;
+its force, reliable return and resistance to overload remain physical-test
+questions.
+
+The 28-pocket drum, 26 beads, 6 mm protein pitch, 22 available steps and four
+retained beads are preserved. Three RNA teeth/bases advance per bead. An
+84-tooth gear on the common carrier meshes directly with the straight rack.
+The joined RNA path has a 226.195 mm pitch-line length and 149.288 mm travel.
+The clasp moves underneath as the strip travels, and remains clear of the
+central channel across the intended range. Shared drum stops and the cap drive faces
+provide the proposed endpoint from either input.
+
+Read the [V6 guide](../cad/v6/README.md), [current CAD](../cad/v6/handheld.png),
+[open strand](../cad/v6/open.png), [underside](../cad/v6/underside.png) and
+[checks](../cad/v6/checks.json). Flexible cell/leaf poses are prescribed CAD,
+not elasticity or force simulation. This is not a qualified print release.
+
+## Preserved V5 handheld comparison
 
 The object is a palm-held ribosome. The larger lower subunit contains a captive
 single-row bead drum; a smaller upper subunit rocks under the thumb. A separate
 closed RNA loop runs outside most of the lower body and enters a covered front
 cheek for positive engagement. It is no longer a wrist cuff or a finger ring.
+
+The 2026-10-30 proportion pass gives the upper shell a fuller asymmetric
+head/body/platform silhouette and adds a fixed underside palm swell. The
+intended two-hand use cups the fixed lower body from below while the other
+hand operates the upper shell or RNA. The RNA remains closed for this pass;
+its final route is being reconsidered. See the [proportion review](v5-proportions.md)
+for ribosome references, clearance corrections and physical hand-fit limits.
 
 Move the RNA, or click the upper subunit: both operate one shared drive. Each
 complete step advances three RNA bases and exposes one bead. The RNA is a

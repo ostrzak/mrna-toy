@@ -1,12 +1,34 @@
 # Image provenance
 
+## V6 actual CAD
+
+`cad/v6/handheld.png`, `open.png`, `underside.png`, `mechanism.png`,
+`cap-input.png` and `home.png` are captures of the V6 FreeCAD geometry.
+They show the captive open/closed RNA and its external underside return.
+The current captures show the short central RNA channel with both outer holders
+removed and a longer route across the curved flank and underneath. `side.png`
+shows the side crossing. `fasteners.png` and
+`spindle.png` are actual solid sections of the saved model, not idealized bolt
+illustrations. Their source checks that no expected component is lost by the
+section Boolean. See the [assembly review](../v6-assembly.md).
+RNA cells, open-tail layouts and flexure chords are prescribed kinematic
+geometry. The views do not demonstrate physical operation, click sound,
+TPU strain, clasp retention or print qualification.
+
+The conversation's generated routing boards are exploratory illustrations.
+They motivated the V6 interaction and are not geometry, clearance or
+manufacturing references. The CAD views and report define the implemented
+design boundary.
+
 ## V5 actual CAD
 
-`cad/v5/handheld.png`, `mechanism.png`, `drum.png` and `home.png` are captures of
+`cad/v5/handheld.png`, `mechanism.png`, `drum.png`, `home.png` and `grip.png` are captures of
 the saved V5 FreeCAD geometry. They depict the handheld design, not the earlier
 cuff. The source, saved model and focused report define the engineering scope.
 The protein core segments and unloaded click leaves are kinematic geometry;
 images do not demonstrate physical operation or manufacturing qualification.
+The 2026-10-30 captures include the revised asymmetric upper and fixed palm
+swell. `grip.png` is a CAD side view, not a photograph or a demonstrated hand fit.
 
 Conversation-generated bead-mechanism sketches are concept art only. They are
 not dimensioned references or validation evidence and are not substituted for

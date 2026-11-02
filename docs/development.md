@@ -1,10 +1,51 @@
 # Development and local handoff
 
-## Current V5 workflow
+## Current V6 workflow
+
+V6 is self-contained in `cad/v6/`: geometry, the independent arc-length route
+helper, validator, macro, saved model, views and report. It does not import or
+modify V5. The launcher defaults to V6 and protects every saved version:
+
+```sh
+python scripts/cad.py doctor --freecad PATH
+python scripts/cad.py build --version 6 --force --freecad PATH
+python scripts/cad.py validate --version 6 --freecad PATH
+python scripts/check_repo.py
+```
+
+Generated files go to ignored `build/v6/`. The known compatible runtime is
+FreeCAD 1.1.4 with `Part` and bundled `fcgear`. This revision is exercised with
+that runtime on Linux, including GUI presentation and normal reopening. No
+Windows desktop or MCP connection is a repository dependency.
+
+Before promotion, call `bracelet_v6.present(document)` in the GUI, save, close
+and reopen normally. Capture `handheld.png`, `open.png`, `underside.png`,
+`mechanism.png`, `cap-input.png`, `home.png`, `side.png`, `fasteners.png` and `spindle.png`
+from that geometry. Run a fresh
+validation against the promoted saved file and promote its report, then run
+the repository checker. The version macro opens the adjacent saved model.
+
+V6 checks saved rack/gear and bead/drum solids, continuous envelopes, captive
+guide/end-stop witnesses, actual clasp fit and travel, native positions AND
+orientations in both RNA modes, direct reversal at rest, cap feed and return,
+cam clearance and positive stops. Flexible RNA/leaf deformation is prescribed;
+spring volumes are space claims. CAD does not establish physical force,
+acoustic feedback, snap retention, strain, print fits, fatigue or hand comfort.
+
+The compact routing refinement checks actual travelling RNA cells/bases against
+the whole lid and cover, including both shoulder bends and the continuous
+open-tail envelope. `assembly_v6.py` checks aligned fasteners, finite seats and
+wall material, local section behavior, integral roots, key torque and sampled
+vertical insertion paths. A basic solid-validity flag alone is insufficient.
+The GUI renderer frames exact visible solid bounds and also writes actual
+`fasteners.png` and `spindle.png` sections. Source/model/report hashes and all
+nine views must agree before finishing an intentional V6 update.
+
+## Preserved V5 workflow
 
 V5 is the handheld design in `cad/v5/`. Its source, validator, saved model,
 macro, report and actual CAD views belong together. It builds from its own
-source and does not import or modify V4. The launcher now defaults to V5:
+source and does not import or modify V4. Select V5 explicitly:
 
 ```sh
 python scripts/check_repo.py

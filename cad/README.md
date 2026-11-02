@@ -2,7 +2,8 @@
 
 Start with the [project overview](../README.md) for purpose and current status. This page covers viewing and operating the saved CAD.
 
-- **[V5 — handheld ribosome](v5/README.md):** current design, with a closed RNA loop, direct bead-storage drum, upper rocker and reverse release. [Open model](v5/RibosomeV5.FCStd), or run its adjacent macro for controls.
+- **[V6 — captive open/closed RNA](v6/README.md):** current design, with joined external underside return or open tails, direct RNA reversal, bidirectional detent and rest-disengaged cap input. [Open model](v6/RibosomeV6.FCStd), or run its adjacent macro.
+- **[V5 — handheld ribosome](v5/README.md):** preserved circular-loop comparison, with direct bead-storage drum, upper rocker and external reverse release. [Open model](v5/RibosomeV5.FCStd).
 - **[V4 Print - A1 mini](v4-print/README.md):** preserved cuff manufacturing prototype with TPU beads and calibration parts; physical tests pending. It is not a V5 print package.
 - **[V4 — exposed RNA strand](v4/README.md):** preserved cuff comparison, with a covered mechanism, recessed cuff edge and free-ended bases.
 - **[V3 — same-direction feed](v3/README.md):** preserved comparison with incomplete full validation. Compact lobed beads leave a shallow cleft between lobe contours, in the same local direction as the moving RNA. A close internal guide holds the beads against the feeder. No protein half-turn around the shaft.
@@ -10,7 +11,19 @@ Start with the [project overview](../README.md) for purpose and current status. 
 
 Each folder is self-contained. The version macros select the model by its full path, so opening one version does not substitute the other. V2 and V3 can be open together in FreeCAD; the last macro run supplies the controls for that version.
 
-## Observe V5 movement
+## Observe V6 movement
+
+Run [RibosomeV6.FCMacro](v6/RibosomeV6.FCMacro). Slide RNA in either direction,
+or use **Rock upper subunit** and **RNA backward — one bead**. **Clasp joined**
+selects the closed external return or two captive open tails. **Open mechanism**
+reveals the shared drum, rack gear, symmetric detent and internal lift cam.
+Straighten the protein before reversing. No release checkbox is required.
+
+Without the macro, edit `Motion.BeadSteps`, `Motion.StrandClosed` and
+`Motion.CapStroke`; saved native expressions preserve geometry. See the
+[V6 guide](v6/README.md) for cap-cycle bookkeeping and the check boundary.
+
+## Observe preserved V5 movement
 
 Run [RibosomeV5.FCMacro](v5/RibosomeV5.FCMacro). Use the RNA travel slider or
 **Click upper subunit**. Enable **Open lower body** to see the drum, keeper,

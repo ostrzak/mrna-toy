@@ -22,6 +22,15 @@ def crop(shape,centre,half=3.25):
     return shape.common(Part.makeBox(2*half,2*half,2*half,centre-V(half,half,half)))
 
 
+def housing_dimensions(o):
+    # BoundBox includes BSpline control-hull overshoot on the trimmed lobes.
+    # Use the actual trimmed geometry, without relying on GUI tessellation.
+    box=o.Shape.optimalBoundingBox(False)
+    return dict(width=round(box.XLength,2),depth=round(box.YLength,2),
+                height=round(box.ZLength,2),minimum_z=round(box.ZMin,2),
+                maximum_z=round(box.ZMax,2))
+
+
 def run(d,report_path=None):
     destination=Path(report_path) if report_path else b.HERE/'checks.json'
     destination.parent.mkdir(parents=True,exist_ok=True)
@@ -99,6 +108,33 @@ def run(d,report_path=None):
         for name in fixed_names:
             record(label+' continuous sweep/'+name,shape,fixed[name])
         print('  continuous envelope: '+label,flush=True)
+    print('V5 checks: housing, spring space and release through full rocker stroke',flush=True)
+    # The old suite checked the upper only against four fixed solids and the
+    # ratchet. Include the guide, spring claim, driving pin and moving release
+    # parts. Intermediate lifts use translated real solids, not their profiles.
+    housing_pairs=[('LowerBody','BeadKeeper'),('LowerBody','CentreAxle'),
+                   ('LowerBody','IdlerAxle'),('LowerLid','HoldingPawlGuide')]
+    for a,c in housing_pairs:
+        record(a+'/'+c,b.world(d.getObject(a)),b.world(d.getObject(c)))
+    lift_names=('DrivePawl','HoldPawl','ReleaseYoke')
+    cap_targets=fixed_names+['CentreAxle','CapRetainer','DriveHub','Ratchet',
+        'HoldingPawlGuide','CapSpringEnvelope']+list(lift_names)
+    release_pairs=[('LowerLid','DrivePawl'),('LowerLid','HoldPawl'),
+        ('LowerLid','ReleaseYoke'),('ReleaseYoke','DrivePawl'),
+        ('ReleaseYoke','HoldPawl'),('ReleaseYoke','Ratchet'),
+        ('ReleaseYoke','DriveHub'),('ReleaseYoke','HoldingPawlGuide')]
+    for j in range(9):
+        m.BeadSteps,m.CapStroke,m.ReverseRelease=j/8,j/8,False
+        d.recompute()
+        for lift in (0,b.RELEASE_LIFT/2,b.RELEASE_LIFT):
+            shapes={name:b.world(d.getObject(name)) for name in set(cap_targets+['UpperLobe'])}
+            for name in lift_names:
+                shapes[name].translate(V(0,0,lift))
+            for name in cap_targets:
+                record('rocker/release UpperLobe/'+name,shapes['UpperLobe'],shapes[name])
+            for a,c in release_pairs:
+                record('rocker/release '+a+'/'+c,shapes[a],shapes[c])
+        print('  rocker + three release heights %d/8'%j,flush=True)
     print('V5 checks: saved native motion at forward/reverse poses',flush=True)
     poses=[0,.125,.25,.5,.75,1,5.5,11,16.5,21,21.5,22]
     error,wire_error,ratio_error=0.0,0.0,0.0
@@ -160,6 +196,7 @@ def run(d,report_path=None):
         maximum_unintended_overlap_mm3=worst,overlap_tolerance_mm3=TOL,
         involute_contact_approximation_tolerance_mm3=GEAR_TOL,collision_failures_mm3=failures,
         actual_bead_handoff_samples=actual_samples,spherical_envelope_handoff_samples=envelope_samples,
+        sampled_rocker_clearance_poses=9,sampled_release_heights_mm=[0,b.RELEASE_LIFT/2,b.RELEASE_LIFT],
         sampled_gear_phases=9,sampled_forward_poses=len(poses),sampled_reverse_poses=len(poses),
         native_position_error_mm=error,native_wire_length_error_mm=wire_error,coupling_error=ratio_error,
         bead_outside_spherical_bound_mm3=outside,retained_at_full_travel=retained,travel_stops=stops,
@@ -168,8 +205,15 @@ def run(d,report_path=None):
                     drum_pockets=28,protein_beads=26,bead_pitch_mm=6,bead_bound_mm=4.4,
                     maximum_feed_mm=132,maximum_drum_degrees=b.MAX_DRUM,drum_pitch_diameter_mm=2*b.STORE_R,
                     gear_teeth=dict(RNA=112,idler=14,sun=84),tensioned_rewind=False,automatic_curling=False),
+        proportion_revision='2026-10-30: fuller asymmetric upper and fixed underside palm swell',
+        housing_dimensions_mm={name:housing_dimensions(d.getObject(name))
+            for name in ('LowerBody','UpperLobe')},
+        intentional_assembly_intersections={
+            'shared_rotor':'Drum, sun, drive sleeve, ratchet and travel pin are connected rigid carrier geometry.',
+            'axle_retainer':'Screw envelope intersects its self-tapping pilot; fastening is unqualified.',
+            'ratchet_leaves':'Unloaded elastic preload is reported separately; not rigid-body clearance.'},
         source_sha256={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (b.HERE/'bracelet_v5.py',b.HERE/'validation_v5.py')},
-        validation_boundary='Focused rigid solid, actual bead handoff, actual gear phase, housing, travel-stop and native prescribed motion checks. Ratchet leaves are unloaded elastic geometry; their overlaps are recorded separately. RNA shown on nominal circular path. No force, compliance, spring, manufacturing or physical qualification.',
+        validation_boundary='Focused rigid solid, actual bead handoff, actual gear phase, housing, sampled rocker/release clearance, spring-space clearance, travel-stop and native prescribed motion checks. Ratchet leaves are unloaded elastic geometry; their overlaps are recorded separately. RNA shown on nominal circular path. No force, compliance, spring, manufacturing, hand-fit or physical qualification.',
         physical_tests_still_required=['Direct bead capture and bidirectional transfer under load',
           'Bead pitch fixation, wire bending force and fatigue','Flexible RNA engagement, low stretch and retention',
           'Click ratchet leaves, cap return spring selection and reverse-release linkage',
