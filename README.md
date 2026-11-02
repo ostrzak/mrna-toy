@@ -4,6 +4,8 @@ A handheld mechanical fidget inspired by protein translation. Move a captive RNA
 
 **V6 is the current handheld CAD prototype.** It has open-or-closed captive RNA, an external underside return, direct reversal without a release lever, and a cap input that disengages at rest. See the [V6 guide](cad/v6/README.md) and [focused report](cad/v6/checks.json) for the exact evidence boundary. Physical operation, click feel, clasp retention and printing remain unqualified. V5 and all older versions are preserved.
 
+**V7 is an unfinished development checkpoint**, adding a proposed forward-pickup pawl/latch and a closer far-flank RNA route. It is **not established as functional** and does not replace V6's evidence. See the [V7 guide](cad/v7/README.md) and [cloud handoff](docs/v7-cloud-handoff.md). Work is on `codex/v7-forward-pickup`.
+
 ![Current V6 CAD](cad/v6/handheld.png)
 
 Actual CAD; source and saved model define geometry. [Side route](cad/v6/side.png) · [Open strand](cad/v6/open.png) · [External underside return](cad/v6/underside.png) · [Mechanism](cad/v6/mechanism.png) · [Cap input](cad/v6/cap-input.png). The [earlier AI illustration](docs/images/toy-concept.png) depicts a superseded wearable concept; see [image provenance](docs/images/README.md).
@@ -33,6 +35,7 @@ is secondary to handling and compact guidance.
 
 | Version | Files | Role |
 | --- | --- | --- |
+| **V7 draft** | [Model](cad/v7/RibosomeV7.FCStd) · [Macro](cad/v7/RibosomeV7.FCMacro) · [Guide](cad/v7/README.md) | Incomplete forward-pickup and flank-route candidate; full validation unfinished. |
 | **V6** | [Model](cad/v6/RibosomeV6.FCStd) · [Macro](cad/v6/RibosomeV6.FCMacro) · [Guide](cad/v6/README.md) | Current: captive open/closed RNA, external underside return, direct reverse and idle-disengaged upper input. |
 | **V5** | [Model](cad/v5/RibosomeV5.FCStd) · [Macro](cad/v5/RibosomeV5.FCMacro) · [Guide](cad/v5/README.md) | Preserved handheld comparison: circular RNA, direct bead drum and external reverse release. |
 | **V4** | [Model](cad/v4/RibosomeV4.FCStd) · [Macro](cad/v4/RibosomeV4.FCMacro) · [Guide](cad/v4/README.md) | Preserved cuff comparison: covered mechanism and projecting RNA bases. |
@@ -75,4 +78,5 @@ shaping remains manual.
 Printer/process, TPU pitch stability, clasp retention, calibrated fits, bead
 fixation, wire life, spring/pawl/detent behavior, fasteners and reliable feeding
 remain unresolved. The existing A1 mini package applies to V4 Print. V5 and
-older versions remain explicit comparisons.
+older versions remain explicit comparisons. GitHub/cloud continuation of V7
+is now authorized; see its repository handoff for runtime and evidence limits.

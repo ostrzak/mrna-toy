@@ -2,6 +2,8 @@
 
 Read `README.md`, then `docs/design.md` and `docs/status.md`. Use `docs/development.md` for commands. These files carry the project context; no previous chat or desktop attachment is required.
 
+V7 is an authorized but **unfinished** candidate in `cad/v7/`, on `codex/v7-forward-pickup`. Read `docs/v7-cloud-handoff.md` before continuing it. Its integrated mechanism is not established as functional; keep the saved report incomplete until fresh checks justify changing it. V6 remains the preserved working comparison and launcher default.
+
 ## Current design contract
 
 - V6 in `cad/v6/` is the current handheld design, authorized on 2026-10-30. Preserve V5, V4 and V4 Print, V3 with its incomplete report, and V2 with its invalidated-validation warning.
@@ -18,7 +20,7 @@ Read `README.md`, then `docs/design.md` and `docs/status.md`. Use `docs/developm
 
 ## Engineering and workflow
 
-Continue locally; cloud migration is deferred. The A1 mini prototype derivative is authorized; keep physical evidence distinct from CAD and slicer results.
+The user authorized GitHub/cloud continuation on 2026-11-03. Follow `docs/v7-cloud-handoff.md`; provision and verify FreeCAD in the new environment without relying on the local Windows GUI/MCP connection. The A1 mini prototype derivative remains separate; keep physical evidence distinct from CAD and slicer results.
 
 V6 checks actual bead/drum and RNA rack/gear contacts, guide captivity, clasp fit/travel, continuous envelopes, native positions and orientations in both RNA modes, cap feed/return, fastening, sampled assembly paths and physical stop geometry. Flexible RNA cells and leaf chords represent prescribed deformation; the two cap-input springs are space claims. A `FOCUSED_PASS` does not qualify physical operation or complete V3's `INCOMPLETE_USER_STOPPED` validation.
 

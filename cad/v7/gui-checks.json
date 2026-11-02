@@ -1,0 +1,111 @@
+{
+  "runtime": "1.1.4",
+  "status": "INCOMPLETE_HANDOFF",
+  "controls_animation_checked": false,
+  "full_geometry_checked": false,
+  "normal_GUI_close_reopen": true,
+  "native_update_without_source_directory": true,
+  "native_checkpoint_poses": [
+    {
+      "input": 0,
+      "cycle": 0,
+      "feed": 6.0,
+      "upper_degrees": 0.0
+    },
+    {
+      "input": 0,
+      "cycle": 0.2,
+      "feed": 6.5,
+      "upper_degrees": 6.42857142857145
+    },
+    {
+      "input": 0,
+      "cycle": 0.4,
+      "feed": 7.0,
+      "upper_degrees": 12.8571428571429
+    },
+    {
+      "input": 0,
+      "cycle": 0.75,
+      "feed": 7.0,
+      "upper_degrees": 6.42857142857145
+    },
+    {
+      "input": 0,
+      "cycle": 1,
+      "feed": 7.0,
+      "upper_degrees": 0.0
+    },
+    {
+      "input": 1,
+      "cycle": 0,
+      "feed": 6.0,
+      "upper_degrees": 0.0
+    },
+    {
+      "input": 1,
+      "cycle": 0.2,
+      "feed": 6.383333333333334,
+      "upper_degrees": 7.92857142857145
+    },
+    {
+      "input": 1,
+      "cycle": 0.4,
+      "feed": 7.0,
+      "upper_degrees": 15.8571428571429
+    },
+    {
+      "input": 1,
+      "cycle": 0.75,
+      "feed": 7.0,
+      "upper_degrees": 7.92857142857145
+    },
+    {
+      "input": 1,
+      "cycle": 1,
+      "feed": 7.0,
+      "upper_degrees": 0.0
+    },
+    {
+      "input": 2,
+      "cycle": 0,
+      "feed": 6.0,
+      "upper_degrees": 0.0
+    },
+    {
+      "input": 2,
+      "cycle": 0.2,
+      "feed": 5.8,
+      "upper_degrees": 0.0
+    },
+    {
+      "input": 2,
+      "cycle": 0.4,
+      "feed": 5.6,
+      "upper_degrees": 0.0
+    },
+    {
+      "input": 2,
+      "cycle": 0.75,
+      "feed": 5.25,
+      "upper_degrees": 0.0
+    },
+    {
+      "input": 2,
+      "cycle": 1,
+      "feed": 5.0,
+      "upper_degrees": 0.0
+    }
+  ],
+  "model_sha256": "929b9666376bb2bba7a073961143b6908d7f8ae72ec02284ddfd01b39bae013e",
+  "source_sha256": {
+    "assembly_v7.py": "5611e95eb373855d96362990c7e7634b1488c1828a11af73f9cd9e86642c18d5",
+    "bracelet_v7.py": "dc04699782bc6ee09ac82d896fa1740812d2c14a386430a2effda333fb2514ec",
+    "coupling_v7.py": "42c211ae47b71dcc4081e380938be9bb4aa5c706889e9afa887a4dc889c60bfa",
+    "engineering_v7.py": "60e80c28b01773c48b32b79d376b4ebf8399117da45e507502e304b3b5c3933f",
+    "presentation_v7.py": "5fa6b47896c7fd88f4e17e91a5452c3ba5f3429de7eb533a46cdd434101e077b",
+    "rna_path.py": "8f938f1d6b788f97c8b9b126acdf7feaad3552771d581a764f10d214cbee4d64",
+    "validation_v7.py": "6f6e07eac6e1ced9a1f5f58e85a214a7ff6cd8c748f2bcbb86b69d075f7e1232"
+  },
+  "controls_created": true
+}

@@ -1,0 +1,70 @@
+{
+  "version": "7.0",
+  "status": "INCOMPLETE_HANDOFF",
+  "date": "2026-11-03",
+  "reason": "User requested an end-of-session GitHub/cloud checkpoint before integrated validation completed.",
+  "functional_mechanism_established": false,
+  "physical_qualification": false,
+  "source_build": {
+    "completed": true,
+    "runtime": "1.1.4",
+    "dependencies": [
+      "FreeCAD",
+      "Part",
+      "bundled fcgear"
+    ]
+  },
+  "GUI_native_checkpoint": {
+    "normal_close_reopen": true,
+    "native_without_source_directory": true,
+    "sampled_poses": 15,
+    "controls_created": true,
+    "controls_animation_checked": false
+  },
+  "full_integrated_validation_completed": false,
+  "isolated_earlier_probes": "Actual pawl/track solids showed contact and no rigid overlap in sampled nominal forward/coast/return poses before final integration and timing changes. These are not a final V7 PASS.",
+  "unfinished_checks": [
+    "Complete actual-solid integrated clearance and assembly validation",
+    "Final timing revision: trip compression, manual drive, latch hold-open and reset transitions",
+    "Mechanical causality and force/energy budget for the trip snap and reset",
+    "Continuous RNA pull (no mechanical reset gate implemented); partial strokes and reverse during unfinished cycles",
+    "Full-travel RNA/body/gear/clasp clearance in both strand modes and wall thickness",
+    "New fastener seats, guide bearings, roots, keys, driver access and sampled insertion paths",
+    "GUI button/target-slider animations and complete acceptance tests",
+    "Printing, physical feeding, strength, click sound/force, spring selection, fatigue and hand fit"
+  ],
+  "routing_candidate": {
+    "angle_degrees": 16,
+    "material_length_mm": 248.81413816431163,
+    "top_bend_radius_mm": 33,
+    "return_bend_radius_mm": 33,
+    "return_centre_y_mm": 34.271853107144096,
+    "return_centre_z_mm": 0.6542009929926778,
+    "acceptance": "Unverified user-fit/geometry candidate"
+  },
+  "coupling_candidate": {
+    "manual_entry_degrees": 3,
+    "manual_upper_stroke_degrees": 15.857142857142858,
+    "RNA_pickup_stroke_degrees": 12.857142857142858,
+    "dedicated_bidirectional_detent": true,
+    "positive_manual_full_bead_drive": true,
+    "prescribed_trip_snap": true,
+    "prescribed_reset_pause": true,
+    "mechanical_continuous_pull_gate_implemented": false
+  },
+  "source_sha256": {
+    "assembly_v7.py": "5611e95eb373855d96362990c7e7634b1488c1828a11af73f9cd9e86642c18d5",
+    "bracelet_v7.py": "dc04699782bc6ee09ac82d896fa1740812d2c14a386430a2effda333fb2514ec",
+    "coupling_v7.py": "42c211ae47b71dcc4081e380938be9bb4aa5c706889e9afa887a4dc889c60bfa",
+    "engineering_v7.py": "60e80c28b01773c48b32b79d376b4ebf8399117da45e507502e304b3b5c3933f",
+    "presentation_v7.py": "5fa6b47896c7fd88f4e17e91a5452c3ba5f3429de7eb533a46cdd434101e077b",
+    "rna_path.py": "8f938f1d6b788f97c8b9b126acdf7feaad3552771d581a764f10d214cbee4d64",
+    "validation_v7.py": "6f6e07eac6e1ced9a1f5f58e85a214a7ff6cd8c748f2bcbb86b69d075f7e1232"
+  },
+  "model_sha256": "929b9666376bb2bba7a073961143b6908d7f8ae72ec02284ddfd01b39bae013e",
+  "preserved_versions_byte_check": {
+    "files_checked": 79,
+    "changed_files": []
+  },
+  "validation_boundary": "A build, source syntax and native GUI poses do not establish collision-free assembled motion, automatic spring/latch operation, reliable feeding, printability or physical function. Do not reuse V6 or any older PASS for V7."
+}

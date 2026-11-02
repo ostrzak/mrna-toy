@@ -34,6 +34,23 @@ Conversation-generated bead-mechanism sketches are concept art only. They are
 not dimensioned references or validation evidence and are not substituted for
 the actual CAD captures.
 
+## V7 routing request and mechanism concept
+
+[v7-routing-request.png](v7-routing-request.png) is the user's annotated V6
+CAD screenshot supplied on 2026-11-02. The red line asks for the RNA loop to
+cross farther over the body midline and close along the far flank, snug in a
+groove. It is qualitative routing guidance, not a dimensioned curve.
+
+[v7-coupling-concept.png](v7-coupling-concept.png) was generated in this
+conversation using the built-in image-generation tool. It illustrates two
+opposing pawls on separate tracks of one rotor, with a pickup release latch.
+It is **not current V7 CAD, a manufacturing drawing or proof of operation**.
+The contacts and exaggerated component shapes must not replace actual solids.
+
+Actual V7 checkpoint views are in [cad/v7](../../cad/v7/README.md). Their
+integrated geometry, assembly, reset timing and physical qualification remain
+unfinished. See [the cloud handoff](../v7-cloud-handoff.md).
+
 ## Preserved wearable concept illustration
 
 [toy-concept.png](toy-concept.png) was regenerated on 2026-10-27 with the built-in imagegen tool, using the [V3 CAD screenshot](../../cad/v3/bracelet.png) as its structural reference. The [exact prompt](toy-concept.prompt.txt) is retained for reproducibility.

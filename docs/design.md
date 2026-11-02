@@ -1,5 +1,18 @@
 # Purpose and conceptual mechanics
 
+## V7 development candidate
+
+V7 is separate from V6 and remains unfinished. Its intended two-pawl coupling
+adds forward RNA pickup of the upper, with an end-trip and hold-open reset,
+while retaining upper-driven forward feed, direct reverse with the upper home
+and the dedicated bidirectional detent. Its RNA should cross farther over the
+body midline and close along the far flank in a matching groove. The current
+16-degree / broad-bend layout is a first CAD candidate, not an accepted fit.
+
+See [V7 guide](../cad/v7/README.md) and [cloud handoff](v7-cloud-handoff.md) for
+the source, proposed timing, incomplete checks and the user's routing sketch.
+The saved V7 model is not evidence of a functional physical release/reset.
+
 ## Current V6 captive open/closed RNA
 
 V6 implements the user's 2026-10-30 direction: a single TPU-candidate RNA strip

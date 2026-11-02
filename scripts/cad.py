@@ -33,7 +33,7 @@ def executable(explicit: str | None) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command', choices=('doctor', 'validate', 'build'))
-    parser.add_argument('--version', choices=('3','4','4-print','5','6'), default='6', help='CAD version; default: 6 open/closed captive RNA. Use 4-print for the preserved A1 mini cuff prototype.')
+    parser.add_argument('--version', choices=('3','4','4-print','5','6','7'), default='6', help='CAD version; default: 6 preserved handheld design. Select 7 explicitly for the unfinished forward-pickup candidate, or 4-print for the A1 mini cuff prototype.')
     parser.add_argument('--freecad', help='FreeCAD command-line executable (or set FREECAD_CMD).')
     parser.add_argument('--output', type=Path, help='Generated-output directory; default: build/v<VERSION>.')
     parser.add_argument('--model', type=Path, help='Model to open for validate; default: selected version model.')
@@ -47,8 +47,8 @@ def main() -> int:
     generated = output / saved.name
     model = (args.model or saved).expanduser().resolve()
     if args.command != 'doctor':
-        protected_folders=('v2','v3','v4','v4-print','v5','v6')
-        protected_models=[ROOT/'cad'/v/n for v,n in [('v2','Ribosome.FCStd'),('v3','RibosomeV3.FCStd'),('v4','RibosomeV4.FCStd'),('v4-print','RibosomeV4Print.FCStd'),('v5','RibosomeV5.FCStd'),('v6','RibosomeV6.FCStd')]]
+        protected_folders=('v2','v3','v4','v4-print','v5','v6','v7')
+        protected_models=[ROOT/'cad'/v/n for v,n in [('v2','Ribosome.FCStd'),('v3','RibosomeV3.FCStd'),('v4','RibosomeV4.FCStd'),('v4-print','RibosomeV4Print.FCStd'),('v5','RibosomeV5.FCStd'),('v6','RibosomeV6.FCStd'),('v7','RibosomeV7.FCStd')]]
         if any(report == ROOT/'cad'/v/'checks.json' for v in protected_folders) or generated in protected_models:
             parser.error('Refusing to overwrite saved CAD artifacts. Use build/ or another output directory.')
         if args.command == 'validate' and not model.is_file():

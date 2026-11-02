@@ -13,6 +13,19 @@ ROOT = Path(__file__).resolve().parents[1]
 LINK = re.compile(r'!?\[[^\]\n]*\]\(\s*(<[^>]+>|[^\s)]+)(?:\s+"[^"\n]*")?\s*\)')
 
 
+def source_matches(path: Path, expected: str) -> bool:
+    """Git's Windows CRLF checkout must not invalidate Linux source evidence.
+
+    Compare exact bytes first, then only normalize CRLF to LF. CAD container
+    digests remain byte-exact; no source text or saved report is rewritten.
+    """
+    if not path.is_file():
+        return False
+    content=path.read_bytes()
+    return expected in (hashlib.sha256(content).hexdigest(),
+                        hashlib.sha256(content.replace(b'\r\n',b'\n')).hexdigest())
+
+
 def run() -> int:
     errors = []
     required = [
@@ -40,6 +53,36 @@ def run() -> int:
     for relative in required:
         if not (ROOT / relative).is_file():
             errors.append(f'Missing handoff file: {relative}')
+
+    v7_files=('README.md','RibosomeV7.FCStd','RibosomeV7.FCMacro',
+              'bracelet_v7.py','rna_path.py','coupling_v7.py','validation_v7.py',
+              'assembly_v7.py','engineering_v7.py','presentation_v7.py',
+              'checks.json','gui-checks.json','handheld.png','side.png',
+              'mechanism.png','pickup.png','return.png')
+    for name in v7_files:
+        if not (ROOT/'cad/v7'/name).is_file():errors.append('Missing V7 checkpoint file: '+name)
+    try:
+        v7=json.loads((ROOT/'cad/v7/checks.json').read_text(encoding='utf-8'))
+        gui7=json.loads((ROOT/'cad/v7/gui-checks.json').read_text(encoding='utf-8'))
+        if v7.get('status')=='INCOMPLETE_HANDOFF':
+            if not v7.get('unfinished_checks') or v7.get('functional_mechanism_established') is not False:
+                errors.append('V7 incomplete checkpoint must preserve its unfinished checks and functional boundary.')
+        elif v7.get('status') not in ('REVIEW','FOCUSED_PASS','PASS'):
+            errors.append('V7 has an unrecognized evidence status.')
+        elif v7.get('status') in ('FOCUSED_PASS','PASS') and not (v7.get('logical_checks') and all(v7['logical_checks'].values())):
+            errors.append('V7 PASS requires its own complete logical checks.')
+        for evidence in (v7,gui7):
+            if hashlib.sha256((ROOT/'cad/v7/RibosomeV7.FCStd').read_bytes()).hexdigest()!=evidence.get('model_sha256'):
+                errors.append('V7 checkpoint model/report hash mismatch.')
+            for name,digest in evidence.get('source_sha256',{}).items():
+                p=ROOT/'cad/v7'/name
+                if not source_matches(p,digest):
+                    errors.append('V7 checkpoint source/report mismatch: '+name)
+        with zipfile.ZipFile(ROOT/'cad/v7/RibosomeV7.FCStd') as archive:
+            if not {'Document.xml','GuiDocument.xml'}<=set(archive.namelist()) or archive.testzip() is not None:
+                errors.append('V7 checkpoint lacks valid native CAD/display data.')
+    except (OSError,ValueError,zipfile.BadZipFile) as error:
+        errors.append('V7 checkpoint evidence could not be read: '+str(error))
 
     code_count = 0
     for folder in (ROOT / 'cad', ROOT / 'scripts'):
@@ -96,7 +139,7 @@ def run() -> int:
             errors.append('V6 GUI evidence no longer matches the saved CAD container.')
         for name,digest in gui6.get('source_sha256',{}).items():
             source=ROOT/'cad/v6'/name
-            if not source.is_file() or hashlib.sha256(source.read_bytes()).hexdigest()!=digest:
+            if not source_matches(source,digest):
                 errors.append('V6 GUI source/evidence mismatch: '+name)
         if v6.get('version')!='6.0' or v6.get('status')!='FOCUSED_PASS' or not v6.get('logical_checks') or not all(v6.get('logical_checks',{}).values()):
             errors.append('V6 requires its own complete focused geometry result; no earlier PASS may substitute.')
@@ -119,7 +162,7 @@ def run() -> int:
             errors.append('V6 must retain direct reverse, upper-input motion and physical-test boundaries.')
         for name,digest in v6.get('source_sha256',{}).items():
             source=ROOT/'cad/v6'/name
-            if not source.is_file() or hashlib.sha256(source.read_bytes()).hexdigest()!=digest:
+            if not source_matches(source,digest):
                 errors.append('V6 source/report mismatch: '+name)
         if v5.get('version')!='5.0' or v5.get('status')!='FOCUSED_PASS':
             errors.append('V5 must have a fresh focused geometry result; unfinished checks cannot be promoted as a PASS.')
@@ -134,7 +177,7 @@ def run() -> int:
             errors.append('V5 must retain four hidden protein beads at full travel.')
         for name,digest in v5.get('source_sha256',{}).items():
             source=ROOT/'cad/v5'/name
-            if not source.is_file() or hashlib.sha256(source.read_bytes()).hexdigest()!=digest:
+            if not source_matches(source,digest):
                 errors.append('V5 source/report mismatch: '+name)
         if v4.get('version')!='4.0' or v4.get('status')!='FOCUSED_PASS':
             errors.append('V4 must retain its focused-check result and explicit baseline-validation boundary.')
@@ -159,10 +202,12 @@ def run() -> int:
         print('\n'.join('ERROR: ' + error for error in errors))
         return 1
     print(f'PASS - {code_count} Python/macro files parsed, {link_count} local Markdown links checked, '
-          'six CAD containers readable, report snapshots consistent.')
+          'seven CAD containers readable, report snapshots consistent.')
     print('This is repository integrity checking, not a fresh FreeCAD or physical-mechanism test.')
     if current.get('status') != 'PASS':
         print('V3 CAD validation is incomplete: '+current['status'])
+    if v7.get('status')=='INCOMPLETE_HANDOFF':
+        print('V7 remains INCOMPLETE_HANDOFF: integrated mechanism and physical operation unqualified.')
     return 0
 
 

@@ -1,5 +1,26 @@
 # Development and local handoff
 
+## V7 unfinished cloud continuation
+
+The user authorized GitHub/cloud continuation. Read
+[docs/v7-cloud-handoff.md](v7-cloud-handoff.md) for the branch, requirements,
+runtime boundary, source roles and incomplete checks. Provision a compatible
+FreeCAD runtime in the cloud, verify `Part` and bundled `fcgear` with `doctor`,
+then select `--version 7` explicitly. The launcher remains on V6 by default.
+The Windows GUI/MCP connection is not needed or assumed in another runtime.
+
+```sh
+python scripts/check_repo.py
+python scripts/cad.py doctor --freecad /path/to/FreeCADCmd
+python scripts/cad.py build --version 7 --force --freecad /path/to/FreeCADCmd
+python scripts/cad.py validate --version 7 --freecad /path/to/FreeCADCmd
+```
+
+Do not turn the V7 incomplete report into a PASS based on a static check,
+native animation, a report from another version or missing CAD dependencies.
+Keep generated files under `build/v7/`; source, saved checkpoint, real CAD
+views and report boundaries should agree when intentionally updated.
+
 ## Current V6 workflow
 
 V6 is self-contained in `cad/v6/`: geometry, the independent arc-length route
@@ -96,7 +117,7 @@ Select V4 explicitly. On this Windows installation:
 python scripts/cad.py build --version 4 --freecad "C:\Program Files\FreeCAD 1.1\bin\freecadcmd.exe"
 ```
 
-That path is a local example, not a repository dependency. Alternatively set `FREECAD_CMD` or put `FreeCADCmd` / `freecadcmd` on PATH. In another environment provision a compatible runtime and run `doctor`; Linux/cloud execution remains unverified. The Windows GUI and MCP connection are local conveniences, not portable dependencies. Cloud migration remains deferred.
+That path is a local example, not a repository dependency. Alternatively set `FREECAD_CMD` or put `FreeCADCmd` / `freecadcmd` on PATH. In another environment provision a compatible runtime and run `doctor`. The Windows GUI and MCP connection are local conveniences, not portable dependencies. The earlier local-only decision is superseded by the V7 cloud-continuation authorization above.
 
 ## Output boundaries
 

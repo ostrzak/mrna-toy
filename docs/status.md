@@ -1,5 +1,21 @@
 # Project status and next decisions
 
+## V7 cloud handoff — 2026-11-03
+
+V7 is an unfinished candidate on `codex/v7-forward-pickup`, copied separately
+from V6 at the user's authorization. It adds two opposing drive/pickup tracks,
+a lift fork and latch, nominal trip leaf/reset roof, detachable upper shell
+and carrier, and a shallower RNA route around the far flank. The dedicated
+click leaf is retained. V6 and older CAD/report/image bytes are preserved.
+
+The source builds with local FreeCAD 1.1.4. Isolated earlier pawl contacts were
+checked, but the integrated validation and assembly run did not finish.
+The release snap, partial strokes and continuous-pull reset are unresolved;
+the GUI's pause is not a mechanical gate. No functional or physical PASS is
+claimed. Read [the handoff](v7-cloud-handoff.md), [V7 guide](../cad/v7/README.md)
+and [incomplete report](../cad/v7/checks.json) before continuing in the cloud.
+The launcher still defaults to V6; select V7 explicitly.
+
 ## V6 captive open/closed RNA — 2026-10-31
 
 The user authorized a separate V6 after choosing open-strand play with an
@@ -114,4 +130,4 @@ A short feeder-and-channel bench assembly with representative beads and wire rem
 
 **V2:** opposite-direction feed comparison. A later audit found about 7.167 mm³ bead-to-wheel interference at home that its profile-only check missed. Keep `HISTORICAL_PASS_INVALIDATED`; it is not a validated baseline.
 
-Continue locally; cloud migration remains deferred. Superseded experiments belong in Git history, not new archive folders.
+The earlier local-only decision is superseded by the V7 cloud-continuation authorization above. Superseded experiments belong in Git history, not new archive folders.

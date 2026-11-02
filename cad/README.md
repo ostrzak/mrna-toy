@@ -1,5 +1,9 @@
 # mRNA toy versions
 
+**[V7 draft](v7/README.md)** is an unfinished two-pawl/latch and flank-route
+checkpoint. Read [the cloud handoff](../docs/v7-cloud-handoff.md). It has no
+completed integrated mechanism validation; V6 remains the launcher default.
+
 Start with the [project overview](../README.md) for purpose and current status. This page covers viewing and operating the saved CAD.
 
 - **[V6 — captive open/closed RNA](v6/README.md):** current design, with joined external underside return or open tails, direct RNA reversal, bidirectional detent and rest-disengaged cap input. [Open model](v6/RibosomeV6.FCStd), or run its adjacent macro.
