@@ -1,6 +1,6 @@
 # V7 mechanical audit
 
-The candidate remains **INCOMPLETE_CONTINUATION** pending a completed integrated run. `mechanical_v7.py` separates actual-solid
+The candidate remains **REVIEW** after a completed integrated CAD audit with failures. `mechanical_v7.py` separates actual-solid
 contact observations, analytical necessary conditions, prescribed native poses
 and missing physical evidence. It is a rejection audit, not an elasticity or
 dynamics solver. No functional mechanism is claimed.
@@ -101,3 +101,34 @@ work. No old-version report is substituted.
 The upper shell still reports a face self-intersection in the extended BOP
 check. This is a CAD defect separate from the mechanical blockers and physical
 qualification. Passing basic solid validity does not erase that failure.
+
+## Completed CAD audit
+
+The integrated FreeCAD 1.1.4 run completed with **REVIEW**. All 14 continuous
+RNA/base/clasp travel cases passed on the two nominal layouts. The native
+position/orientation and ratio checks passed, as did the positive track-contact,
+latch-bearing and travel-stop witnesses. These results do not establish release
+or reset under load.
+
+The report retains 32 interfering feature pairs, including:
+
+| Actual-solid observation | Result |
+| --- | --- |
+| Lower housing / bead keeper | 10.7818 mm³ overlap; keeper insertion fails |
+| Manual pawl / upper carrier | 3.1788 mm³ overlap |
+| Upper shell / manual pawl at home | 0.4866 mm³ overlap |
+| Shell / carrier during insertion at +1 mm | 18.2055 mm³ overlap |
+| Partial return, fixed drum, additional 0.2° | About 0.1603 mm³ pickup/track blocking overlap |
+| Trip foot / post in the sampled cycle | Minimum gap 0.025 mm; no sampled closed driving contact |
+
+The trip/latch leaves also intersect each other and the reset roof. The five
+failed assembly checks are the third housing column's section-volume screen,
+keeper insertion, right shell screw clearance outside its allowed thread zone,
+right shell bearing seat, and shell insertion after the reset bridge. The
+column screen measures 76.10 mm³ against its existing 90 mm³ threshold; this
+screen is not a strength calculation. The separate detent's radial insertion,
+root bearing, washer and screw checks passed.
+
+No contact-driven trip, elastic equilibrium, transient reset, arbitrary reverse
+transition or physical prototype qualification has been completed. The current
+architecture therefore remains unfinished despite the completed CAD audit.

@@ -1,9 +1,9 @@
 # V7 — CAD review candidate
 
-**Status: INCOMPLETE_CONTINUATION. The requested functional mechanism is still unfinished.**
-The source build and native GUI acceptance completed; cloud access was lost during
-the integrated validation. Saved geometry, views and GUI evidence match. No
-completed integrated or functional PASS is claimed.
+**Status: REVIEW. The requested functional mechanism is still unfinished.**
+The source build, native GUI acceptance and integrated CAD audit completed.
+Saved geometry, views and evidence match. The audit records rigid, assembly
+and mechanical failures; no functional or physical PASS is claimed.
 This continues `codex/v7-forward-pickup` from `fa32f91`. V6 and all earlier
 version files remain preserved; V6 is still the launcher default.
 
@@ -66,6 +66,12 @@ native errors and the mechanical audit. A `REVIEW` result is a failed or
 unestablished check, not a qualified mechanism. Read the exact remaining
 collision and assembly failures in that report; the corrections above do not
 imply that every integrated check passed.
+
+The completed audit has 32 interfering feature pairs and five failed assembly
+checks, plus the upper shell's extended-BOP self-intersection. All 14 continuous
+RNA/base/clasp travel cases passed on the nominal layouts. The separate detent's
+insertion and fastening checks passed. See the [executed audit summary](engineering.md#completed-cad-audit)
+for the failure witnesses and their limits.
 
 ## Inspecting and reproducing
 

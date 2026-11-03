@@ -13,7 +13,7 @@ corrects obstructed carrier/fork bores, manual-pawl crossover interference and
 the detent's installation path. Its 13.2-degree RNA route is higher on the far
 flank, with a narrower groove and preserved cavity wall.
 
-The saved checkpoint is **INCOMPLETE_CONTINUATION**; the integrated run was interrupted. The independent mechanical audit rejects the
+The saved checkpoint is **REVIEW**; the integrated CAD audit completed with failures. The independent mechanical audit rejects the
 current return-force budget and partial-return constraint. Trip snap and
 continuous-pull reset remain unresolved; the GUI pause is not a mechanical
 gate. No functional or physical PASS is claimed. Read

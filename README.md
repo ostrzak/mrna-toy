@@ -4,7 +4,7 @@ A handheld mechanical fidget inspired by protein translation. Move a captive RNA
 
 **V6 is the current handheld CAD prototype.** It has open-or-closed captive RNA, an external underside return, direct reversal without a release lever, and a cap input that disengages at rest. See the [V6 guide](cad/v6/README.md) and [focused report](cad/v6/checks.json) for the exact evidence boundary. Physical operation, click feel, clasp retention and printing remain unqualified. V5 and all older versions are preserved.
 
-**V7 remains unfinished after cloud CAD review.** It has corrected drive-guide and assembly geometry, a separately installed bidirectional detent and a higher far-flank RNA route. Its **INCOMPLETE_CONTINUATION** report records unfinished validation and mechanical blockers; it is not established as functional and does not replace V6's evidence. See the [V7 guide](cad/v7/README.md), [mechanical audit](cad/v7/engineering.md) and [continuation record](docs/v7-cloud-handoff.md). Work is on `codex/v7-forward-pickup`.
+**V7 remains unfinished after cloud CAD review.** It has corrected drive-guide and assembly geometry, a separately installed bidirectional detent and a higher far-flank RNA route. Its **REVIEW** report records completed CAD checks with rigid, assembly and mechanical failures; it is not established as functional and does not replace V6's evidence. See the [V7 guide](cad/v7/README.md), [mechanical audit](cad/v7/engineering.md) and [continuation record](docs/v7-cloud-handoff.md). Work is on `codex/v7-forward-pickup`.
 
 ![Current V6 CAD](cad/v6/handheld.png)
 

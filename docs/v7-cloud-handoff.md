@@ -1,4 +1,4 @@
-# V7 continuation — INCOMPLETE_CONTINUATION, mechanism unfinished
+# V7 continuation — REVIEW, mechanism unfinished
 
 Repository: `ostrzak/mrna-toy`, branch `codex/v7-forward-pickup`.
 The cloud continuation started at **fa32f91**, an **INCOMPLETE_HANDOFF** checkpoint,
@@ -42,7 +42,8 @@ is an illustration, not CAD evidence.
   partial-return solid witnesses, spring/leaf assumptions and force calculations.
 - `presentation_v7.py`: GUI reopen, native motion, control tests and actual views.
 - Saved CAD, `checks.json`, `gui-checks.json` and the CAD views are promoted
-  together as an **INCOMPLETE_CONTINUATION** candidate, with validation pending. Read their precise failures and boundaries.
+  together as a **REVIEW** candidate after a completed integrated CAD audit
+  with failures. Read their precise failures and boundaries.
 
 The continuation corrects manual-pawl crossover interference by placing its
 14.7 mm-radius guide between the tracks and its bridge above B. It reopens the

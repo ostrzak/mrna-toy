@@ -126,7 +126,7 @@
     }
   ],
   "model_sha256": "476d5c22b3d2c4cf2989f22847a7c5793182bb028b1f98e05c33a434beb57fb6",
-  "boundary": "Actual GUI reopen, self-contained native poses and control acceptance for this saved model. Geometry/presentation hashes are verified. Auditors were revised after capture and the integrated run was interrupted; their current snapshots are not GUI validation evidence. No functional mechanism or physical qualification.",
+  "boundary": "Actual GUI reopen, self-contained native poses and control acceptance for this saved model. Geometry/presentation hashes are verified. Auditors revised after capture were exercised in the separate completed REVIEW report; they are not GUI validation evidence. No functional mechanism or physical qualification.",
   "source_snapshot_sha256_at_capture": {
     "validation_v7.py": "1c7ca199c0c135c9cfdbce0312c4acf4d523b020245d81c4ff94c4bc23f6c820",
     "engineering_v7.py": "bd185885a89d19663f07da7966aed5ba12cb16a1c6c6fdb4c8d54705c68f216a",
@@ -144,11 +144,10 @@
     "coupling_v7.py": "26a54388cc98d0326a1e9eedf285c926a732d20cfac9c91b1cf8a56ea8c07f87",
     "presentation_v7.py": "2a55d4f914a5c98c3a377683f9706d25837055c13d80feb2fffcbf410b1b25f0"
   },
-  "unvalidated_auditor_source_sha256": {
-    "validation_v7.py": "1c7ca199c0c135c9cfdbce0312c4acf4d523b020245d81c4ff94c4bc23f6c820",
-    "engineering_v7.py": "bd185885a89d19663f07da7966aed5ba12cb16a1c6c6fdb4c8d54705c68f216a",
-    "assembly_v7.py": "472069f9105f186899dbfd6d2d0a6f2fa2f2957ec6b512c374e843fe5bfa49f9",
-    "travel_v7.py": "b9c3e2fdbe0b5d373c5547658be26da902bef322a44f3392ef577b8a31578d80",
-    "mechanical_v7.py": "136db995feb7491fe87da6e5262f43b27c805deb78b2b6d35384b0213cec26a6"
+  "separate_completed_CAD_audit": {
+    "report": "checks.json",
+    "sha256": "7c44030085c1a0c166a2b8b47465afd5365ecb522623a217df3cd85b6159a72c",
+    "status": "REVIEW",
+    "boundary": "The integrated audit completed independently after this GUI capture. Geometry and presentation sources are unchanged. REVIEW records actual CAD and mechanical failures; native GUI motion is not proof of mechanical operation."
   }
 }
