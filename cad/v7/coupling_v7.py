@@ -21,6 +21,47 @@ ROOF_MOUNT=b.polar(36,ROOF_MOUNT_ANGLE)
 TOOTH_RISE=1.25
 TOE_ANGLE=3.0
 TOE_FLOOR=24.8
+SHELL_MOUNTS=(('Left',-14.0,-6.0),('Right',14.0,-6.0))
+
+
+def shell_installation_tools():
+    """Open downward access for the carrier, rather than a fitted undercut.
+
+    These analytic prisms bound the actual carrier beams and input sliders
+    below their highest installed points. A shell cut only at the final
+    carrier position could fit at rest and still trap it during insertion.
+    Screw pads retain their bearing planes at z=33.
+    """
+    tools=[b.cylinder(5.3,13.4,V(0,0,20)),
+        Part.makeBox(4.4,29.0,12.6,V(-2.2,-27.7,20)),
+        b.angular_sector(4.3,28.2,B_ANGLE-5.5,B_ANGLE+5.5,20,14.2),
+        b.angular_sector(21.8,28.2,b.CAP_STOP_ANGLE-4.5,
+            b.CAP_STOP_ANGLE+b.CAP_ANGLE+4.5,20,10.0),
+        b.angular_sector(4.3,27.7,b.CAP_STOP_ANGLE+b.CAP_ANGLE/2-2.5,
+            b.CAP_STOP_ANGLE+b.CAP_ANGLE/2+2.5,20,12.4),
+        b.angular_sector(4.3,19.9,-123.5,-116.5,20,12.6),
+        b.cylinder(1.9,11.7,b.polar(18,-120,20))]
+    a_support=Part.makeBox(14.1,3.6,14.2,V(2.8,-1.8,20))
+    a_support.rotate(V(),V(0,0,1),b.ENTRY_DEG)
+    tools.extend([a_support,b.cylinder(2.2,14.2,b.polar(b.A_GUIDE,b.ENTRY_DEG,20)),
+        b.cylinder(1.3,12.2,b.polar(27,b.CAP_STOP_ANGLE+b.CAP_ANGLE/2,20))])
+    # The sector contains the former rectangular access pocket, including
+    # all its corners. The rectangular trim created two self-intersecting
+    # face pairs in OCC despite valid inputs; this wider cut passes BOP.
+    tools.append(b.angular_sector(23,33.4,B_ANGLE+1,B_ANGLE+28,20,14.4))
+    # The manual follower and its bridge travel axially by 2 mm at rest.
+    a=b.union([Part.makeBox(11.0,2.3,9.6,V(12.3,-.7,20)),
+               b.cylinder(2.0,10.8,V(b.A_GUIDE,0,20))])
+    a.rotate(V(),V(0,0,1),b.ENTRY_DEG);tools.append(a)
+    for side,x,y in SHELL_MOUNTS:
+        tools.append(Part.makeBox(abs(x)+.2,3.4,13.0,
+            V(min(x,0)-.1,y-1.7,20)))
+        tools.append(b.cylinder(2.8,13.0,V(x,y,20)))
+    return tools
+
+
+def shell_installation_clearance():
+    return b.union(shell_installation_tools())
 
 
 def rotated(shape):
@@ -193,14 +234,16 @@ def add(d):
     # Separate shell and carrier: install carrier/pawls first, slide the
     # removable reset bridge in radially, then fasten the outer shell.
     shell=b.cap_shape('shell').cut(cap_clearance())
+    for tool in shell_installation_tools():
+        shell=shell.cut(tool)
     carrier=b.union([b.cap_shape('carrier'),cap_supports()])
-    for x in (-14,14):
-        point=V(x,-2,0)
+    for side,x,y in SHELL_MOUNTS:
+        point=V(x,y,0)
         boss=b.cylinder(2.6,3.6,point+V(0,0,29.4))
-        spoke=Part.makeBox(14,3.0,1.3,V(-14 if x<0 else 0,-3.5,31.7))
+        spoke=Part.makeBox(abs(x),3.0,1.3,V(min(x,0),y-1.5,31.7))
         carrier=b.union([carrier,boss,spoke]).cut(b.cylinder(.85,3.8,point+V(0,0,29.2)))
-        pad=b.cylinder(3.3,1.9,point+V(0,0,33.0))
-        shell=b.union([shell,pad])
+        pad=b.cylinder(3.3,2.8,point+V(0,0,33.0))
+        shell=b.union([shell,pad],refine=False)
         shell=shell.cut(b.cylinder(2.8,3.8,point+V(0,0,29.2)))
         shell=shell.cut(b.cylinder(1.15,8,point+V(0,0,32.9)))
         shell=shell.cut(Part.makeCone(1.15,2.1,.95,point+V(0,0,35.05)))
@@ -208,7 +251,7 @@ def add(d):
         screw=b.union([b.cylinder(1,5.1,point+V(0,0,29.8)),
                        Part.makeCone(1,1.9,.9,point+V(0,0,34.9))])
         screw=screw.cut(b.socket_cut(.72,35.3,.8,point))
-        b.feature(d,'UpperShellScrew'+('Left' if x<0 else 'Right'),
+        b.feature(d,'UpperShellScrew'+side,
                   'M2 x 6 countersunk — detachable upper shell',screw,upper,'gear')
     # A long service window permits the fixed bridge screw to be inserted
     # before fitting the shell; it also clears the fixed hardware in motion.
@@ -216,7 +259,6 @@ def add(d):
     # passages. Reapply both bores AFTER all carrier unions.
     carrier=carrier.cut(b.cylinder(3.3,35,V(0,0,20)))
     carrier=carrier.cut(b.cylinder(4.35,20,V(0,0,33.4)))
-    shell=shell.cut(carrier).removeSplitter()
     pieces=sorted(shell.Solids,key=lambda s:s.Volume,reverse=True)
     if sum(s.Volume for s in pieces[1:])>1e-5:
         raise RuntimeError('V7 upper shell has a detached meaningful component')

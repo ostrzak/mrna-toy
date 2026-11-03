@@ -2,7 +2,7 @@
 
 Read `README.md`, then `docs/design.md` and `docs/status.md`. Use `docs/development.md` for commands. These files carry the project context; no previous chat or desktop attachment is required.
 
-V7 is an authorized but **unfinished** candidate in `cad/v7/`, on `codex/v7-forward-pickup`, continued from `fa32f91`. Read `docs/v7-cloud-handoff.md` and `cad/v7/engineering.md` before continuing it. Cloud review corrects several rigid fits and the far-flank route, but trip/reset, force, continuous-pull and partial-return checks still fail or lack a solution. Its saved status is REVIEW, not a functional PASS. V6 remains the preserved comparison and launcher default.
+V7 is an authorized but **unfinished** candidate in `cad/v7/`, on `codex/v7-forward-pickup`, most recently continued from verified checkpoint `5c4b2c0`. Read `docs/v7-cloud-handoff.md` and `cad/v7/engineering.md` before continuing it. Rigid housing, shell access and structural BOP corrections are saved, but trip/reset, force, continuous-pull and partial-return checks still fail or lack a solution. The user stopped during the integrated audit: the saved checkpoint is INCOMPLETE_CONTINUATION and mechanical status remains REVIEW, not a functional PASS. V6 remains the preserved comparison and launcher default.
 
 ## Current design contract
 

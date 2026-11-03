@@ -67,9 +67,11 @@ COLORS={
  'pawl':(.86,.67,.30),
 }
 
-def union(shapes):
+def union(shapes, refine=True):
     shapes = [s for s in shapes if not s.isNull()]
-    return shapes[0].multiFuse(shapes[1:]).removeSplitter() if len(shapes) > 1 else shapes[0]
+    if len(shapes)==1:return shapes[0]
+    result=shapes[0].multiFuse(shapes[1:])
+    return result.removeSplitter() if refine else result
 
 
 def cylinder(r, h, base=V(), axis=V(0, 0, 1)):
@@ -111,6 +113,29 @@ def ellipse_face(x,y,z,rx,ry):
     wire=Part.Wire([curve.toShape()])
     if ry>rx:wire.rotate(V(x,y,z),V(0,0,1),90)
     return Part.Face(wire)
+
+
+def shell_ellipsoid(center,radii):
+    """Ruled organic skin with closed, non-self-intersecting surface spans.
+
+    Six-degree latitude spans retain the same ellipsoidal cross-sections.
+    Their chord error is bounded by max(radii)*(1-cos(3 degrees)); adding
+    the 0.001-relative polar cap gives a conservative 0.067 mm skin bound.
+    This approximation is confined to the organic skin, never drive contacts.
+    """
+    wires=[]
+    for j in range(31):
+        angle=-math.pi/2+math.pi*j/30
+        radius=max(.001,math.cos(angle))
+        z=center[2]+radii[2]*math.sin(angle)
+        rx,ry=radii[0]*radius,radii[1]*radius
+        curve=Part.Ellipse(V(center[0],center[1],z),max(rx,ry),min(rx,ry))
+        # Keep four exact quadrant edges so each ruled span has explicit
+        # seams instead of one surface wrapping the entire closed profile.
+        wire=Part.Wire([curve.toShape(k*math.pi/2,(k+1)*math.pi/2) for k in range(4)])
+        if ry>rx:wire.rotate(V(center[0],center[1],z),V(0,0,1),90)
+        wires.append(wire)
+    return Part.makeLoft(wires,True,True)
 
 
 def radial(r, angle, z=0):
@@ -525,6 +550,10 @@ def body_shape():
     pedestals=[annulus(13.9,14.9,2.65,3.25),annulus(17.1,18.1,2.65,3.25)]
     body=union([body,stop_shape()]+pedestals)
     body=body.cut(Part.makeBox(80,10,9,V(MOUTH_X,STORE_R-5,6.7)))
+    # The tangent keeper cheek extends behind the visible outlet and beyond
+    # the circular storage bore. Give that cheek a pocket down to its actual
+    # insertion plane; the outlet-only cut left 10.78 mm3 of rigid overlap.
+    body=body.cut(Part.makeBox(13.4,8.0,6.4,V(-4.2,STORE_R-4,8.4)))
     posts=[cylinder(3.6,KEEPER_SEAT_Z-2.7,V(x,y,2.7)) for x,y in CASE_MOUNTS]
     body=union([body]+posts)
     for x,y in CASE_MOUNTS:
@@ -565,7 +594,10 @@ def lid_shape():
     # These columns lie outside the complete gear rotation envelope.
     # The previous 3.4 mm margin clipped the travelling rack. A 3.1 mm
     # column retains the complete specified 3.1 mm-radius bearing seat.
-    supports=[cylinder(LID_COLUMN_RADIUS,GUARD_SEAT_Z-LID_SEAT_Z,V(x,y,LID_SEAT_Z)) for x,y in CASE_MOUNTS]
+    # Only the two front columns approach the travelling rack. The rear
+    # column can retain the original 3.4 mm radius and its full local section.
+    supports=[cylinder(LID_COLUMN_RADIUS if i<2 else 3.4,
+        GUARD_SEAT_Z-LID_SEAT_Z,V(x,y,LID_SEAT_Z)) for i,(x,y) in enumerate(CASE_MOUNTS)]
     lid=union([lid]+supports)
     # Lower half of the central mesh keeper: the flexible rack cannot bow
     # away from the gear while the user pushes an open tail backward.
@@ -707,13 +739,13 @@ def detent_wheel_shape():
 
 
 def cap_shape(part='complete'):
-    outer=union([ellipsoid((0,-6,27.7),(28,25,10.1)),
-                 ellipsoid((-10,14,31),(19,17,9.2)),
-                 ellipsoid((18,-8,26.8),(14,18,7))])
-    inner=union([ellipsoid((0,-6,25.4),(25.8,22.8,8.8)),
-                 ellipsoid((-10,14,28.7),(16.8,14.8,8)),
-                 ellipsoid((18,-8,24.5),(11.8,15.8,5.8)),
-                 cylinder(28,8.7,V(0,0,20))])
+    outer=union([shell_ellipsoid((0,-6,27.7),(28,25,10.1)),
+                 shell_ellipsoid((-10,14,31),(19,17,9.2)),
+                 shell_ellipsoid((18,-8,26.8),(14,18,7))],refine=False)
+    inner=union([shell_ellipsoid((0,-6,25.4),(25.8,22.8,8.8)),
+                 shell_ellipsoid((-10,14,28.7),(16.8,14.8,8)),
+                 shell_ellipsoid((18,-8,24.5),(11.8,15.8,5.8)),
+                 cylinder(28,8.7,V(0,0,20))],refine=False)
     shell=outer.cut(inner).common(Part.makeBox(90,90,25,V(-45,-45,21)))
     shell=shell.cut(cylinder(1.75,6.9,polar(A_GUIDE,ENTRY_DEG,26.1)))
     shell=shell.cut(angular_sector(22.8,25.2,CAP_STOP_ANGLE-5,
@@ -740,7 +772,8 @@ def cap_shape(part='complete'):
     cap=shell if part=='shell' else frame if part=='carrier' else union([shell,frame])
     cap=cap.cut(spring_socket(True))
     cap=cap.cut(cylinder(3.3,35,V(0,0,20)))
-    return cap.cut(cylinder(4.35,20,V(0,0,33.4))).removeSplitter()
+    cap=cap.cut(cylinder(4.35,20,V(0,0,33.4)))
+    return cap if part=='shell' else cap.removeSplitter()
 
 
 def drive_carrier_shape():
@@ -979,7 +1012,7 @@ def present(d,cutaway=False,underside=False,fit=True):
             o.ViewObject.DisplayMode='Flat Lines';o.ViewObject.LineWidth=.5
             o.ViewObject.Deviation=.12;o.ViewObject.AngularDeflection=12
             o.ViewObject.Visibility=True;o.ViewObject.Transparency=0
-            if o.Name.startswith(('RnaLink','DetentLeaf')):
+            if o.Name.startswith(('RnaLink','DetentLeaf')) or o.Name=='UpperLobe':
                 o.ViewObject.DisplayMode='Shaded'
         if o.TypeId=='App::Part': o.ViewObject.Visibility=True
     for name in ('UpperLobe','LowerLid','GearGuard'):

@@ -125,29 +125,35 @@
       "upper_home": true
     }
   ],
-  "model_sha256": "476d5c22b3d2c4cf2989f22847a7c5793182bb028b1f98e05c33a434beb57fb6",
-  "boundary": "Actual GUI reopen, self-contained native poses and control acceptance for this saved model. Geometry/presentation hashes are verified. Auditors revised after capture were exercised in the separate completed REVIEW report; they are not GUI validation evidence. No functional mechanism or physical qualification.",
-  "source_snapshot_sha256_at_capture": {
-    "validation_v7.py": "1c7ca199c0c135c9cfdbce0312c4acf4d523b020245d81c4ff94c4bc23f6c820",
-    "engineering_v7.py": "bd185885a89d19663f07da7966aed5ba12cb16a1c6c6fdb4c8d54705c68f216a",
-    "bracelet_v7.py": "42e96d5964d24d522bca209df5bcfd9d52daf74399b78e1f6b4f9b0922b2325d",
-    "rna_path.py": "0d38d4091b23323af7b583327fa245640184b85d455799cd92652ab6aa707534",
-    "presentation_v7.py": "2a55d4f914a5c98c3a377683f9706d25837055c13d80feb2fffcbf410b1b25f0",
-    "assembly_v7.py": "472069f9105f186899dbfd6d2d0a6f2fa2f2957ec6b512c374e843fe5bfa49f9",
-    "travel_v7.py": "a6522d0acc967f8191a49db20e0e686696a742ed73c623c65bff81aa64708dc1",
-    "coupling_v7.py": "26a54388cc98d0326a1e9eedf285c926a732d20cfac9c91b1cf8a56ea8c07f87",
-    "mechanical_v7.py": "136db995feb7491fe87da6e5262f43b27c805deb78b2b6d35384b0213cec26a6"
-  },
+  "model_sha256": "7daa39d53009f81ff7a8499cd34d490d68178971d5e439642bf59b60a6a4ebc8",
   "source_sha256": {
-    "bracelet_v7.py": "42e96d5964d24d522bca209df5bcfd9d52daf74399b78e1f6b4f9b0922b2325d",
     "rna_path.py": "0d38d4091b23323af7b583327fa245640184b85d455799cd92652ab6aa707534",
-    "coupling_v7.py": "26a54388cc98d0326a1e9eedf285c926a732d20cfac9c91b1cf8a56ea8c07f87",
+    "engineering_v7.py": "bd185885a89d19663f07da7966aed5ba12cb16a1c6c6fdb4c8d54705c68f216a",
+    "bracelet_v7.py": "0cec837daca4a492984479cb20b2714d83522c38c5f3d252e2db05e4cf1f45f9",
+    "mechanical_v7.py": "136db995feb7491fe87da6e5262f43b27c805deb78b2b6d35384b0213cec26a6",
+    "travel_v7.py": "b9c3e2fdbe0b5d373c5547658be26da902bef322a44f3392ef577b8a31578d80",
+    "assembly_v7.py": "fda2025ac3321971d6f10a255c23dfe530f76600218b4a284b3a428ed17d65fc",
+    "validation_v7.py": "b829940a73de67b9c528f183189ad451934e0c37688bc8e3725da268cd11c565",
+    "coupling_v7.py": "904ebc66e2b3f485a6eb4df027588bc254c87a5acc37af3629ee45fc61d95c07",
     "presentation_v7.py": "2a55d4f914a5c98c3a377683f9706d25837055c13d80feb2fffcbf410b1b25f0"
   },
-  "separate_completed_CAD_audit": {
+  "boundary": "Normal GUI reopen, native expressions and control animations only. No automatic trip/reset, elastic equilibrium or physical operation is established by these prescribed motions.",
+  "source_regeneration_consistency": {
+    "status": "PASS",
+    "physical_feature_count": 332,
+    "failed_fingerprints": [],
+    "maximum_differences": {
+      "volume": 1.8189894035458565e-12,
+      "area": 3.637978807091713e-12,
+      "centre": 6.039613253960852e-14,
+      "bounds": 2.930988785010413e-14
+    },
+    "boundary": "Fresh source regeneration compared with the GUI-saved candidate at the same nominal pose. Shape fingerprints and raw BRep hashes are consistency checks, not mechanical or physical qualification."
+  },
+  "separate_incomplete_CAD_audit": {
     "report": "checks.json",
-    "sha256": "7c44030085c1a0c166a2b8b47465afd5365ecb522623a217df3cd85b6159a72c",
-    "status": "REVIEW",
-    "boundary": "The integrated audit completed independently after this GUI capture. Geometry and presentation sources are unchanged. REVIEW records actual CAD and mechanical failures; native GUI motion is not proof of mechanical operation."
+    "sha256": "27390caa8a5f206536bfcb492ef4d589e3ea5b4abfa30b84df0ccbe5a9b0777d",
+    "status": "INCOMPLETE_CONTINUATION",
+    "boundary": "Build, structural BOP, GUI/native-control and source-fingerprint evidence are complete. The integrated audit is incomplete at the user stop. Mechanical status remains REVIEW; no automatic trip/reset, continuous-pull, force, fatigue, print or physical-operation qualification."
   }
 }

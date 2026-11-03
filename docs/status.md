@@ -13,7 +13,18 @@ corrects obstructed carrier/fork bores, manual-pawl crossover interference and
 the detent's installation path. Its 13.2-degree RNA route is higher on the far
 flank, with a narrower groove and preserved cavity wall.
 
-The saved checkpoint is **REVIEW**; the integrated CAD audit completed with failures. The independent mechanical audit rejects the
+The follow-up verified GitHub checkpoint `5c4b2c0`, then repaired the tangent
+keeper pocket, rear lid column, lifted manual-pawl clearance, shell screw axes
+and seats, and downward shell access. The upper organic skin uses ruled
+elliptical sections with a conservative 0.067 mm surface-deviation bound;
+the anchor-access sector avoids the rectangular pocket's Boolean defect.
+The saved coupling retains its 3° manual entry and prescribed trip/reset.
+
+The user paused work and requested a GitHub checkpoint during the RNA-forward
+coupling sweep. The saved report is **INCOMPLETE_CONTINUATION**; mechanical status
+remains **REVIEW**. Structural BOP, source regeneration and GUI acceptance passed,
+but the integrated audit and mechanical finish are incomplete. The previous
+completed independent mechanical audit rejects the
 current return-force budget and partial-return constraint. Trip snap and
 continuous-pull reset remain unresolved; the GUI pause is not a mechanical
 gate. No functional or physical PASS is claimed. Read

@@ -307,8 +307,9 @@ def coupling_checks(d,record,put_error):
             return shape.cut(tool) if a=='PickupRoofScrew' else shape
         if 'UpperCarrier' in pair and any(k.startswith('UpperShellScrew') for k in pair):
             name=next(k for k in pair if k.startswith('UpperShellScrew'))
-            x=-14 if name.endswith('Left') else 14
-            tool=b.cylinder(1.001,3.20001,V(x,-2,29.8));tool.rotate(V(),V(0,0,1),-m.CapAngle)
+            side='Left' if name.endswith('Left') else 'Right'
+            _,x,y=next(row for row in c.SHELL_MOUNTS if row[0]==side)
+            tool=b.cylinder(1.001,3.20001,V(x,y,29.8));tool.rotate(V(),V(0,0,1),-m.CapAngle)
             return shape.cut(tool) if a==name else shape
         allowed=assembly_v7.allowed_thread(pair)
         if allowed and a==allowed[0]:return shape.cut(allowed[1])
@@ -448,6 +449,11 @@ def finish(d,destination,parts,invalid,worst,errors,record,put_error,
             return_centre_z_mm=b.RNA_Z-b.RNA_DROP*b.route.HEIGHT,
             retained_front_drive_span_mm=2*b.route.TOP_HALF,
             open_or_closed=True,nominal_inextensible_layout=True),
+        upper_skin_repair=dict(representation='Ruled elliptical latitude spans; four quadrant edges',
+            latitude_interval_degrees=6,conservative_surface_deviation_bound_mm=.067,
+            scope='Organic upper shell only; drive, rack, bead, bearing and screw profiles are retained',
+            carrier_access='Downward analytic clearances; anchor sector contains the former rectangular pocket',
+            shell_mount_axes_xy_mm=[[x,y] for _,x,y in c.SHELL_MOUNTS]),
         design=dict(native_forward_RNA_pose_rocks_upper=True,native_upper_input_pose_advances_RNA=True,
             native_RNA_reverse_pose_keeps_upper_home=True,pose_study_is_not_mechanical_operation=True,two_opposite_tracks=True,
             dedicated_bidirectional_detent=True,three_bases_per_bead=True,

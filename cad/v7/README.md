@@ -1,10 +1,14 @@
 # V7 — CAD review candidate
 
-**Status: REVIEW. The requested functional mechanism is still unfinished.**
-The source build, native GUI acceptance and integrated CAD audit completed.
-Saved geometry, views and evidence match. The audit records rigid, assembly
-and mechanical failures; no functional or physical PASS is claimed.
-This continues `codex/v7-forward-pickup` from `fa32f91`. V6 and all earlier
+**Checkpoint: INCOMPLETE_CONTINUATION. Mechanical status: REVIEW.**
+The user paused work and requested a GitHub checkpoint during the integrated
+coupling audit. The source build, structural BOP checks, source-regeneration
+comparison and native GUI acceptance completed. Saved geometry, views and
+evidence match. The partial audit retains 23 observed collision pairs; remaining
+poses, final assembly and continuous-travel aggregation are unfinished.
+The requested functional mechanism is still unfinished; no functional or physical PASS is claimed.
+This continues `codex/v7-forward-pickup`; the follow-up verified checkpoint
+`5c4b2c02f2925befef8537cb0fb1ea4ea1ee6e3d` before editing. V6 and all earlier
 version files remain preserved; V6 is still the launcher default.
 
 [Continuation record](../../docs/v7-cloud-handoff.md) ·
@@ -18,6 +22,20 @@ version files remain preserved; V6 is still the launcher default.
 [Mechanism](mechanism.png) · [Pickup](pickup.png) · [Return](return.png)
 
 ## What changed
+
+- The tangent keeper cheek has its own housing pocket behind the outlet.
+  The rear lid column retains a 3.4 mm radius; the two rack-side columns
+  retain their 3.1 mm clearance radius.
+- Both upper-shell screws are at x=±14, y=-6 mm, clear of the lifted manual
+  pawl. Their seated pads extend to z=35.8 mm. Downward access clearances
+  allow the outer shell to be lowered over the carrier and installed bridge.
+- The upper organic skin uses ruled elliptical latitude sections, with
+  a conservative 0.067 mm ellipsoid-approximation bound before access cuts.
+  The wider anchor-access
+  sector contains the former rectangular pocket and avoids its Boolean
+  self-intersections. Drive contacts and the RNA/protein geometry are retained.
+
+The preceding cloud continuation also changed the following:
 
 - The manual pawl guide now lies between the two toothed tracks. Its bridge
   crosses above the pickup teeth; its pin starts above the pickup base plate.
@@ -67,11 +85,11 @@ unestablished check, not a qualified mechanism. Read the exact remaining
 collision and assembly failures in that report; the corrections above do not
 imply that every integrated check passed.
 
-The completed audit has 32 interfering feature pairs and five failed assembly
-checks, plus the upper shell's extended-BOP self-intersection. All 14 continuous
-RNA/base/clasp travel cases passed on the nominal layouts. The separate detent's
-insertion and fastening checks passed. See the [executed audit summary](engineering.md#completed-cad-audit)
-for the failure witnesses and their limits.
+Checkpoint `5c4b2c0` recorded 32 interfering feature pairs, five failed assembly
+checks and the upper shell's extended-BOP self-intersection. The follow-up
+repairs target those rigid and assembly defects. The current [executed report](checks.json)
+records the partial observations and unfinished checks; the trip, return-force and continuous-pull
+blockers above remain unresolved. See the [audit record](engineering.md#completed-cad-audit).
 
 ## Inspecting and reproducing
 
@@ -90,8 +108,9 @@ python scripts/cad.py validate --version 7 --freecad /path/to/compatible/FreeCAD
 
 FreeCAD 1.1.4 with `Part` and bundled `fcgear` was exercised in the cloud.
 Generated work belongs in `build/v7/`. `build()` also defaults there; saved
-artifacts are promoted deliberately. Exact rational ellipsoid patches and analytic
-cylinder/torus route sections replace problematic generic spline Boolean inputs.
+artifacts are promoted deliberately. Exact rational lower-body ellipsoid patches,
+ruled upper-skin sections and analytic cylinder/torus route sections replace
+problematic generic spline Boolean inputs.
 The original representation passed basic validity but failed extended BOP checks
 and produced incorrect intersections. Structural solids now receive extended
 checks; exact patch boundaries are retained without final seam simplification.

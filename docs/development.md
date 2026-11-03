@@ -10,11 +10,19 @@ then select `--version 7` explicitly. The launcher remains on V6 by default.
 The Windows GUI/MCP connection is not needed or assumed in another runtime.
 
 The continuation exercised FreeCAD 1.1.4 in the cloud, including GUI work on a
-virtual display. V7's current checkpoint is REVIEW. Its validator now includes
+virtual display. V7's current checkpoint is INCOMPLETE_CONTINUATION at the user's
+stop; its mechanical status remains REVIEW. Its validator includes
 `mechanical_v7.py`: a collision-free animation cannot pass a failed force or
 partial-return necessary condition. See [the force audit](../cad/v7/engineering.md).
 V7 `build()` defaults to `build/v7/`; promotion of saved CAD, reports and actual
 views is deliberate. All previous version files remain preserved.
+
+The upper skin uses ruled elliptical latitude sections with a conservative
+0.067 mm deviation bound, while the lower organic body retains exact rational
+patches. Check all five structural solids with extended BOP validation and
+keep the explicit shell-insertion and screw-seat checks. Basic solid validity
+does not replace those checks. The current trip/reset remains mechanically
+unfinished even when rigid housing and assembly corrections pass.
 
 ```sh
 python scripts/check_repo.py

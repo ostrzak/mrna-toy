@@ -1,6 +1,8 @@
 # V7 mechanical audit
 
-The candidate remains **REVIEW** after a completed integrated CAD audit with failures. `mechanical_v7.py` separates actual-solid
+The candidate's mechanical status remains **REVIEW**. The current checkpoint is
+**INCOMPLETE_CONTINUATION**, saved at the user's stop during the integrated audit;
+the last completed full audit is checkpoint `5c4b2c0`. `mechanical_v7.py` separates actual-solid
 contact observations, analytical necessary conditions, prescribed native poses
 and missing physical evidence. It is a rejection audit, not an elasticity or
 dynamics solver. No functional mechanism is claimed.
@@ -98,19 +100,34 @@ clearance, wall, fastening and sampled insertion checks pass. Printed fits,
 stiffness, screw purchase and reliable assembly remain physical qualification
 work. No old-version report is substituted.
 
-The upper shell still reports a face self-intersection in the extended BOP
-check. This is a CAD defect separate from the mechanical blockers and physical
-qualification. Passing basic solid validity does not erase that failure.
+Checkpoint `5c4b2c0` reported an upper-shell self-intersection in the extended
+BOP check. The follow-up replaces only the organic upper skin with ruled
+elliptical latitude sections. Six-degree spans and 0.001-relative polar caps
+give a conservative surface-deviation bound below 0.067 mm. Four quadrant
+edges keep each section explicitly bounded. This approximation does not alter
+the drive, bearing, screw, RNA or protein profiles.
+The bound applies to the ellipsoid construction before the intentional access cuts.
+
+The rectangular anchor-access pocket created two intersecting face pairs even
+with a valid skin and a valid cutter. A wider sector contains that entire
+pocket and passes the extended check. The other downward access cuts clear the
+carrier's projections, rather than merely subtracting its final seated shape.
+The screw pads are added after those access cuts, preserving their z=33 mm
+bearing planes and conical seats. Both screw axes move to y=-6 mm to clear A.
+
+The housing also clears the keeper's tangent cheek behind the visible outlet.
+Only the rear lid column returns to a 3.4 mm radius: it is away from the rack,
+and the existing local-section test is retained without lowering its threshold.
 
 ## Completed CAD audit
 
-The integrated FreeCAD 1.1.4 run completed with **REVIEW**. All 14 continuous
+The checkpoint `5c4b2c0` integrated FreeCAD 1.1.4 run completed with **REVIEW**. All 14 continuous
 RNA/base/clasp travel cases passed on the two nominal layouts. The native
 position/orientation and ratio checks passed, as did the positive track-contact,
 latch-bearing and travel-stop witnesses. These results do not establish release
 or reset under load.
 
-The report retains 32 interfering feature pairs, including:
+That checkpoint retained 32 interfering feature pairs, including:
 
 | Actual-solid observation | Result |
 | --- | --- |
@@ -121,14 +138,44 @@ The report retains 32 interfering feature pairs, including:
 | Partial return, fixed drum, additional 0.2° | About 0.1603 mm³ pickup/track blocking overlap |
 | Trip foot / post in the sampled cycle | Minimum gap 0.025 mm; no sampled closed driving contact |
 
-The trip/latch leaves also intersect each other and the reset roof. The five
-failed assembly checks are the third housing column's section-volume screen,
+The trip/latch leaves also intersected each other and the reset roof. The five
+failed checkpoint assembly checks were the third housing column's section-volume screen,
 keeper insertion, right shell screw clearance outside its allowed thread zone,
 right shell bearing seat, and shell insertion after the reset bridge. The
 column screen measures 76.10 mm³ against its existing 90 mm³ threshold; this
 screen is not a strength calculation. The separate detent's radial insertion,
 root bearing, washer and screw checks passed.
 
+The follow-up's current results are in [checks.json](checks.json). The saved
+coupling still uses the 3° manual entry and prescribed trip/reset; isolated
+release experiments have not established a replacement mechanism.
+
 No contact-driven trip, elastic equilibrium, transient reset, arbitrary reverse
 transition or physical prototype qualification has been completed. The current
 architecture therefore remains unfinished despite the completed CAD audit.
+
+## Unpromoted release investigation
+
+An auxiliary rotor cam was studied at radius 20.8 mm with a 0.45 mm spherical
+follower. Its nominal lift is `1.5 sin²(pi * phase / pocket_pitch)` mm. A
+6° manual entry would produce about 1.48 mm lift, enough to cross a proposed
+1.2 mm hold-open height before A starts driving. The conjugate surface was
+constructed below the envelope of the follower spheres. This is a proposed
+way to distinguish manual entry from RNA pickup; it is not in the saved CAD.
+
+A constant-length trip crank was also studied: 4 mm arm, 8 mm spring-anchor
+offset and 1.2 mm fork stroke. With crank angle q, fork height would be
+`0.6 + 4 sin(q)` mm and spring length `sqrt(80 - 64 cos(q))` mm. The endpoints
+are q=±asin(0.15). A provisional 0.65 mm wire / 3 mm mean diameter / three-active-
+turn / 7 mm free compression spring gives a first-order energy barrier of
+about 5.76 N·mm. These dimensions are calculations, not selected hardware.
+An isolated crank/fork trial cleared 49 sampled positions, but integration
+did not clear the fixed trip cam: at the proposed 11.8° RNA stroke peak, the
+trial recorded about 1.239 mm³ fork/cam and 1.008 mm³ carrier/cam overlap.
+
+Neither study solves the complete contact sequence. A physical continuous-pull
+gate, its home/engagement interlock, spring and pivot seating/retention, friction
+bounds, partial endpoint states and complete insertion paths still need design
+and validation. Do not promote these investigations or change the saved 3°
+entry based on their isolated results. Generated experiments remain under
+ignored `build/v7/`; the saved model remains the explicitly unfinished candidate.

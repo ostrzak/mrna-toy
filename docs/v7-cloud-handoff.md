@@ -1,9 +1,24 @@
-# V7 continuation — REVIEW, mechanism unfinished
+# V7 continuation — user-stopped checkpoint, mechanism REVIEW
 
 Repository: `ostrzak/mrna-toy`, branch `codex/v7-forward-pickup`.
 The cloud continuation started at **fa32f91**, an **INCOMPLETE_HANDOFF** checkpoint,
 not a functional or fully validated mechanism. V6 and every earlier version
 remain preserved. V6 is still the launcher default.
+
+The follow-up fetched and checked **5c4b2c02f2925befef8537cb0fb1ea4ea1ee6e3d**
+before editing. It repairs the keeper/housing fit, rear screw column, lifted-A
+clearance, shell screw seats and shell insertion access. The upper organic
+skin and anchor pocket are repaired for the extended BOP check. These are
+rigid and assembly corrections; the requested mechanical finish remains open.
+
+The user then paused work and requested a GitHub push. The saved checkpoint is
+**INCOMPLETE_CONTINUATION**, with mechanical status **REVIEW**. Its build, all
+five structural extended-BOP checks, 332-feature regeneration comparison,
+normal GUI reopen and control animations completed. The integrated audit was
+stopped during the RNA-forward coupling sweep. Its 23 observed collision pairs
+are partial evidence; remaining coupling poses, final assembly, continuous
+travel certificates and the final mechanical aggregation are not completed.
+The previous completed report remains available in Git at `5c4b2c0`.
 
 Read `AGENTS.md`, `README.md`, `docs/design.md`, `docs/status.md`,
 `docs/development.md`, [the V7 guide](../cad/v7/README.md) and
@@ -42,8 +57,8 @@ is an illustration, not CAD evidence.
   partial-return solid witnesses, spring/leaf assumptions and force calculations.
 - `presentation_v7.py`: GUI reopen, native motion, control tests and actual views.
 - Saved CAD, `checks.json`, `gui-checks.json` and the CAD views are promoted
-  together as a **REVIEW** candidate after a completed integrated CAD audit
-  with failures. Read their precise failures and boundaries.
+  together as an **INCOMPLETE_CONTINUATION** checkpoint at the user's stop.
+  Mechanical status remains REVIEW. Read the precise evidence boundaries.
 
 The continuation corrects manual-pawl crossover interference by placing its
 14.7 mm-radius guide between the tracks and its bridge above B. It reopens the
@@ -53,7 +68,8 @@ The dedicated detent is a separate radially installed leaf below the pickup
 track, clamped by an M2 x 3 screw and 0.5 mm washer.
 
 The two 22-pitch end reserves preserve the front rack phase with 110 pitches.
-Lid columns are 3.1 mm radius, retaining their verified bearing seats.
+Front lid columns are 3.1 mm radius; the rear column is 3.4 mm. Their verified
+bearing seats and the existing local-section threshold are retained.
 Continuous interval checks use actual saved RNA/base/clasp solids against fixed
 housing and conservative protein/drum/upper bounds, not only sampled poses.
 

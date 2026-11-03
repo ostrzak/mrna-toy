@@ -215,8 +215,8 @@ def augment(d,result,overlap):
         roof_key.append(overlap(moved,guard))
     tests['reset roof key blocks mounting rotation']=min(roof_key)>.001
     shells=[]
-    for side,x in [('Left',-14),('Right',14)]:
-        bolt=b.world(d.getObject('UpperShellScrew'+side));point=V(x,-2,0)
+    for side,x,y in c.SHELL_MOUNTS:
+        bolt=b.world(d.getObject('UpperShellScrew'+side));point=V(x,y,0)
         thread=b.cylinder(1.001,3.20001,point+V(0,0,29.8))
         tests['upper shell '+side+' screw clears shell']=overlap(bolt,shell)<TOL
         tests['upper shell '+side+' screw head seated']=bolt.distToShape(shell)[0]<1e-6
