@@ -1,5 +1,14 @@
 # Image provenance
 
+## V6 updated
+
+[v6-updated-flexure-reference.png](v6-updated-flexure-reference.png) is the
+user's supplied photo, retained for the two circled serpentine flexure shapes.
+Other mechanisms visible in it are not requirements or geometry references.
+The images in [cad/v6-updated](../../cad/v6-updated/README.md) are captures of
+that candidate's FreeCAD solids. Springs, seats and the folded detent are
+geometric candidates; the views do not establish force or physical operation.
+
 ## V6 actual CAD
 
 `cad/v6/handheld.png`, `open.png`, `underside.png`, `mechanism.png`,

@@ -1,5 +1,23 @@
 # Project status and next decisions
 
+## V6 updated candidate — 2026-11-04
+
+The user authorized a separate `version6-updated` branch from `version7` and
+confirmed V6 mechanics with V7 RNA traversal. Source and evidence live in
+[cad/v6-updated](../cad/v6-updated/README.md). V6, V7 and earlier versions remain
+preserved. The launcher default remains V6.
+
+This candidate adds the 13.2° far-flank route and associated housing changes,
+native metal coil solids with terminal/seat geometry, a fixed torsion cup,
+and a single connected serpentine detent. Read its own report for CAD results.
+FreeCAD 1.1.4 completed the focused sweep and targeted washer, pedestal and
+terminal-window corrections. The saved report is **FOCUSED_PASS** for CAD,
+with zero remaining reported collisions, native GUI reopening and a 296-feature
+presentation/audit comparison. Mechanical status remains **REVIEW**.
+The old straight-leaf force calculation does not apply to the new folded
+part. Spring hardware fabrication, installation under preload, folded-leaf
+holding force, return under friction, printing and physical tests remain open.
+
 ## V7 cloud CAD review — 2026-11-03
 
 V7 is an unfinished candidate on `codex/v7-forward-pickup`, copied separately

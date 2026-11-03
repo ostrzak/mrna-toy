@@ -21,6 +21,13 @@ is secondary to handling and compact guidance.
 
 ## Start here
 
+**V6 updated** is a separate candidate on `version6-updated`, branched from
+`version7`: V6 mechanics, V7's clasped far-flank RNA route, explicit metal
+springs and their seats/cup, and a printed serpentine detent. See its
+[model and inspection guide](cad/v6-updated/README.md). Its own report defines
+the CAD evidence; spring forces, folded-leaf holding torque and physical
+operation remain unqualified. V6 and V7 remain preserved.
+
 - [Toy purpose and mechanics](docs/design.md)
 - [Current state and engineering risks](docs/status.md)
 - [Development commands](docs/development.md)

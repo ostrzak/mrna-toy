@@ -1,0 +1,18 @@
+{
+  "normal_GUI_close_reopen": true,
+  "native_torsion_winds_without_source": true,
+  "native_compression_changes_without_source": true,
+  "native_lower_washer_tracks_pawl": true,
+  "one_piece_serpentine_without_source": true,
+  "native_open_RNA_without_source": true,
+  "native_update_without_source_directory": true,
+  "model_sha256": "a36cb86d70bbab950d7123da6c257513aacf87f483b82384f72c8e288c63371f",
+  "source_sha256": {
+    "bracelet_v6_updated.py": "1a0b323412b6c011647b0a4654a5c29e15300d1fda4b2ea263988fd4b7073ac3",
+    "rna_path.py": "0277f20bd34d6888940446273dc41a7717179c1f5497899a14b268bdd3684c7c",
+    "springs_v6_updated.py": "66025aebccfdfd79037e31cf072b7e6ef4c56d942ad7e1251a7dfffc011cbd17",
+    "presentation_v6_updated.py": "7ec41c1dff00e8cc5472687b9264ed3d9a6305977f5e030dd45a26a3bd4d786c",
+    "RibosomeV6Updated.FCMacro": "b567d4eea4193db7af0ca76ce8d400a7d9b07849f13c6069ede619c2c8c362f0"
+  },
+  "spring_views_recaptured_from_saved_model": true
+}

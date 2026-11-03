@@ -1,5 +1,16 @@
 # Purpose and conceptual mechanics
 
+## V6 updated candidate
+
+The user chose V6's single-pawl mechanism with V7's clasped far-flank RNA
+traversal on `version6-updated`, branched from `version7`. The separate
+[candidate](../cad/v6-updated/README.md) adds explicit torsion and compression
+spring parts, their mounting/seat geometry, and a folded serpentine printed
+detent inspired by the user's photo. It retains V6's 6° manual entry and
+direct RNA reverse. It does not adopt V7's unfinished pickup/trip/reset.
+Spring motion and leaf deflection are prescribed geometry; forces and physical
+operation remain unqualified.
+
 ## V7 development candidate
 
 V7 is separate from V6 and remains unfinished. Its intended two-pawl coupling

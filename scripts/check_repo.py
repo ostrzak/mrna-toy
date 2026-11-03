@@ -100,6 +100,33 @@ def run() -> int:
     except (OSError,ValueError,zipfile.BadZipFile) as error:
         errors.append('V7 checkpoint evidence could not be read: '+str(error))
 
+    candidate=ROOT/'cad/v6-updated'
+    if candidate.is_dir():
+        try:
+            required_candidate=('RibosomeV6Updated.FCStd','RibosomeV6Updated.FCMacro','README.md',
+                'bracelet_v6_updated.py','rna_path.py','springs_v6_updated.py','validation_v6_updated.py',
+                'assembly_v6_updated.py','engineering_v6_updated.py','presentation_v6_updated.py',
+                'checks.json','gui-checks.json','engineering.md','handheld.png','side.png','open.png',
+                'underside.png','mechanism.png','spring-installation.png','spring-loaded.png',
+                'torsion-spring.png','serpentine-leaf.png')
+            errors.extend('Missing V6 updated artifact: '+name for name in required_candidate if not (candidate/name).is_file())
+            candidate_report=json.loads((candidate/'checks.json').read_text(encoding='utf-8'))
+            candidate_gui=json.loads((candidate/'gui-checks.json').read_text(encoding='utf-8'))
+            digest=hashlib.sha256((candidate/'RibosomeV6Updated.FCStd').read_bytes()).hexdigest()
+            if candidate_report.get('version')!='6-updated' or candidate_report.get('status') not in ('REVIEW','FOCUSED_PASS'):
+                errors.append('V6 updated requires its own completed CAD report and explicit evidence boundary.')
+            for report in (candidate_report,candidate_gui):
+                if report.get('model_sha256')!=digest:errors.append('V6 updated model/report hash mismatch.')
+                for name,expected in report.get('source_sha256',{}).items():
+                    if not source_matches(candidate/name,expected):errors.append('V6 updated source/report mismatch: '+name)
+            if not candidate_gui.get('native_update_without_source_directory') or not candidate_gui.get('normal_GUI_close_reopen'):
+                errors.append('V6 updated requires normal GUI reopen and source-independent native spring motion.')
+            with zipfile.ZipFile(candidate/'RibosomeV6Updated.FCStd') as archive:
+                if not {'Document.xml','GuiDocument.xml'}<=set(archive.namelist()) or archive.testzip() is not None:
+                    errors.append('V6 updated lacks valid native CAD/display data.')
+        except (OSError,ValueError,zipfile.BadZipFile) as error:
+            errors.append('V6 updated evidence could not be read: '+str(error))
+
     code_count = 0
     for folder in (ROOT / 'cad', ROOT / 'scripts'):
         for path in folder.rglob('*'):
@@ -218,7 +245,7 @@ def run() -> int:
         print('\n'.join('ERROR: ' + error for error in errors))
         return 1
     print(f'PASS - {code_count} Python/macro files parsed, {link_count} local Markdown links checked, '
-          'seven CAD containers readable, report snapshots consistent.')
+          'saved CAD containers readable, report snapshots consistent.')
     print('This is repository integrity checking, not a fresh FreeCAD or physical-mechanism test.')
     if current.get('status') != 'PASS':
         print('V3 CAD validation is incomplete: '+current['status'])

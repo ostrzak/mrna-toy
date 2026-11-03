@@ -6,6 +6,8 @@ V7 is an authorized but **unfinished** candidate in `cad/v7/`, on `codex/v7-forw
 
 ## Current design contract
 
+- `cad/v6-updated/` is the separate user-authorized candidate on `version6-updated`, branched from `version7` at `7be0579`. Use V6 mechanics with V7's 13.2° / 110-pitch clasped route, explicit nonprinted springs/seats/cup, and one printed serpentine detent. Read its README and engineering boundary. Preserve V6 and V7; select `--version 6-updated` explicitly. Folded-leaf force and physical operation remain unqualified.
+
 - V6 in `cad/v6/` is the current handheld design, authorized on 2026-10-30. Preserve V5, V4 and V4 Print, V3 with its incomplete report, and V2 with its invalidated-validation warning.
 - V6 uses one captive TPU-candidate RNA strip through a short capture channel at the front drive peak. Its ends may be joined underneath or left open; clasp shoulders double as end stops. Both outer holders are removed. The longer closed route crosses the curved flank before returning underneath in an open groove. No bottom rails, parking clip, wrist cuff or finger ring.
 - Moving RNA backward directly retracts protein. No external release lever, rewind reel or protein take-up spring. V5's circular loop and release tab are preserved comparisons.

@@ -1,5 +1,17 @@
 # Development and local handoff
 
+## V6 updated candidate
+
+Select `--version 6-updated` for the separate candidate on `version6-updated`.
+It uses V6 mechanics and V7 RNA traversal, with explicit spring hardware and a
+folded detent. Its self-contained source is `cad/v6-updated/`; generated
+outputs go to `build/v6-updated/`. The saved model and reports are protected.
+Use the same doctor/build/validate commands below with that explicit version.
+`presentation_v6_updated.run(model_path, output_dir)` writes normal-reopen
+evidence and actual spring/leaf inspection views before deliberate promotion.
+The native spring sweeps make cap recomputes slower. CAD clearance does not
+establish folded-leaf force, supplier spring selection or physical operation.
+
 ## V7 unfinished cloud continuation
 
 The user authorized GitHub/cloud continuation. Read
