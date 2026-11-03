@@ -1,7 +1,7 @@
 {
   "runtime": "1.1.4",
-  "status": "INCOMPLETE_HANDOFF",
-  "controls_animation_checked": false,
+  "status": "REVIEW",
+  "controls_animation_checked": true,
   "full_geometry_checked": false,
   "normal_GUI_close_reopen": true,
   "native_update_without_source_directory": true,
@@ -97,15 +97,58 @@
       "upper_degrees": 0.0
     }
   ],
-  "model_sha256": "929b9666376bb2bba7a073961143b6908d7f8ae72ec02284ddfd01b39bae013e",
-  "source_sha256": {
-    "assembly_v7.py": "5611e95eb373855d96362990c7e7634b1488c1828a11af73f9cd9e86642c18d5",
-    "bracelet_v7.py": "dc04699782bc6ee09ac82d896fa1740812d2c14a386430a2effda333fb2514ec",
-    "coupling_v7.py": "42c211ae47b71dcc4081e380938be9bb4aa5c706889e9afa887a4dc889c60bfa",
-    "engineering_v7.py": "60e80c28b01773c48b32b79d376b4ebf8399117da45e507502e304b3b5c3933f",
-    "presentation_v7.py": "5fa6b47896c7fd88f4e17e91a5452c3ba5f3429de7eb533a46cdd434101e077b",
-    "rna_path.py": "8f938f1d6b788f97c8b9b126acdf7feaad3552771d581a764f10d214cbee4d64",
-    "validation_v7.py": "6f6e07eac6e1ced9a1f5f58e85a214a7ff6cd8c748f2bcbb86b69d075f7e1232"
+  "controls_created": true,
+  "controls_results": [
+    {
+      "control": "RNA forward \u2014 one bead",
+      "completed_index": 7,
+      "upper_home": true
+    },
+    {
+      "control": "Rock upper \u2014 one bead",
+      "completed_index": 7,
+      "upper_home": true
+    },
+    {
+      "control": "RNA backward \u2014 one bead",
+      "completed_index": 5,
+      "upper_home": true
+    },
+    {
+      "control": "RNA target slider",
+      "completed_index": 8,
+      "upper_home": true
+    },
+    {
+      "control": "RNA target slider",
+      "completed_index": 6,
+      "upper_home": true
+    }
+  ],
+  "model_sha256": "476d5c22b3d2c4cf2989f22847a7c5793182bb028b1f98e05c33a434beb57fb6",
+  "boundary": "Actual GUI reopen, self-contained native poses and control acceptance for this saved model. Geometry/presentation hashes are verified. Auditors were revised after capture and the integrated run was interrupted; their current snapshots are not GUI validation evidence. No functional mechanism or physical qualification.",
+  "source_snapshot_sha256_at_capture": {
+    "validation_v7.py": "1c7ca199c0c135c9cfdbce0312c4acf4d523b020245d81c4ff94c4bc23f6c820",
+    "engineering_v7.py": "bd185885a89d19663f07da7966aed5ba12cb16a1c6c6fdb4c8d54705c68f216a",
+    "bracelet_v7.py": "42e96d5964d24d522bca209df5bcfd9d52daf74399b78e1f6b4f9b0922b2325d",
+    "rna_path.py": "0d38d4091b23323af7b583327fa245640184b85d455799cd92652ab6aa707534",
+    "presentation_v7.py": "2a55d4f914a5c98c3a377683f9706d25837055c13d80feb2fffcbf410b1b25f0",
+    "assembly_v7.py": "472069f9105f186899dbfd6d2d0a6f2fa2f2957ec6b512c374e843fe5bfa49f9",
+    "travel_v7.py": "a6522d0acc967f8191a49db20e0e686696a742ed73c623c65bff81aa64708dc1",
+    "coupling_v7.py": "26a54388cc98d0326a1e9eedf285c926a732d20cfac9c91b1cf8a56ea8c07f87",
+    "mechanical_v7.py": "136db995feb7491fe87da6e5262f43b27c805deb78b2b6d35384b0213cec26a6"
   },
-  "controls_created": true
+  "source_sha256": {
+    "bracelet_v7.py": "42e96d5964d24d522bca209df5bcfd9d52daf74399b78e1f6b4f9b0922b2325d",
+    "rna_path.py": "0d38d4091b23323af7b583327fa245640184b85d455799cd92652ab6aa707534",
+    "coupling_v7.py": "26a54388cc98d0326a1e9eedf285c926a732d20cfac9c91b1cf8a56ea8c07f87",
+    "presentation_v7.py": "2a55d4f914a5c98c3a377683f9706d25837055c13d80feb2fffcbf410b1b25f0"
+  },
+  "unvalidated_auditor_source_sha256": {
+    "validation_v7.py": "1c7ca199c0c135c9cfdbce0312c4acf4d523b020245d81c4ff94c4bc23f6c820",
+    "engineering_v7.py": "bd185885a89d19663f07da7966aed5ba12cb16a1c6c6fdb4c8d54705c68f216a",
+    "assembly_v7.py": "472069f9105f186899dbfd6d2d0a6f2fa2f2957ec6b512c374e843fe5bfa49f9",
+    "travel_v7.py": "b9c3e2fdbe0b5d373c5547658be26da902bef322a44f3392ef577b8a31578d80",
+    "mechanical_v7.py": "136db995feb7491fe87da6e5262f43b27c805deb78b2b6d35384b0213cec26a6"
+  }
 }

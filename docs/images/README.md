@@ -47,9 +47,12 @@ opposing pawls on separate tracks of one rotor, with a pickup release latch.
 It is **not current V7 CAD, a manufacturing drawing or proof of operation**.
 The contacts and exaggerated component shapes must not replace actual solids.
 
-Actual V7 checkpoint views are in [cad/v7](../../cad/v7/README.md). Their
-integrated geometry, assembly, reset timing and physical qualification remain
-unfinished. See [the cloud handoff](../v7-cloud-handoff.md).
+Actual V7 review views are in [cad/v7](../../cad/v7/README.md), captured from
+the saved solids in cloud FreeCAD 1.1.4, including joined and open RNA and
+the higher 13.2-degree far-flank route. They are CAD evidence, not generated
+illustrations or proof of physical operation. The report retains rigid and
+mechanical failures; reset timing and physical qualification remain unfinished.
+See [the continuation record](../v7-cloud-handoff.md).
 
 ## Preserved wearable concept illustration
 

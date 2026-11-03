@@ -53,11 +53,16 @@ def pickup_pawl():
 
 def pickup_fork():
     collar=b.annulus(1.05,2.25,23.8,1);collar.translate(V(B_GUIDE,0,0))
-    arm=Part.makeBox(4.1,1.3,.8,V(B_GUIDE,-.65,24.0))
+    # Its underside must land on the latch at z=26 after 1.8 mm lift.
+    # The checkpoint's z=24.0/.8 arm penetrated the lip by .2 mm.
+    arm=Part.makeBox(4.1,1.3,.6,V(B_GUIDE,-.65,24.2))
     tab=Part.makeBox(1.3,1.3,1.2,V(28.5,-.65,24.2))
     follower=Part.makeSphere(.45,V(28.8,0,25.8))
     root=b.cylinder(.3,1.1,V(28.8,0,24.8))
-    return rotated(b.union([collar,arm,tab,follower,root]))
+    # The arm starts at the guide centre and otherwise fills half of the
+    # collar's bore. Reopen the passage through the COMPLETE fused fork.
+    result=b.union([collar,arm,tab,follower,root])
+    return rotated(result.cut(b.cylinder(1.05,5,V(B_GUIDE,0,23.5))))
 
 
 def reset_roof():
@@ -89,7 +94,9 @@ def reset_roof():
 
 
 def latch_tip():
-    return rotated(Part.makeBox(1.4,1.5,.4,V(28.8,-.75,25.6)))
+    # Keep the lip outside the .45 mm reset follower at r=28.8, while
+    # retaining a .35 mm radial bearing on the fork tab ending at r=29.8.
+    return rotated(Part.makeBox(1.4,1.5,.4,V(29.45,-.75,25.6)))
 
 
 def latch_anchor():
@@ -137,11 +144,11 @@ def add(d):
     latch_group=b.group(d,'PickupLatchAssembly','Upper-mounted hold-open leaf and its supported root')
     upper.addObject(latch_group);latch_group.Placement.Rotation=App.Rotation(V(0,0,1),B_ANGLE)
     latch=b.feature(d,'PickupLatchTip','Hold-open lip — under fork tab during upper return',
-        Part.makeBox(1.4,1.5,.4,V(28.8,-.75,25.6)),latch_group,'latch')
+        Part.makeBox(1.4,1.5,.4,V(29.45,-.75,25.6)),latch_group,'latch')
     latch.setExpression('Placement.Base.x','Motion.LatchDeflection')
     # Free tip is at local y=0, root at -7. Connected beam chords are a
     # prescribed deformation, as in the retained click leaf.
-    b.flexure_segments(d,latch_group,'PickupLatchLeaf',29.8,0,7,25.6,
+    b.flexure_segments(d,latch_group,'PickupLatchLeaf',30.3,0,7,25.6,
                       'Motion.LatchDeflection / 1 mm',True,.8,.4)
     roof=b.feature(d,'PickupResetRoof','Fixed roof lowers the pickup fork on approach to home',reset_roof(),fixed,'guide')
     b.feature(d,'PickupTripPost','Fixed end-of-stroke trigger post — trip snap study',trip_post(),fixed,'guide')
@@ -205,6 +212,10 @@ def add(d):
                   'M2 x 6 countersunk — detachable upper shell',screw,upper,'gear')
     # A long service window permits the fixed bridge screw to be inserted
     # before fitting the shell; it also clears the fixed hardware in motion.
+    # Added shell spokes must not fill the original spindle and cap-screw
+    # passages. Reapply both bores AFTER all carrier unions.
+    carrier=carrier.cut(b.cylinder(3.3,35,V(0,0,20)))
+    carrier=carrier.cut(b.cylinder(4.35,20,V(0,0,33.4)))
     shell=shell.cut(carrier).removeSplitter()
     pieces=sorted(shell.Solids,key=lambda s:s.Volume,reverse=True)
     if sum(s.Volume for s in pieces[1:])>1e-5:

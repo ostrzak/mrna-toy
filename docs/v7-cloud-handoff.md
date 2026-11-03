@@ -1,122 +1,122 @@
-# V7 cloud continuation — incomplete checkpoint
+# V7 continuation — INCOMPLETE_CONTINUATION, mechanism unfinished
 
-Repository: `ostrzak/mrna-toy`. Starting branch: `codex/v7-forward-pickup`.
-The branch started from `d50dc62` on `main`. The user authorized saving/pushing
-the unfinished work and moving further development to Codex Cloud.
+Repository: `ostrzak/mrna-toy`, branch `codex/v7-forward-pickup`.
+The cloud continuation started at **fa32f91**, an **INCOMPLETE_HANDOFF** checkpoint,
+not a functional or fully validated mechanism. V6 and every earlier version
+remain preserved. V6 is still the launcher default.
 
 Read `AGENTS.md`, `README.md`, `docs/design.md`, `docs/status.md`,
-`docs/development.md`, then `cad/v7/README.md`. No previous chat, local desktop,
-private filesystem or MCP session is needed.
+`docs/development.md`, [the V7 guide](../cad/v7/README.md) and
+[mechanical audit](../cad/v7/engineering.md). No previous chat, Windows desktop,
+private filesystem or local MCP connection is required.
 
-## What the user authorized
+## Required behavior
 
-Develop V7 separately; preserve V6 and every older comparison. Reuse V6 solids
-where appropriate. Keep the dedicated click/detent leaf.
+1. Forward RNA must drive protein and rock the upper.
+2. Upper input must positively advance three RNA teeth per bead.
+3. The upper must automatically disengage on return without drum rollback.
+4. Backward RNA must retract protein with the upper home, without an external
+   release lever. Straighten emerged protein first.
+5. Retain three bases per bead, bounded travel, 26 beads, 28 pockets, 22 steps,
+   four hidden beads and at least three at or behind the tangent station.
+6. Keep the dedicated bidirectional detent leaf.
+7. Close RNA farther across the body midline and around the far flank, snugly
+   beside a matching groove, while retaining captive open-strand operation.
 
-1. Sliding RNA forward should rock the upper and advance protein.
-2. Rocking the upper should itself advance RNA and protein.
-3. The upper should disengage on its return, without reversing the drum.
-4. RNA backward should retract protein with the upper home, without an
-   external release lever. Straighten the emerged chain first.
-5. Retain three bases per bead, bounded travel, 26 beads / 28 pockets / 22
-   steps, four hidden beads and at least three at/behind the tangent station.
-6. Route the closed RNA farther across the body midline and around the far
-   flank, close to a matching groove. Retain captive open-strand operation.
+The marked [routing reference](images/v7-routing-request.png) is qualitative,
+not dimensional. The [coupling illustration](images/v7-coupling-concept.png)
+is an illustration, not CAD evidence.
 
-The user's marked routing reference is
-[v7-routing-request.png](images/v7-routing-request.png). Its red line is a
-qualitative path request, not dimensions. The
-[generated coupling illustration](images/v7-coupling-concept.png) explains the
-proposed opposite catches; it is not current CAD or validated geometry.
+## Current source and evidence
 
-## Implemented candidate
+`cad/v7/` remains self-contained; it does not import the V6 generator.
 
-`cad/v7/` is a self-contained source copy, not an import of the V6 generator.
+- `bracelet_v7.py`: body, shared drive, RNA, protein, native study and controls.
+- `coupling_v7.py`: opposite A/B tracks, pickup fork/latch, prescribed trip,
+  reset roof, carrier/shell split and fasteners.
+- `rna_path.py`: nominal inextensible open/closed layouts, 33 mm bends,
+  110 pitches / 248.814 mm length. The generator now uses a 13.2° plane.
+- `validation_v7.py`, `assembly_v7.py`: actual-solid contacts, continuous bounds,
+  native coordinates/orientations, stops, wall/seat witnesses and sampled assembly.
+- `mechanical_v7.py`, `engineering_v7.py`: independent causal rejection audit,
+  partial-return solid witnesses, spring/leaf assumptions and force calculations.
+- `presentation_v7.py`: GUI reopen, native motion, control tests and actual views.
+- Saved CAD, `checks.json`, `gui-checks.json` and the CAD views are promoted
+  together as an **INCOMPLETE_CONTINUATION** candidate, with validation pending. Read their precise failures and boundaries.
 
-- `bracelet_v7.py`: body, shared drive, RNA and protein, native cycle, GUI
-  controls. `InputKind`: 0 RNA forward, 1 manual upper, 2 RNA reverse.
-- `coupling_v7.py`: opposite pickup track/pawl, lifting fork, hold-open leaf,
-  trip/snap leaf, fixed reset roof, upper carrier/shell split and extra screws.
-- `rna_path.py`: broad 33 mm bends, 110 pitches; 16-degree routing plane in
-  the generator. Front rack mesh is unchanged. Material length 248.814 mm.
-- `validation_v7.py`, `assembly_v7.py`: partially adapted development checks.
-  They have not completed a successful integrated run.
-- `engineering_v7.py`: incomplete starting force budget; it explicitly lists
-  missing pickup, snap and reset terms.
-- `presentation_v7.py`: checkpoint GUI/native helper. Its evidence is separate
-  from integrated CAD validation and controls-animation acceptance.
-- `RibosomeV7.FCStd`, actual CAD views, `checks.json`, `gui-checks.json`:
-  an explicitly incomplete inspection checkpoint, not a release.
+The continuation corrects manual-pawl crossover interference by placing its
+14.7 mm-radius guide between the tracks and its bridge above B. It reopens the
+carrier spindle/retainer passages and the complete fork guide bore after unions.
+The fork arm and lip no longer deliberately occupy the same bearing volume.
+The dedicated detent is a separate radially installed leaf below the pickup
+track, clamped by an M2 x 3 screw and 0.5 mm washer.
 
-The source now positively drives a complete manual bead step after 3 degrees
-of entry. Manual upper travel is 15.857 degrees; RNA pickup travel is 12.857
-degrees. This avoids the discarded detent-assisted finishing scheme but is
-not an identical angular stroke. Preserve or deliberately improve this
-tradeoff; do not conceal it.
+The two 22-pitch end reserves preserve the front rack phase with 110 pitches.
+Lid columns are 3.1 mm radius, retaining their verified bearing seats.
+Continuous interval checks use actual saved RNA/base/clasp solids against fixed
+housing and conservative protein/drum/upper bounds, not only sampled poses.
 
-## Evidence boundary at handoff
+RNA returns approximately through y=35.118, z=3.904 mm. Its 3.4 mm groove bounds
+rail and clasp; a separate continuous offset tube bounds the outward-facing
+bases. The storage cavity is 30.9 mm radius. The validator tests a protected
+wall region and finite actual far-flank material. The broad inward 4.65 mm
+circumcircle cut is removed. Nominal layouts still do not establish TPU strain,
+tension, sag or hand comfort.
 
-FreeCAD 1.1.4 with `Part` and bundled `fcgear` was available locally. A complete
-V7 source build has been run. Earlier isolated actual-solid pawl/track probes
-showed zero rigid interference and contact for the active drive directions,
-plus clear nominal coast/return poses. Those probes preceded final integration
-and timing changes; they do not validate the saved final checkpoint.
+Manual input retains 3° entry plus a full 12.857° positive feed, or 15.857° total.
+RNA pickup rocks 12.857°. This unequal-stroke tradeoff remains deliberate;
+the detent is not used to finish a manual feed step.
 
-The integrated coupling probe was interrupted while checking the first input.
-It did not yield a complete report. Full RNA/body/gear/protein phase checks,
-new assembly checks and complete native controls acceptance remain unfinished.
-Read the machine-readable incomplete report; never substitute V6's PASS.
+## Mechanical blockers remain
 
-The most important unresolved issue is **physical control of the trip and
-reset sequence**. The fork, latch and trip leaf have native prescribed states.
-These do not prove that spring forces will produce those states. Continuous
-RNA pull is paused by the GUI, not by a completed mechanical gate. Analyze
-snap energy, holding/release loads, reset rate, missed cycles, partial strokes
-and reverse attempts before claiming a functional mechanism.
+**The requested mechanical finish has not been achieved.**
 
-## Suggested next work
+- Return torque at home is about 4.28 N·mm; A's entry cam needs about
+  6.26 N·mm even without friction, before latch/bearing/reset loads.
+- The trip's snap branch, stored energy and reset remain prescribed rather
+  than a contact-driven elastic solution. Its animated centreline changes length.
+- There is no physical continuous-pull interlock or qualified reset speed.
+  The animation's stationary RNA interval does not constrain hardware.
+- Before the end trip, B can prevent partial upper return once A's entry
+  clearance is recovered. With B engaged, upper return at fixed drum angle
+  contradicts the drive-face constraint. Spring sizing alone cannot fix this.
+- Native reverse-at-home poses do not establish a transition from every
+  partial, loaded or latched state. `InputKind` is not a physical actuator.
 
-1. Provision and verify a compatible FreeCAD runtime; run `doctor`. Ordinary
-   Python cannot supply `FreeCAD`, `Part` or the bundled `fcgear` modules.
-2. Inspect the saved V7 candidate and source. Resolve actual mechanical
-   causality, not only collision-free scripted movement. Simplify if needed,
-   but preserve the user's interaction requirements and explain tradeoffs.
-3. Finish and run the integrated validator/auditor. Expensive near-coincident
-   Booleans should use justified local crops, repeated-pose caching and
-   validated envelopes. Do not skip failed pairs or loosen tolerances to pass.
-4. Check both RNA modes across full travel, the flank groove, clasp motion,
-   wall thickness, protein outlet clearance and actual bead/drum phases.
-5. Check the detachable shell, reset bridge, fastener seats, keys, guide pins,
-   driver access and real assembly paths. The bridge is intended to be
-   inserted radially above its locating pin, then lowered, before the shell.
-6. Exercise native forward/manual/reverse cycles and GUI controls, save and
-   normally reopen the model, then update source/model/reports/views together.
-7. Keep CAD, spring assumptions and physical tests distinct. No model here
-   demonstrates printing, feeding, force, fatigue, sound or hand fit.
+Do not eliminate these failures by changing animation timing, excluding contacts,
+loosening interference tolerances, substituting V6 evidence or marking missing
+analysis as passed. Resolve the actual contact sequence before choosing final
+springs or promoting a functional result. Remaining rigid collisions and assembly
+failures are also recorded in `checks.json`; local corrections are not a global PASS.
 
-## Portable commands and constraints
+## Portable runtime and checks
+
+FreeCAD 1.1.4 with Part and bundled fcgear passed `doctor` in the cloud. A user-space
+Xvfb display permits native GUI work without a desktop connection. Generated
+models, diagnostics, runtime helpers and views belong under ignored `build/v7/`.
+V7 `build()` defaults there, and the launcher protects saved version artifacts.
 
 ```sh
-python scripts/check_repo.py
 python scripts/cad.py doctor --freecad /path/to/compatible/FreeCADCmd
 python scripts/cad.py build --version 7 --force --freecad /path/to/compatible/FreeCADCmd
 python scripts/cad.py validate --version 7 --freecad /path/to/compatible/FreeCADCmd
+python scripts/check_repo.py
 ```
 
-The launcher's default remains V6 while V7 is incomplete. Outputs go to
-ignored `build/v7/`. The saved V7 report must stay incomplete until a fresh
-appropriate run establishes something stronger. Preserve old CAD/report/image
-bytes. Do not use an old V6 report, static checker or illustration as evidence
-that V7 works. Cloud FreeCAD/runtime setup is not validated by the Windows run.
+`validate` returning nonzero for REVIEW is expected and must not be hidden.
+`checks.events.jsonl` retains offending poses during a new run. Exact local
+Boolean crops use bounding-box intersection identities; failed localization
+falls back to the whole solid, never a skipped pair. The interference tolerances
+remain 1e-5 mm³, and 5e-5 mm³ for the actual involute rack mesh.
 
-V6's preceding Linux GUI workflow is documented, but do not assume access to
-that machine or cached dependencies. Install a compatible runtime in the
-cloud environment. Use offscreen rendering or a virtual display if available;
-if GUI dependencies are unavailable, say so and leave GUI acceptance open.
-No Windows GUI/MCP bridge or local personal skill is a repository dependency.
+Ellipsoids are partitioned at existing rational-surface knots before Booleans,
+without changing their exact geometry. Round route bounds use cylinders and
+quarter tori. The original generic spline representation passed basic validity
+but failed extended BOP checks and returned incorrect intersections. The new
+validator records extended checks on five structural solids; patch boundaries
+are retained without final seam simplification.
 
-The repository checker accepts exact source digests or CRLF-to-LF-normalized
-source digests, because Git can check Python/macros out with Windows line
-endings while the earlier reports were generated on Linux. CAD model hashes
-remain byte-exact. This normalization does not rewrite preserved sources or
-reports and does not permit any other source changes.
+CAD and analytical necessary conditions are distinct from physical qualification.
+No printed V7, measured forces, spring/latch reliability, feed/retraction,
+clasp retention, fatigue, sound or ergonomic qualification exists. The V4 Print
+package does not qualify this mechanism.

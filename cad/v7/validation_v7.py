@@ -12,15 +12,44 @@ import Part
 import bracelet_v7 as b
 import assembly_v7
 import coupling_v7 as c
+import mechanical_v7
 from engineering_v7 import estimates
 
 V=App.Vector
 TOL=1e-5
 GEAR_TOL=5e-5
+OVERLAP_STATS={'localized_solids':0,'localization_fallbacks':0}
 
 
 def overlap(a,c):
-    if a.isNull() or c.isNull() or not a.BoundBox.intersect(c.BoundBox): return 0.0
+    # An empty Boolean compound is not necessarily isNull(), and its bounding
+    # box is void. With no solids it has exactly zero volume intersection.
+    if a.isNull() or c.isNull() or not a.Solids or not c.Solids: return 0.0
+    if not a.BoundBox.intersect(c.BoundBox):return 0.0
+    # Exact localization: C is wholly inside its bounding box, so
+    # (A intersect box(C)) intersect C = A intersect C. This does not relax
+    # contact tolerances, replace teeth by profiles, or skip a failed pair.
+    # It avoids passing every tooth/organic face to the final local Boolean.
+    qa,qc=a.BoundBox,c.BoundBox
+    lows=[max(getattr(qa,k+'Min'),getattr(qc,k+'Min')) for k in 'XYZ']
+    highs=[min(getattr(qa,k+'Max'),getattr(qc,k+'Max')) for k in 'XYZ']
+    lengths=[max(0,c-a) for a,c in zip(lows,highs)]
+    volume=math.prod(lengths)
+    def localize(shape,other):
+        q=shape.BoundBox
+        if len(shape.Faces)>50 and volume < .6*q.XLength*q.YLength*q.ZLength:
+            pad=1e-4
+            box=Part.makeBox(*(x+2*pad for x in lengths),V(*(x-pad for x in lows)))
+            cropped=shape.common(box)
+            if not cropped.isNull() and not cropped.isValid():
+                # Fall back to the original exact solid; never skip the pair.
+                OVERLAP_STATS['localization_fallbacks']+=1
+                return shape
+            OVERLAP_STATS['localized_solids']+=1
+            return cropped
+        return shape
+    a,c=localize(a,c),localize(c,a)
+    if a.isNull() or c.isNull():return 0.0
     return max(0.0,a.common(c).Volume)
 
 
@@ -57,19 +86,41 @@ def periodic_vertex_error(shape,angle):
 
 
 def run(d,report_path=None):
-    destination=Path(report_path) if report_path else b.HERE/'checks.json'
+    destination=Path(report_path) if report_path else b.HERE.parents[1]/'build/v7/checks.json'
     destination.parent.mkdir(parents=True,exist_ok=True)
     m=d.Motion
     def pose(step=0,closed=True,stroke=0,returning=False):
         m.BeadSteps=step;m.StrandClosed=closed;m.InputKind=0;m.CyclePosition=0;d.recompute()
     pose()
+    for name,value in [('RnaRouteAngle',b.RNA_ROUTE_ANGLE),('RnaGrooveRadius',b.RNA_GROOVE_RADIUS),
+                       ('BodyCavityRadius',b.BODY_CAVITY_RADIUS)]:
+        if not hasattr(m,name) or abs(getattr(m,name)-value)>1e-10:
+            raise RuntimeError('Saved V7 parameters do not match source: '+name)
     parts={o.Name:dict(valid=o.Shape.isValid(),solids=len(o.Shape.Solids),volume_mm3=round(o.Shape.Volume,6))
            for o in d.Objects if hasattr(o,'DisplayColour')}
     invalid=[n for n,v in parts.items() if not v['valid'] or v['solids']!=1]
+    for name in ('LowerBody','LowerLid','GearGuard','UpperLobe','UpperCarrier'):
+        try:
+            d.getObject(name).Shape.check(True)
+            parts[name]['extended_BOP_check']=True
+        except Exception as exc:
+            parts[name]['extended_BOP_check']=False
+            parts[name]['extended_BOP_error']=str(exc)
     worst={};witness={};errors={};notes=[]
-    def record(name,a,c): worst[name]=max(worst.get(name,0),overlap(a,c))
+    trace=destination.with_suffix('.events.jsonl')
+    trace.write_text(json.dumps(dict(event='start',model=d.FileName,
+        runtime='.'.join(App.Version()[:3])))+'\n',encoding='utf-8')
+    def record(name,a,c):
+        amount=overlap(a,c)
+        if amount>worst.get(name,0):
+            worst[name]=amount
+            if amount>(GEAR_TOL if name=='actual RNA rack / involute gear' else TOL):
+                with trace.open('a',encoding='utf-8') as stream:
+                    stream.write(json.dumps(dict(event='overlap',pair=name,volume_mm3=amount,
+                        input=m.InputKind,cycle=m.CyclePosition,starting_index=m.BeadSteps))+'\n')
+        else:worst.setdefault(name,0)
     def put_error(name,value): errors[name]=max(errors.get(name,0),abs(value))
-    hardware=['CapWasher']+[f'HousingScrew{i:02}' for i in range(len(b.CASE_MOUNTS))]
+    hardware=['CapWasher','DetentWasher','DetentScrew']+[f'HousingScrew{i:02}' for i in range(len(b.CASE_MOUNTS))]
     fixed_names=['LowerBody','LowerLid','GearGuard','BeadKeeper','CentreAxle','CapRetainer',
                  'CapSpringEnvelope','CapFixedSpringLeg','DetentAnchor']+hardware
     fixed={n:b.world(d.getObject(n)) for n in fixed_names}
@@ -128,15 +179,29 @@ def run(d,report_path=None):
     tube=b.return_clearance()
     record('continuous RNA tube / lower body',tube,fixed['LowerBody'])
     record('continuous open RNA tails / lower body',b.open_return_clearance(),fixed['LowerBody'])
+    record('continuous closed RNA bases / lower body',b.base_clearance(True),fixed['LowerBody'])
+    record('continuous open RNA bases / lower body',b.base_clearance(False),fixed['LowerBody'])
+    # A groove that clears RNA may still break into the storage cavity.
+    # This continuous protected cylinder includes .8 mm beyond its actual
+    # bore, over the full lower-body wall height. Also witness finite actual
+    # material in the critical far-midline wall, not an empty clearance alone.
+    protected=b.cylinder(b.BODY_CAVITY_RADIUS+.8,14.5-2.7,V(0,0,2.7))
+    record('RNA groove / protected cavity wall',tube,protected)
+    wall_patch=b.angular_sector(b.BODY_CAVITY_RADIUS+.05,b.BODY_CAVITY_RADIUS+.8,80,100,4,4)
+    wall_missing=wall_patch.cut(fixed['LowerBody']).Volume
+    record('far-flank wall witness missing material',wall_patch,wall_patch.cut(fixed['LowerBody']))
     # Tangential span and curvature sag bound each canonical component.
     r=b.route.RADIUS
     rail_bound=math.hypot(2.28,1.15)+(b.RNA_PITCH+.3)**2/(8*r)
     base_bound=.48+max(b.RNA_BASE_LENGTHS)+.53+.53**2/(2*r)
-    clasp_bound=math.hypot(1.6,2.4)+5.0**2/(2*r)
-    envelope=dict(radius_mm=4.65,link_required_radius_mm=rail_bound,
+    clasp_bound=math.hypot(1.6,2.4)+5.5**2/(2*r)
+    envelope=dict(radius_mm=b.RNA_GROOVE_RADIUS,link_required_radius_mm=rail_bound,
                   base_required_radius_mm=base_bound,clasp_required_radius_mm=clasp_bound,
+                  base_separate_offset_sweep=True,base_offset_mm=2.23,base_sweep_radius_mm=2.28,
+                  body_cavity_radius_mm=b.BODY_CAVITY_RADIUS,protected_wall_mm=.8,
+                  far_flank_wall_patch_missing_mm3=wall_missing,
                   minimum_bend_radius_mm=r,nominal_path_only=True)
-    envelope_ok=max(rail_bound,base_bound,clasp_bound)<4.65
+    envelope_ok=max(rail_bound,clasp_bound)<b.RNA_GROOVE_RADIUS
     print('V7 checks: single central RNA channel, base slot and physical end-stop shoulders',flush=True)
     guard=fixed['GearGuard'];retention=[]
     for x in (0,):
@@ -218,9 +283,18 @@ def run(d,report_path=None):
 def coupling_checks(d,record,put_error):
     m=d.Motion;contacts=[];poses=[];latch_witness=[];stop_witness=[]
     rotor={o.Name for o in d.Rotor.Group}
-    cover={'GearGuard','DetentAnchor','DetentTip','PickupTripPost'}|{f'DetentLeaf{i}' for i in range(8)}
-    frame={'UpperCarrier','PickupLatchTip','PickupTripFoot'}|{
-        f'PickupLatchLeaf{i}' for i in range(8)}|{f'PickupTripLeaf{i}' for i in range(10)}
+    def integral_join(names):
+        if names=={'GearGuard','PickupTripPost'}:return True
+        for prefix,last,tip,root in (
+            ('DetentLeaf',7,'DetentTip','DetentAnchor'),
+            ('PickupLatchLeaf',7,'PickupLatchTip','UpperCarrier'),
+            ('PickupTripLeaf',9,'PickupTripFoot','UpperCarrier')):
+            indices=[int(n[len(prefix):]) for n in names if n.startswith(prefix)]
+            if len(indices)==2 and abs(indices[0]-indices[1])==1:return True
+            if len(indices)==1:
+                if tip in names and indices[0]==0:return True
+                if root in names and indices[0]>=last-1:return True
+        return False
     pair_cache=set()
     studied=[o for o in d.Objects if hasattr(o,'DisplayColour') and
         o.Name not in ('RnaDriveGear','BeadDrum') and
@@ -245,7 +319,7 @@ def coupling_checks(d,record,put_error):
         for j,a in enumerate(studied):
             for q in studied[j+1:]:
                 names={a.Name,q.Name}
-                if names<=rotor or names<=cover or names<=frame:continue
+                if names<=rotor or integral_join(names):continue
                 if names=={'LowerBody','CentreAxle'}:continue
                 if not boxes[a.Name].intersect(boxes[q.Name]):continue
                 relative=a.getGlobalPlacement().inverse().multiply(q.getGlobalPlacement())
@@ -336,40 +410,56 @@ def finish(d,destination,parts,invalid,worst,errors,record,put_error,
     coupling=coupling_checks(d,record,put_error)
     print('V7 checks: assembly and source boundaries',flush=True)
     assembly=assembly_v7.run(d,overlap)
+    print('V7 checks: continuous actual RNA/clasp travel interval certificates',flush=True)
+    import travel_v7
+    travel=travel_v7.run(d,overlap)
+    print('V7 checks: independent mechanical necessary conditions',flush=True)
+    mechanics=mechanical_v7.run(d,overlap)
     logical=dict(retention_witnesses=retention_ok,continuous_RNA_bound=envelope_ok,
+        extended_solid_validity=all(v.get('extended_BOP_check',True) for v in parts.values()),
+        continuous_actual_RNA_travel=travel['RNA_passed'],
+        continuous_actual_clasp_travel=travel['clasp_passed'],upper_pose_clearance_envelope=travel['upper_pose_envelope']['passed'],
+        shaft_pin_clearance_envelopes=travel['shaft_pin_envelopes']['passed'],
         continuous_TPU_cell_laps=min_link_lap>1e-5,clasp_guides_clear=min_clasp_clearance>1,
         clasp_roots_connected=min_clasp_root_lap>1e-5,
         retained_tail=retained['hidden_beads']==4 and retained['seated_beads']>=3,
         bead_spherical_bound=outside<TOL,native_accuracy=max(errors.values(),default=0)<1e-7,
         assembly_audit=assembly['passed'],**coupling['logic'])
     failures={k:v for k,v in worst.items() if v>(GEAR_TOL if k=='actual RNA rack / involute gear' else TOL)}
-    source_names=('bracelet_v7.py','rna_path.py','coupling_v7.py','validation_v7.py','assembly_v7.py','engineering_v7.py')
-    result=dict(version='7.0',status='FOCUSED_PASS' if not invalid and not failures and all(logical.values()) else 'REVIEW',
-        mechanism_maturity='KINEMATIC_CANDIDATE; trip snap and continuous-pull reset unqualified',
+    geometry_status='FOCUSED_PASS' if not invalid and not failures and all(logical.values()) else 'REVIEW'
+    logical.update(mechanical_necessary_conditions=all(mechanics['required_mechanical_checks'].values()))
+    source_names=('bracelet_v7.py','rna_path.py','coupling_v7.py','validation_v7.py','assembly_v7.py','engineering_v7.py','mechanical_v7.py','travel_v7.py')
+    result=dict(version='7.1',status='FOCUSED_PASS' if geometry_status=='FOCUSED_PASS' and all(logical.values()) else 'REVIEW',
+        geometry_status=geometry_status,functional_mechanism_established=False,
+        mechanism_maturity='REVIEW: mechanical necessary conditions fail; prescribed poses are not a functional mechanism',
         runtime='.'.join(App.Version()[:3]),parts=parts,invalid_objects=sorted(set(invalid)),
         collision_failures_mm3=failures,maximum_unintended_overlap_mm3=worst,
+        exact_overlap_localization=OVERLAP_STATS.copy(),
         logical_checks=logical,native_errors=errors,overlap_tolerance_mm3=TOL,
         actual_bead_handoff_samples=handoff,actual_RNA_gear_phase_samples=gear_samples,
         retained_at_full_travel=retained,RNA_envelope_certificate=envelope,
         retention_solid_witnesses=retention,minimum_clasp_guide_clearance_mm=min_clasp_clearance,
         minimum_strip_cell_lap_mm3=min_link_lap,minimum_clasp_root_lap_mm3=min_clasp_root_lap,
-        coupling=coupling,assembly_audit=assembly,
+        coupling=coupling,assembly_audit=assembly,mechanical_audit=mechanics,
+        continuous_travel=travel,
         routing=dict(route_angle_degrees=b.RNA_ROUTE_ANGLE,material_length_mm=b.route.LENGTH,
             top_bend_radius_mm=b.route.TOP_RADIUS,return_bend_radius_mm=b.route.BOTTOM_RADIUS,
             return_centre_y_mm=b.RNA_Y+b.RNA_SIDE*b.route.HEIGHT,
             return_centre_z_mm=b.RNA_Z-b.RNA_DROP*b.route.HEIGHT,
             retained_front_drive_span_mm=2*b.route.TOP_HALF,
             open_or_closed=True,nominal_inextensible_layout=True),
-        design=dict(forward_RNA_rocks_upper=True,upper_input_advances_RNA=True,
-            direct_RNA_reverse_with_upper_home=True,two_opposite_tracks=True,
+        design=dict(native_forward_RNA_pose_rocks_upper=True,native_upper_input_pose_advances_RNA=True,
+            native_RNA_reverse_pose_keeps_upper_home=True,pose_study_is_not_mechanical_operation=True,two_opposite_tracks=True,
             dedicated_bidirectional_detent=True,three_bases_per_bead=True,
             no_user_operated_release=True,no_rewind_spring=True,manual_entry_degrees=b.ENTRY_DEG,
             manual_upper_stroke_degrees=b.CAP_ANGLE,RNA_pickup_stroke_degrees=b.STEP_DEG,
             prescribed_pause_for_reset=True,mechanical_continuous_pull_gate_implemented=False),
         source_sha256={n:hashlib.sha256((b.HERE/n).read_bytes()).hexdigest() for n in source_names},
-        validation_boundary='Actual saved contacts, opposing torque-blocking witnesses, nominal forward/trip/return/reverse poses, latch hold-open geometry, RNA/protein handoff and route, stops, rigid fit and sampled assembly. Flexible leaf, trip snap, TPU layout and spring-driven motion are prescribed CAD states, not an elastic or dynamic solution. No claim of reliable full-rate feeding, printed operation or physical qualification.',
+        model_sha256=hashlib.sha256(Path(d.FileName).read_bytes()).hexdigest() if d.FileName else None,
+        validation_boundary='Actual saved contacts, torque-blocking witnesses, extended BOP checks of five structural solids, nominal poses, latch bearing geometry, RNA/protein handoff, continuous route bounds, protected cavity wall, stops, seats and sampled assembly. Flexible leaf, trip snap, TPU layout and spring-driven motion remain prescribed states. The independent necessary-condition audit rejects the current mechanism. No claim of a functional automatic release/reset, reliable continuous-pull feeding, printed operation or physical qualification.',
         engineering_still_required=[
-            'Trip spring buckling/energy, trigger preload, latch release force and repeatable snap direction',
+            'Return spring cannot overcome the frictionless rest-entry cam load; select and verify a complete replacement force path',
+            'Trip spring buckling/energy, trigger preload, latch release force, changing centreline length and repeatable snap direction',
             'Continuous RNA pull: a mechanical gate or measured reset-speed limit; animation pause is not physical gating',
             'Partial strokes, mid-stroke direction changes and externally restrained upper subunit',
             'Spring selection and preload, friction, backlash, TPU tooth stability, clasp retention and fatigue'],

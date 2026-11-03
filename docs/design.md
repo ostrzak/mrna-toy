@@ -7,7 +7,9 @@ adds forward RNA pickup of the upper, with an end-trip and hold-open reset,
 while retaining upper-driven forward feed, direct reverse with the upper home
 and the dedicated bidirectional detent. Its RNA should cross farther over the
 body midline and close along the far flank in a matching groove. The current
-16-degree / broad-bend layout is a first CAD candidate, not an accepted fit.
+13.2-degree / broad-bend layout has a 3.4 mm rail/clasp groove and a separate
+continuous base envelope. Its force and automatic release/reset design remains
+under review; see the [mechanical audit](../cad/v7/engineering.md).
 
 See [V7 guide](../cad/v7/README.md) and [cloud handoff](v7-cloud-handoff.md) for
 the source, proposed timing, incomplete checks and the user's routing sketch.

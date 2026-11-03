@@ -1,81 +1,95 @@
-# V7 — unfinished forward-pickup candidate
+# V7 — CAD review candidate
 
-**Status: INCOMPLETE_HANDOFF. The mechanism is not established as functional.**
-This separate version was authorized on 2026-11-02. V6 and all earlier models,
-reports and views are preserved. V6 remains the launcher's default.
+**Status: INCOMPLETE_CONTINUATION. The requested functional mechanism is still unfinished.**
+The source build and native GUI acceptance completed; cloud access was lost during
+the integrated validation. Saved geometry, views and GUI evidence match. No
+completed integrated or functional PASS is claimed.
+This continues `codex/v7-forward-pickup` from `fa32f91`. V6 and all earlier
+version files remain preserved; V6 is still the launcher default.
 
-[Cloud handoff and next work](../../docs/v7-cloud-handoff.md) ·
-[Saved checkpoint](RibosomeV7.FCStd) · [Controls macro](RibosomeV7.FCMacro) ·
-[Incomplete report](checks.json) · [GUI checkpoint evidence](gui-checks.json)
+[Continuation record](../../docs/v7-cloud-handoff.md) ·
+[Saved CAD](RibosomeV7.FCStd) · [Controls macro](RibosomeV7.FCMacro) ·
+[Executed checks](checks.json) · [GUI evidence](gui-checks.json) ·
+[Mechanical audit and force assumptions](engineering.md)
 
-![V7 CAD checkpoint](handheld.png)
+![V7 actual CAD](handheld.png)
 
-[Flank route](side.png) · [Open mechanism](mechanism.png) ·
-[Forward pickup](pickup.png) · [Return state](return.png)
+[Far-flank route](side.png) · [Underside](underside.png) · [Open strand](open.png) ·
+[Mechanism](mechanism.png) · [Pickup](pickup.png) · [Return](return.png)
 
-## Intended behaviour
+## What changed
 
-- RNA forward carries the upper forward through pawl B, then releases it for
-  spring return. Pawl A lets the upper itself drive a full bead step.
-- A and B reach separate, oppositely facing 28-tooth tracks on the same rotor.
-  A fork lifts B, and a leaf latch holds the fork during upper return.
-- Backward RNA reverses the protein drum while the upper is home. A lifts
-  clear and B rises over its reverse ramps. Retain the dedicated bidirectional
-  click leaf; neither the hold-open latch nor a clicking sound replaces it.
-- Each completed feed step is three RNA teeth / one 6 mm protein bead. The
-  26-bead chain, 22 available steps and four retained beads are unchanged.
-- Manual input has 3 degrees of entry followed by 12.857 degrees of positive
-  drive (15.857 degrees total). RNA pickup rocks through 12.857 degrees.
-  Both return home, but their angular strokes are not identical. Do not
-  reinstate the earlier idea of letting the detent finish manual feeding.
+- The manual pawl guide now lies between the two toothed tracks. Its bridge
+  crosses above the pickup teeth; its pin starts above the pickup base plate.
+- Carrier spokes no longer fill the spindle and retainer passages. The fork's
+  full guide bore is reopened after its arm is fused to the collar.
+- The fork arm and latch lip are separated from the reset follower, with a
+  finite bearing under the raised tab. These corrections do not actuate the latch.
+- The dedicated symmetric detent is a separate, radially installed leaf below
+  the pickup track. An M2 x 3 screw and 0.5 mm washer clamp its seated root.
+  Its proposed section is 12 x 1.3 x 1.0 mm; material and fatigue remain unqualified.
+- The RNA route is inclined 13.2 degrees, with 33 mm bends, 110 pitches and
+  248.814 mm material length. Its return centre is approximately
+  y=35.118, z=3.904 mm, farther across the midline and higher on the far flank.
+  The groove radius is 3.4 mm. A separate continuous envelope bounds the
+  outward-facing bases; their full circumcircle is no longer carved inward.
+  A 30.9 mm storage cavity leaves material behind the revised groove.
 
-## RNA routing request
+The two 22-pitch end reserves preserve the original rack phase at the unchanged
+front entry. The lid columns retain their 3.1 mm bearing seats while the
+unused outer margin is removed for rack clearance.
 
-The user asked for RNA to cross farther over the lower body's midline and
-close around the far flank, tucked closely into a groove. The current first
-layout changes the inclination from V6's 38 degrees to 16 degrees and uses
-33 mm bends on both ends. It has 110 nominal pitch positions / 248.814 mm
-material length, with the front drive entry and 149.288 mm stroke retained.
-Its nominal return centre is about y=34.272, z=0.654 mm, compared with V6's
-y=5.672, z=-9.677 mm. This layout needs full solid clearance, groove-wall and
-clasp-travel checks; numerical proximity is not proof of a snug usable fit.
+The front rack entry, 149.288 mm RNA travel, 28-pocket drum, 26 beads,
+22 available steps, four hidden beads and three bases per bead are retained.
+Manual input retains 3 degrees of entry plus 12.857 degrees of positive drive;
+RNA pickup rocks through 12.857 degrees. The strokes are intentionally unequal.
 
-## Inspecting the checkpoint
+## Mechanical blockers
 
-Open the saved model directly, or run the adjacent macro. The macro provides
-RNA-forward, upper-input and RNA-backward buttons, a target index slider,
-cycle inspection, clasp mode and cutaway. The button/target animations have
-not completed acceptance testing.
+The independent audit prevents a geometry/animation result from being
+reported as a functional PASS:
 
-The saved expressions are self-contained. In `Motion`, `InputKind` is 0 for
-RNA forward, 1 for upper input, 2 for reverse; `CyclePosition` runs 0–1.
-The cycle prescribes feed, trip, then return/reset. `BeadSteps` is its starting
-index. This is kinematic bookkeeping, not a physical automatic release.
+1. The proposed return spring supplies about 4.28 N·mm at home. The revised
+   manual pawl's entry cam alone needs about 6.26 N·mm without friction;
+   latch reset and bearing loads are additional.
+2. The trip's buckling/snap branch, energy and latch release remain prescribed.
+   Its animated centreline changes length; this is not an elastic solution.
+3. Continuous RNA pull has no physical gate during return/reset. Holding RNA
+   still in the CAD cycle does not impose that constraint in hardware.
+4. Before the end trip, pickup B can block partial upper return after A's entry
+   clearance is recovered. With B engaged, returning the upper while holding
+   the drum fixed is a contradictory contact constraint. Stronger springs alone
+   do not fix it. Arbitrary partial-stroke and reverse transitions remain open.
 
-## Critical unfinished work
+`checks.json` records actual rigid overlaps, contact witnesses, assembly results,
+native errors and the mechanical audit. A `REVIEW` result is a failed or
+unestablished check, not a qualified mechanism. Read the exact remaining
+collision and assembly failures in that report; the corrections above do not
+imply that every integrated check passed.
 
-1. Integrated rigid clearance and assembly validation did not finish. The
-   current validator/auditor are development code, not completed evidence.
-2. The trip leaf's snap, latch forces and spring return are prescribed shapes
-   and states. They are not an elastic or dynamic solution.
-3. Animation pauses RNA for reset. A mechanical continuous-pull gate is not
-   implemented. Reset speed, partial strokes, mid-stroke reversal and the
-   possibility of missed pickup cycles remain unresolved.
-4. New assembly features include a detachable upper shell/carrier, reset
-   bridge and three extra M2 fasteners. Verify all insertion paths, seating,
-   access, wall sections and integral roots; do not reuse the V6 audit result.
-5. No printed prototype, force, fatigue, clasp-retention or reliable feeding
-   qualification exists. The V4 Print package does not apply to V7.
+## Inspecting and reproducing
 
-## Commands
+Open the saved model directly or run the adjacent macro. `Motion.InputKind`
+selects RNA forward (0), upper input (1), or RNA reverse (2). `CyclePosition`
+runs a prescribed feed/trip/return study; `BeadSteps` sets its starting index.
+The saved expressions are self-contained. Native motion and working GUI
+controls establish CAD behavior, not automatic mechanical operation.
 
 ```sh
 python scripts/check_repo.py
-python scripts/cad.py doctor
-python scripts/cad.py build --version 7 --force
-python scripts/cad.py validate --version 7
+python scripts/cad.py doctor --freecad /path/to/compatible/FreeCADCmd
+python scripts/cad.py build --version 7 --force --freecad /path/to/compatible/FreeCADCmd
+python scripts/cad.py validate --version 7 --freecad /path/to/compatible/FreeCADCmd
 ```
 
-Builds and validation write to ignored `build/v7/`. A `REVIEW`, exception or
-unavailable runtime is not a PASS. Saved CAD and reports are protected from
-launcher overwrites. See the handoff for the exact interrupted work.
+FreeCAD 1.1.4 with `Part` and bundled `fcgear` was exercised in the cloud.
+Generated work belongs in `build/v7/`. `build()` also defaults there; saved
+artifacts are promoted deliberately. Exact rational ellipsoid patches and analytic
+cylinder/torus route sections replace problematic generic spline Boolean inputs.
+The original representation passed basic validity but failed extended BOP checks
+and produced incorrect intersections. Structural solids now receive extended
+checks; exact patch boundaries are retained without final seam simplification.
+
+No physical prototype, force measurement, feeding/retraction qualification,
+spring selection, fatigue, acoustic, clasp retention or print qualification is
+established. The V4 Print package does not qualify V7.

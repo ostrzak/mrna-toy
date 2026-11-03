@@ -1,6 +1,6 @@
 # Project status and next decisions
 
-## V7 cloud handoff — 2026-11-03
+## V7 cloud CAD review — 2026-11-03
 
 V7 is an unfinished candidate on `codex/v7-forward-pickup`, copied separately
 from V6 at the user's authorization. It adds two opposing drive/pickup tracks,
@@ -8,12 +8,17 @@ a lift fork and latch, nominal trip leaf/reset roof, detachable upper shell
 and carrier, and a shallower RNA route around the far flank. The dedicated
 click leaf is retained. V6 and older CAD/report/image bytes are preserved.
 
-The source builds with local FreeCAD 1.1.4. Isolated earlier pawl contacts were
-checked, but the integrated validation and assembly run did not finish.
-The release snap, partial strokes and continuous-pull reset are unresolved;
-the GUI's pause is not a mechanical gate. No functional or physical PASS is
-claimed. Read [the handoff](v7-cloud-handoff.md), [V7 guide](../cad/v7/README.md)
-and [incomplete report](../cad/v7/checks.json) before continuing in the cloud.
+Cloud FreeCAD 1.1.4 with Part and bundled fcgear passed doctor. The continuation
+corrects obstructed carrier/fork bores, manual-pawl crossover interference and
+the detent's installation path. Its 13.2-degree RNA route is higher on the far
+flank, with a narrower groove and preserved cavity wall.
+
+The saved checkpoint is **INCOMPLETE_CONTINUATION**; the integrated run was interrupted. The independent mechanical audit rejects the
+current return-force budget and partial-return constraint. Trip snap and
+continuous-pull reset remain unresolved; the GUI pause is not a mechanical
+gate. No functional or physical PASS is claimed. Read
+[the continuation record](v7-cloud-handoff.md), [V7 guide](../cad/v7/README.md),
+[mechanical audit](../cad/v7/engineering.md) and [report](../cad/v7/checks.json).
 The launcher still defaults to V6; select V7 explicitly.
 
 ## V6 captive open/closed RNA — 2026-10-31

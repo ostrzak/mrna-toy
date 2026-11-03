@@ -36,12 +36,16 @@ RNA_MAX=route.TRAVEL
 RNA_BASE_LENGTHS=(2.6,3.1,2.8,3.5)
 RNA_LINKS=range(2,route.CELLS-1)
 RNA_GUIDE_HALF=9.0
+RNA_GROOVE_RADIUS=3.4
+BODY_CAVITY_RADIUS=30.9
 CASE_MOUNTS=((-32.0,-14.0),(32.0,-14.0),(-23.0,26.0))
 KEEPER_SEAT_Z,LID_SEAT_Z,GUARD_SEAT_Z=13.5,14.6,20.25
 CASE_HEAD_Z,AXLE_TOP=21.3,33.55
+DETENT_ROOT=(12.0,20.0)
+LID_COLUMN_RADIUS=3.1
 # The shallow, broad return crosses to the far flank. Its straight front
 # drive entry remains at the same position and tooth phase as V6.
-RNA_ROUTE_ANGLE=16.0
+RNA_ROUTE_ANGLE=13.2
 RNA_SIDE=math.cos(math.radians(RNA_ROUTE_ANGLE))
 RNA_DROP=math.sin(math.radians(RNA_ROUTE_ANGLE))
 PLANE_NORMAL=V(0,RNA_DROP,RNA_SIDE)
@@ -53,6 +57,7 @@ CAP_ANGLE=ENTRY_DEG+STEP_DEG
 PAWL_LIFT=2.0
 CAM_R,CAM_BALL=22.0,.5
 CAM_CENTRE_Z=24.1
+A_GUIDE=14.7
 CAP_STOP_ANGLE=-60.0
 BEAD_FAMILY=('bilobed','offset','trilobed')
 COLORS={
@@ -78,7 +83,25 @@ def annulus(inner, outer, z, h):
 def ellipsoid(center, radii):
     matrix = App.Matrix()
     matrix.A11, matrix.A22, matrix.A33 = radii
-    shape = Part.makeSphere(1).transformGeometry(matrix)
+    original = Part.makeSphere(1).transformGeometry(matrix)
+    # Nonuniformly transformed spheres contain internal C0 spline knots.
+    # Boolean projection across those knots produced invalid curves on
+    # surfaces even when isValid() returned True. Split EXACTLY at existing
+    # knots before any Boolean; each patch retains the original rational
+    # quadric, with no tessellation, fit or tolerance increase.
+    faces=[]
+    for face in original.Faces:
+        surface=face.Surface
+        us,vs=surface.getUKnots(),surface.getVKnots()
+        for u0,u1 in zip(us,us[1:]):
+            for v0,v1 in zip(vs,vs[1:]):
+                patch=surface.copy();patch.segment(u0,u1,v0,v1)
+                faces.append(patch.toShape())
+    shell=Part.makeShell(faces);shell.sewShape()
+    shape=Part.makeSolid(shell)
+    if shape.Volume<0:shape.reverse()
+    if not shape.isValid() or len(shape.Solids)!=1:
+        raise RuntimeError('Invalid exact ellipsoid patch solid')
     shape.translate(V(*center))
     return shape
 
@@ -399,20 +422,50 @@ def clasp_shape(female=False):
 
 
 @lru_cache(maxsize=4)
-def return_clearance(radius=4.65):
-    """Continuous circular tube bounding the nominal external closed route."""
+def return_clearance(radius=RNA_GROOVE_RADIUS):
+    """Continuous groove bound for rail and travelling clasp, excluding bases.
+
+    The free-ended bases face out of the body. Their separate offset sweep
+    is checked by base_clearance(); carving their circumcircle on the inward
+    side unnecessarily removed 1.05 mm of the groove's supporting material.
+    """
     edges=[];bounds=(0,)+route.S+(route.LENGTH,)
     for j,(a,c) in enumerate(zip(bounds,bounds[1:])):
         p= rna_point(a)[0];q=rna_point(c)[0]
         edges.append(Part.Arc(p,rna_point((a+c)/2)[0],q).toShape()
                      if j in (1,3,5,7) else Part.makeLine(p,q))
-    wire=Part.Wire(edges)
-    section=Part.Wire([Part.makeCircle(radius,rna_point(0)[0],V(1,0,0))])
-    return wire.makePipeShell([section],True,True)
+    return round_sweep(edges,radius)
+
+
+def round_sweep(edges,radius):
+    """Exact circular sweep using analytic cylinders and quarter tori.
+
+    Generic makePipeShell over this closed wire creates spline surfaces with
+    poorly conditioned coincident cuts in this runtime. The route consists
+    exclusively of lines and quarter circles, so no approximation is needed.
+    """
+    pieces=[]
+    for edge in edges:
+        p,q=edge.Vertexes[0].Point,edge.Vertexes[-1].Point
+        if isinstance(edge.Curve,Part.Circle):
+            centre=edge.Curve.Center
+            a,c=p-centre,q-centre
+            axis=a.cross(c);axis.normalize();a.normalize()
+            turn=math.degrees(math.acos(max(-1,min(1,a.dot(c/c.Length)))))
+            torus=Part.makeTorus(edge.Curve.Radius,radius,V(),V(0,0,1),-180,180,turn)
+            torus.Placement=App.Placement(centre,App.Rotation(a,axis.cross(a),axis,'ZXY'))
+            pieces.append(torus)
+        else:
+            delta=q-p
+            pieces.append(cylinder(radius,delta.Length,p,delta/delta.Length))
+    result=union(pieces)
+    if not result.isValid() or len(result.Solids)!=1:
+        raise RuntimeError('Invalid analytic round route sweep')
+    return result
 
 
 @lru_cache(maxsize=1)
-def open_return_clearance(radius=4.65):
+def open_return_clearance(radius=RNA_GROOVE_RADIUS):
     """Bound both free tails through their complete nominal travel range."""
     t=route.TOP_HALF;q=route.QUARTER
     bounds=(-route.LENGTH,-t-q,-t,t,t+q,route.LENGTH)
@@ -421,10 +474,33 @@ def open_return_clearance(radius=4.65):
         p=rna_point(a,False)[0];end=rna_point(c,False)[0]
         edges.append(Part.Arc(p,rna_point((a+c)/2,False)[0],end).toShape()
                      if j in (1,3) else Part.makeLine(p,end))
-    start=rna_point(bounds[0],False)[0]
-    axis=rna_point(bounds[0]+.01,False)[0]-start
-    section=Part.Wire([Part.makeCircle(radius,start,axis)])
-    return Part.Wire(edges).makePipeShell([section],True,True)
+    return round_sweep(edges,radius)
+
+
+@lru_cache(maxsize=2)
+def base_clearance(closed=True):
+    """Continuous 3D bound of every base orientation on either nominal route.
+
+    Base centreline offsets span .48 to 3.98 mm along rotated local -Y.
+    A tube centred at 2.23 mm with radius 1.75+.53=2.28 mm contains every
+    cylinder and head. Offset arcs remain circular and coplanar because the
+    route and the saved rotations share PLANE_NORMAL. No phase is skipped.
+    """
+    rho=(.48+.48+max(RNA_BASE_LENGTHS))/2
+    radius=max(RNA_BASE_LENGTHS)/2+.53
+    def point(s):
+        p,turn=rna_point(s,closed)
+        return p+App.Rotation(PLANE_NORMAL,-math.degrees(turn)).multVec(V(0,-rho,0))
+    if closed:
+        bounds=(0,)+route.S+(route.LENGTH,);arcs=(1,3,5,7)
+    else:
+        t=route.TOP_HALF;q=route.QUARTER
+        bounds=(-route.LENGTH,-t-q,-t,t,t+q,route.LENGTH);arcs=(1,3)
+    edges=[]
+    for j,(a,c) in enumerate(zip(bounds,bounds[1:])):
+        edges.append(Part.Arc(point(a),point((a+c)/2),point(c)).toShape()
+                     if j in arcs else Part.makeLine(point(a),point(c)))
+    return round_sweep(edges,radius)
 
 
 def lower_outer():
@@ -441,7 +517,9 @@ def lower_outer():
 
 
 def body_shape():
-    body=lower_outer().cut(cylinder(32,16,V(0,0,2.7)))
+    # Keep material between the higher far-flank groove and the bead store.
+    # Keeper outer radius is 30.538 mm, retaining >.36 mm running clearance.
+    body=lower_outer().cut(cylinder(BODY_CAVITY_RADIUS,16,V(0,0,2.7)))
     # The travel slot is integral with the fixed shell, with two supported
     # rims below the pin path. It cannot rotate as a loose ring in the cavity.
     pedestals=[annulus(13.9,14.9,2.65,3.25),annulus(17.1,18.1,2.65,3.25)]
@@ -464,7 +542,9 @@ def body_shape():
     pieces=sorted(body.Solids,key=lambda s:s.Volume,reverse=True)
     if sum(s.Volume for s in pieces[1:])>.01:
         raise RuntimeError('V7 housing has a detached meaningful component')
-    return pieces[0].removeSplitter()
+    # Keep the exact patch boundaries. The earlier unsplit representation
+    # became unorientable under final seam simplification in this runtime.
+    return pieces[0]
 
 
 def lid_shape():
@@ -483,7 +563,9 @@ def lid_shape():
     lid=lid.cut(outside_peak)
     # One coaxial stack per screw: keeper, lid spacer and cover boss.
     # These columns lie outside the complete gear rotation envelope.
-    supports=[cylinder(3.4,GUARD_SEAT_Z-LID_SEAT_Z,V(x,y,LID_SEAT_Z)) for x,y in CASE_MOUNTS]
+    # The previous 3.4 mm margin clipped the travelling rack. A 3.1 mm
+    # column retains the complete specified 3.1 mm-radius bearing seat.
+    supports=[cylinder(LID_COLUMN_RADIUS,GUARD_SEAT_Z-LID_SEAT_Z,V(x,y,LID_SEAT_Z)) for x,y in CASE_MOUNTS]
     lid=union([lid]+supports)
     # Lower half of the central mesh keeper: the flexible rack cannot bow
     # away from the gear while the user pushes an open tail backward.
@@ -590,6 +672,7 @@ def guard_shape():
     upper_shoe=mesh_shoe(True)
     spring_stator=cylinder(1.7,6.9,polar(24,-120,21.7))
     guard=union([roof,wall,cam_shape(),post,detent_mount,upper_shoe,spring_stator]+bosses)
+    guard=guard.cut(cylinder(.85,1.7,V(*DETENT_ROOT,20.7)))
     guard=guard.cut(spring_socket(False))
     for x,y in CASE_MOUNTS:
         guard=guard.cut(cylinder(3.55,GUARD_SEAT_Z-14.65,V(x,y,14.65)))
@@ -632,15 +715,15 @@ def cap_shape(part='complete'):
                  ellipsoid((18,-8,24.5),(11.8,15.8,5.8)),
                  cylinder(28,8.7,V(0,0,20))])
     shell=outer.cut(inner).common(Part.makeBox(90,90,25,V(-45,-45,21)))
-    shell=shell.cut(cylinder(1.75,4.9,polar(17.7,ENTRY_DEG,26.1)))
+    shell=shell.cut(cylinder(1.75,6.9,polar(A_GUIDE,ENTRY_DEG,26.1)))
     shell=shell.cut(angular_sector(22.8,25.2,CAP_STOP_ANGLE-5,
                   CAP_STOP_ANGLE+CAP_ANGLE+5,21.7,8.8))
     hub=annulus(3.5,5.1,21.9,11.5)
     bridge=Part.makeBox(4,28.5,2,V(-2,-27.5,30.4))
-    carrier=Part.makeBox(16,3.2,1,V(3,-1.6,31))
+    carrier=Part.makeBox(13.7,3.2,1,V(3,-1.6,33))
     carrier.rotate(V(),V(0,0,1),ENTRY_DEG)
-    carrier=union([carrier,cylinder(2,1,polar(17.7,ENTRY_DEG,31))])
-    pin=cylinder(.75,9.5,polar(17.7,ENTRY_DEG,21.9))
+    carrier=union([carrier,cylinder(2,1,polar(A_GUIDE,ENTRY_DEG,33))])
+    pin=cylinder(.75,8.9,polar(A_GUIDE,ENTRY_DEG,24.5))
     # Closed arcuate slot bounds the cap independently of UI limits.
     tab=angular_sector(22,28,CAP_STOP_ANGLE-4,
                        CAP_STOP_ANGLE+CAP_ANGLE+4,28.2,1.6)
@@ -661,12 +744,15 @@ def cap_shape(part='complete'):
 
 
 def drive_carrier_shape():
-    boss=Part.makeBox(4.2,4.2,2.2,V(15.6,-2.1,24.1))
-    parts=[boss,Part.makeBox(7.3,2.1,1.3,V(12.5,0,25.0)),
-           Part.makeBox(5.0,.85,1.3,V(18,-.5,25.0)),drive_tip_shape(),
+    # The guide occupies the radial gap between A's 12.3 mm outer radius
+    # and B's 17 mm inner tooth radius. Its pin starts ABOVE B's base plate.
+    # The high bridge crosses B with .7 mm nominal axial clearance.
+    boss=cylinder(1.8,3.8,V(A_GUIDE,0,24.8))
+    parts=[boss,Part.makeBox(4.0,1.8,1.25,V(12.5,0,26.1)),
+           Part.makeBox(8.5,.85,1.0,V(14.5,-.5,26.35)),drive_tip_shape(),
            Part.makeSphere(CAM_BALL,V(CAM_R,0,CAM_CENTRE_Z)),
-           cylinder(.25,1.4,V(CAM_R,0,CAM_CENTRE_Z))]
-    return union(parts).cut(cylinder(.95,5,V(17.7,0,23.8))).removeSplitter()
+           cylinder(.25,3.25,V(CAM_R,0,CAM_CENTRE_Z))]
+    return union(parts).cut(cylinder(.95,5,V(A_GUIDE,0,24.5))).removeSplitter()
 
 
 def drive_tip_shape():
@@ -754,6 +840,9 @@ def motion(d):
         ('RetainedBeads',4),('RnaPitch',RNA_PITCH),('RnaMaximumTravel',RNA_MAX),
         ('RnaLoopLength',route.LENGTH),('ClaspArcReserve',route.JOIN_HOME-RNA_GUIDE_HALF-5)]:
         m.addProperty('App::PropertyFloat',name,'Dimensions');setattr(m,name,val);m.setEditorMode(name,1)
+    for name,value in [('RnaRouteAngle',RNA_ROUTE_ANGLE),('RnaGrooveRadius',RNA_GROOVE_RADIUS),
+                       ('BodyCavityRadius',BODY_CAVITY_RADIUS)]:
+        m.addProperty('App::PropertyFloat',name,'Dimensions');setattr(m,name,value);m.setEditorMode(name,1)
     m.addProperty('App::PropertyString','StudyLimits','Study')
     m.StudyLimits='InputKind 0=RNA forward, 1=upper, 2=RNA reverse. Cycle: 0-.4 driven feed, .4-.5 trip, .5-1 return/reset. Manual adds 3 degrees of entry; RNA pickup stroke is one drum pitch. Trip snap and pauses are prescribed; continuous-pull timing/gating and all physical forces remain unqualified.'
     return m
@@ -779,6 +868,7 @@ def build(save_path=None):
     drive.setExpression('Placement.Base.z','Motion.PawlLift')
     detent=group(d,'ClickDetent','Symmetric click leaf Ă˘â‚¬â€ť freely reversible nominal deflection')
     fixed.addObject(detent);detent.Placement.Rotation=App.Rotation(V(0,0,1),90)
+    detent.Placement.Base.z=.15
     chain=group(d,'Protein','26 connected lobed protein beads Ă˘â‚¬â€ť manual shaping')
     print('V7: compact shoulder route, central RNA capture and aligned fastener seats',flush=True)
     for name,label,shape,color in [
@@ -824,14 +914,21 @@ def build(save_path=None):
     print('V7: rest-disengaged cap input and bidirectional detent',flush=True)
     feature(d,'UpperLobe','Full asymmetric upper shell Ă˘â‚¬â€ť one feed step per stroke',cap_shape(),click,'cap')
     feature(d,'DriveCarrier','Rigid face pawl, axial guide and spherical cam follower',drive_carrier_shape(),drive,'pawl')
-    detent_shape=union([cylinder(.55,2,V(14.1,0,22.2)),
-        Part.makeBox(1.6,.55,2,V(14.1,-.275,22.2))])
+    detent_shape=union([cylinder(.55,1,V(14.1,0,22.2)),
+        Part.makeBox(1.6,.55,1,V(14.1,-.275,22.2))])
     detent_tip=feature(d,'DetentTip','Symmetric click follower Ă˘â‚¬â€ť nominal flexed pose',detent_shape,detent,'pawl')
     detent_tip.setExpression('Placement.Base.x','Motion.DetentFlex')
-    flexure_segments(d,detent,'DetentLeaf',15.15,0,12,22.2,'Motion.DetentFlex / 1 mm',False,1.0,2.0)
-    anchor=union([Part.makeBox(5.85,1.0,2,V(14.85,-12.5,22.2)),
-                  cylinder(2,2,V(20,-12,22.2))])
-    feature(d,'DetentAnchor','Integral click-leaf root Ă˘â‚¬â€ť joined to fixed cover pedestal',anchor,detent,'pawl')
+    flexure_segments(d,detent,'DetentLeaf',15.15,0,12,22.2,'Motion.DetentFlex / 1 mm',False,1.3,1.0)
+    anchor=union([Part.makeBox(5.85,1.3,1,V(14.85,-12.65,22.2)),
+                  cylinder(2,1,V(20,-12,22.2))])
+    anchor=anchor.cut(cylinder(1.15,1.2,V(20,-12,22.1)))
+    feature(d,'DetentAnchor','Separate bidirectional leaf root: insert radially below pickup track, then fasten',anchor,detent,'pawl')
+    point=V(*DETENT_ROOT,0)
+    washer=annulus(1.1,2.2,23.35,.5);washer.translate(point)
+    feature(d,'DetentWasher','Detent root washer: retains a standard M2 x 3 screw above the drive gear',washer,fixed,'gear')
+    screw=union([cylinder(1,3,point+V(0,0,20.85)),cylinder(1.9,1.2,point+V(0,0,23.85))])
+    screw=screw.cut(socket_cut(.75,24.35,.8,point))
+    feature(d,'DetentScrew','M2 x 3 pan head: separate click leaf service fastener, nominal thread envelope',screw,fixed,'gear')
     spring=feature(d,'CapSpringEnvelope','Cap return spring space claim Ă˘â‚¬â€ť does not retract protein',annulus(5.4,6.7,27.5,2.5),fixed,'guide')
     spring.addProperty('App::PropertyString','GeometryRole','Study');spring.GeometryRole='SPACE_CLAIM_ONLY'
     for name,moving,parent in [('CapFixedSpringLeg',False,fixed),('CapMovingSpringLeg',True,click)]:
@@ -840,9 +937,9 @@ def build(save_path=None):
     spring_tools=[]
     for name,radius in [('PawlSpringOuter',1.55),('PawlSpringBore',.95)]:
         tool=d.addObject('Part::Cylinder',name);click.addObject(tool);tool.Radius=radius
-        tool.Placement.Base=polar(17.7,ENTRY_DEG,26.3)
-        tool.setExpression('Placement.Base.z','26.3 mm+Motion.PawlLift')
-        tool.setExpression('Height','4.7 mm-Motion.PawlLift');spring_tools.append(tool)
+        tool.Placement.Base=polar(A_GUIDE,ENTRY_DEG,28.6)
+        tool.setExpression('Placement.Base.z','28.6 mm+Motion.PawlLift')
+        tool.setExpression('Height','4.4 mm-Motion.PawlLift');spring_tools.append(tool)
     bias=d.addObject('Part::Cut','PawlBiasSpringEnvelope');click.addObject(bias)
     bias.Base,bias.Tool=spring_tools
     bias.Label='Pawl downward bias spring space claim Ă˘â‚¬â€ť spring selection open'
@@ -864,7 +961,7 @@ def build(save_path=None):
          (not o.Shape.isValid() or len(o.Shape.Solids)!=1)]
     if bad:raise RuntimeError('Invalid or disconnected physical features: '+str(bad))
     if App.GuiUp: present(d)
-    destination=Path(save_path) if save_path else HERE/MODEL_FILE
+    destination=Path(save_path) if save_path else HERE.parents[1]/'build/v7'/MODEL_FILE
     destination.parent.mkdir(parents=True,exist_ok=True);d.saveAs(str(destination))
     print('V7 saved: '+str(destination),flush=True)
     return d

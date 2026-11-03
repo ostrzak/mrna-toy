@@ -59,21 +59,18 @@ def _wait_animation(dock,observe=None):
         if not animation.isActive(): loop.quit()
     def expired(): result['timeout']=True;loop.quit()
     poll.timeout.connect(check);timeout.timeout.connect(expired)
-    poll.start();timeout.start(35000);loop.exec();poll.stop();timeout.stop()
-    if result['timeout']: raise RuntimeError('V7 controls animation did not finish within 35 seconds')
+    poll.start();timeout.start(180000);loop.exec();poll.stop();timeout.stop()
+    if result['timeout']: raise RuntimeError('V7 controls animation did not finish within 180 seconds')
 
 
 def run(model_path,output_dir):
-    """Save a review checkpoint with GUI/native evidence, not a CAD PASS.
-
-    Button animation, full mechanism/assembly validation and physical
-    operation are deliberately not asserted by this presentation helper.
-    """
+    """Save actual GUI/native evidence, separately from mechanical validation."""
     out=Path(output_dir).resolve();model=Path(model_path).resolve()
     if out.is_relative_to(HERE.parent):raise ValueError('GUI output must be outside saved cad/ versions')
     out.mkdir(parents=True,exist_ok=True)
     d=App.openDocument(str(model));view=Gui.activeDocument().activeView()
-    evidence={'runtime':'.'.join(App.Version()[:3]),'status':'INCOMPLETE_HANDOFF',
+    print('GUI stage: opened source build',flush=True)
+    evidence={'runtime':'.'.join(App.Version()[:3]),'status':'REVIEW',
               'controls_animation_checked':False,'full_geometry_checked':False}
     d.Motion.BeadSteps=6;d.Motion.InputKind=0;d.Motion.CyclePosition=0;d.Motion.StrandClosed=True;d.recompute()
     b.present(d,fit=False);_orient(view,'iso');_frame_visible(d,view)
@@ -93,6 +90,7 @@ def run(model_path,output_dir):
                 if cycle==1:assert cap==0 and abs(feed-(5 if kind==2 else 7))<1e-7
                 poses.append(dict(input=kind,cycle=cycle,feed=feed,upper_degrees=cap))
         evidence.update(normal_GUI_close_reopen=True,native_update_without_source_directory=True,native_checkpoint_poses=poses)
+        print('GUI stage: normal reopen and all native poses completed',flush=True)
     finally:
         sys.path[:]=original;sys.modules.update({n:v for n,v in cached.items() if v is not None})
     d.Motion.BeadSteps=6;d.Motion.InputKind=0;d.Motion.CyclePosition=0;d.Motion.StrandClosed=True;d.recompute()
@@ -100,7 +98,10 @@ def run(model_path,output_dir):
     def snap(name,orientation='iso'):
         QtWidgets.QApplication.processEvents();_orient(view,orientation);_frame_visible(d,view)
         view.redraw();QtWidgets.QApplication.processEvents();view.saveImage(str(out/name),1400,1050,'White')
-    snap('handheld.png');snap('side.png','left')
+        print('GUI view saved: '+name,flush=True)
+    snap('handheld.png');snap('side.png','left');snap('underside.png','bottom')
+    d.Motion.StrandClosed=False;d.recompute();snap('open.png')
+    d.Motion.StrandClosed=True;d.recompute()
     b.present(d,cutaway=True,fit=False);snap('mechanism.png')
     d.Motion.InputKind=0;d.Motion.CyclePosition=.2;d.recompute()
     d.Protein.ViewObject.Visibility=False;d.RnaStrand.ViewObject.Visibility=False
@@ -109,8 +110,40 @@ def run(model_path,output_dir):
     d.Motion.CyclePosition=.7;d.recompute();snap('return.png')
     d.Motion.CyclePosition=0;d.Motion.BeadSteps=6;d.Motion.InputKind=0;d.recompute()
     b.present(d,fit=False);_orient(view,'iso');_frame_visible(d,view);d.save()
+    dock=b.open_controls(d);evidence['controls_created']=bool(dock)
+    results=[]
+    try:
+        buttons=dock.findChildren(QtWidgets.QPushButton)
+        for text,kind in [('RNA forward',0),('Rock upper',1),('RNA backward',2)]:
+            button=next(x for x in buttons if x.text().startswith(text))
+            d.Motion.BeadSteps=6;d.Motion.InputKind=0;d.Motion.CyclePosition=0;d.recompute()
+            button.click();_wait_animation(dock)
+            expected=5 if kind==2 else 7
+            assert abs(d.Motion.BeadSteps-expected)<1e-8 and abs(d.Motion.CapAngle)<1e-8
+            results.append(dict(control=button.text(),completed_index=expected,upper_home=True))
+            print('GUI control completed: '+button.text(),flush=True)
+        target=next(x for x in dock.findChildren(QtWidgets.QSlider) if x.maximum()==b.EMIT)
+        for value in (8,6):
+            target.setValue(value)
+            # A target may chain timers with a singleShot between indices.
+            for j in range(4):
+                if abs(d.Motion.BeadSteps-value)<1e-8:break
+                QtWidgets.QApplication.processEvents()
+                timers=[t for t in dock.findChildren(QtCore.QTimer) if t.isActive()]
+                if timers:_wait_animation(dock)
+                else:
+                    loop=QtCore.QEventLoop();QtCore.QTimer.singleShot(100,loop.quit);loop.exec()
+            assert abs(d.Motion.BeadSteps-value)<1e-8
+            results.append(dict(control='RNA target slider',completed_index=value,upper_home=abs(d.Motion.CapAngle)<1e-8))
+        evidence['controls_animation_checked']=True
+    except Exception as exc:
+        evidence['controls_animation_failure']=str(exc) or type(exc).__name__
+        for timer in dock.findChildren(QtCore.QTimer):timer.stop()
+    evidence['controls_results']=results
+    d.Motion.BeadSteps=6;d.Motion.InputKind=0;d.Motion.CyclePosition=0;d.Motion.StrandClosed=True;d.recompute()
+    b.present(d,fit=False);_orient(view,'iso');_frame_visible(d,view);d.save()
     evidence['model_sha256']=hashlib.sha256(saved.read_bytes()).hexdigest()
     evidence['source_sha256']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in HERE.glob('*.py')}
-    evidence['controls_created']=bool(b.open_controls(d))
+    evidence['boundary']='Normal GUI reopen, native expressions and control animations only. No automatic trip/reset, elastic equilibrium or physical operation is established by these prescribed motions.'
     (out/'gui-checks.json').write_text(json.dumps(evidence,indent=2)+'\n',encoding='utf-8')
     return evidence

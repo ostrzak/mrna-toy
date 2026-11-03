@@ -1,8 +1,9 @@
 # mRNA toy versions
 
-**[V7 draft](v7/README.md)** is an unfinished two-pawl/latch and flank-route
-checkpoint. Read [the cloud handoff](../docs/v7-cloud-handoff.md). It has no
-completed integrated mechanism validation; V6 remains the launcher default.
+**[V7 review](v7/README.md)** is an unfinished two-pawl/latch and flank-route
+candidate. Its cloud CAD checks and independent mechanical audit retain
+explicit failures. Read [the continuation record](../docs/v7-cloud-handoff.md).
+It is not a functional PASS; V6 remains the launcher default.
 
 Start with the [project overview](../README.md) for purpose and current status. This page covers viewing and operating the saved CAD.
 

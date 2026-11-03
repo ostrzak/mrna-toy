@@ -25,10 +25,12 @@ def allowed_thread(pair):
         return name,b.cylinder(1.001,4.20001,V(x,y,9.3))
     if names=={'CentreAxle','CapRetainer'}:
         return 'CapRetainer',b.cylinder(1.001,3.40001,V(0,0,30.15))
+    if names=={'DetentScrew','GearGuard'}:
+        return 'DetentScrew',b.cylinder(1.001,1.50001,V(*b.DETENT_ROOT,20.85))
     return None
 
 
-INTEGRAL_PAIRS=({'LowerBody','CentreAxle'},{'GearGuard','DetentAnchor'})
+INTEGRAL_PAIRS=({'LowerBody','CentreAxle'},)
 
 
 def run(d,overlap):
@@ -117,14 +119,15 @@ def run(d,overlap):
         moved=socket.copy();moved.rotate(V(),V(0,0,1),angle)
         key_contacts.append(dict(attempted_relative_degrees=angle,blocking_overlap_mm3=overlap(hub,moved)))
     tests['D key transmits torque in both directions']=all(v['blocking_overlap_mm3']>.001 for v in key_contacts)
-    # Cap screws are installed last. The cover's own click leaf/root are one
-    # component during insertion; its prescribed home deflection is retained.
-    cover=b.union([shapes['GearGuard'],shapes['DetentAnchor'],b.world(d.DetentTip)]+
+    # The leaf cannot be lowered through the outer pickup track. Install it
+    # radially beneath that track after seating the cover; clamp it separately.
+    leaf=b.union([shapes['DetentAnchor'],b.world(d.DetentTip)]+
                   [b.world(d.getObject(f'DetentLeaf{i}')) for i in range(8)])
-    tests['cover and click leaf form one connected part']=cover.isValid() and len(cover.Solids)==1
+    tests['separate click leaf is one connected part']=leaf.isValid() and len(leaf.Solids)==1
     groups=dict(body=['LowerBody','CentreAxle'],lower=['BeadDrum','DriveHub','TravelPin'],
         keeper=['BeadKeeper'],lid=['LowerLid'],upper=['RnaDriveGear','IndexSleeve','IndexWheel','FeedRatchet','PickupRatchet'],
-        cover=['GearGuard','DetentAnchor','DetentTip']+[f'DetentLeaf{i}' for i in range(8)],
+        cover=['GearGuard'],
+        detent=['DetentAnchor','DetentTip']+[f'DetentLeaf{i}' for i in range(8)],
         cap=['UpperCarrier','DriveCarrier','PickupPawl','PickupFork','PickupLatchTip','PickupTripFoot']+[f'PickupLatchLeaf{i}' for i in range(8)]+[f'PickupTripLeaf{i}' for i in range(10)])
     actual={n:b.world(d.getObject(n)) for names in groups.values() for n in names}
     # Verified conservative envelopes avoid repeated Booleans against thousands
@@ -138,8 +141,8 @@ def run(d,overlap):
     operations=[('lower rotor','lower',['body']),('bead keeper','keeper',['body','lower']),
         ('lower lid','lid',['body','lower','keeper']),
         ('keyed upper rotor','upper',['body','lower','keeper','lid']),
-        ('cover and integral click leaf','cover',['body','lower','keeper','lid','upper']),
-        ('upper subunit and lifted input','cap',['body','lower','keeper','lid','upper','cover'])]
+        ('cover before separate click leaf','cover',['body','lower','keeper','lid','upper']),
+        ('upper subunit and lifted input','cap',['body','lower','keeper','lid','upper','cover','detent'])]
     insertions=[]
     for label,moving_group,targets in operations:
         worst=0.0;hits=[]
@@ -159,6 +162,24 @@ def run(d,overlap):
         insertions.append(dict(part=label,sampled_lifts_mm=[0,.1,.3,.6,1,2,4,8,16,32],
             maximum_unintended_overlap_mm3=worst,failures=hits))
         print('  assembly insertion '+label+': '+str(worst)+' mm3',flush=True)
+    radial_hits=[]
+    direction=V(*b.DETENT_ROOT,0);direction.normalize()
+    for offset in (32,16,8,4,2,1,.5,.2,0):
+        q=leaf.copy();q.translate(direction*offset)
+        for target in (p for group in ('body','lower','keeper','lid','upper','cover') for p in groups[group]):
+            amount=overlap(q,collision_shapes[target])
+            if amount>TOL:radial_hits.append(dict(offset_mm=offset,target=target,overlap_mm3=amount))
+    tests['dedicated click leaf sampled radial insertion']=not radial_hits
+    root=V(*b.DETENT_ROOT,0)
+    seat=ring(root.x,root.y,1.25,1.8,22.30,.04)
+    tests['detent root has finite cover bearing seat']=seat.cut(shapes['GearGuard']).Volume<TOL
+    bolt=b.world(d.DetentScrew);washer=b.world(d.DetentWasher)
+    mask=allowed_thread({'DetentScrew','GearGuard'})[1]
+    tests['detent screw clears leaf and washer']=max(overlap(bolt,leaf),overlap(bolt,washer))<TOL
+    tests['detent screw thread engages cover']=overlap(bolt,shapes['GearGuard'])>1
+    tests['detent screw only overlaps allowed pilot']=overlap(bolt.cut(mask),shapes['GearGuard'])<TOL
+    tests['detent washer seated on leaf']=washer.distToShape(leaf)[0]<1e-7
+    tests['detent screw seated on washer']=bolt.distToShape(washer)[0]<1e-7
     result=dict(passed=all(tests.values()),checks=tests,housing_screws=records,
         integral_connections=connections,
         rotor_coupling=dict(two_connected_parts=True,nominal_D_key_radial_clearance_mm=.12,
@@ -167,7 +188,9 @@ def run(d,overlap):
             washer_to_fixed_shoulder_gap_mm=washer_gap,screw_head_to_washer_gap_mm=head_gap,
             actual_cap_axial_endplay_mm=endplay,nominal_thread_engagement_mm=3.4,
             intentional_thread_overlap_mm3=overlap(bolt,axle)),
-        boundary='Actual coaxial passages, continuous wall/seat witnesses, head seating, access with upper cap removed, integral roots, fixed-spindle retention, keyed rotor fit/torque witnesses and sampled rigid vertical insertions. Threads are major-diameter envelopes. Printed fits, key backlash, insertion under friction/compliance, screw standard selection, preload, stripping, stiffness and strength need physical qualification.')
+        detent_assembly=dict(radial_insertion_failures=radial_hits,standard_screw='M2 x 3 pan head',washer_height_mm=.5,
+            nominal_pilot_engagement_mm=1.5,leaf_height_mm=1,leaf_radial_thickness_mm=1.3),
+        boundary='Actual coaxial passages, continuous wall/seat witnesses, head seating, access with upper cap removed, integral roots, fixed-spindle retention, keyed rotor fit/torque witnesses, sampled rigid vertical insertions and separate radial insertion of the dedicated leaf. Threads are major-diameter envelopes. Printed fits, key backlash, insertion under friction/compliance, screw standard selection, preload, stripping, stiffness and strength need physical qualification.')
 
     return augment(d,result,overlap)
 

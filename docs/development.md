@@ -9,6 +9,13 @@ FreeCAD runtime in the cloud, verify `Part` and bundled `fcgear` with `doctor`,
 then select `--version 7` explicitly. The launcher remains on V6 by default.
 The Windows GUI/MCP connection is not needed or assumed in another runtime.
 
+The continuation exercised FreeCAD 1.1.4 in the cloud, including GUI work on a
+virtual display. V7's current checkpoint is INCOMPLETE_CONTINUATION. Its validator now includes
+`mechanical_v7.py`: a collision-free animation cannot pass a failed force or
+partial-return necessary condition. See [the force audit](../cad/v7/engineering.md).
+V7 `build()` defaults to `build/v7/`; promotion of saved CAD, reports and actual
+views is deliberate. All previous version files remain preserved.
+
 ```sh
 python scripts/check_repo.py
 python scripts/cad.py doctor --freecad /path/to/FreeCADCmd
@@ -16,7 +23,7 @@ python scripts/cad.py build --version 7 --force --freecad /path/to/FreeCADCmd
 python scripts/cad.py validate --version 7 --freecad /path/to/FreeCADCmd
 ```
 
-Do not turn the V7 incomplete report into a PASS based on a static check,
+Do not turn the V7 REVIEW report into a PASS based on a static check,
 native animation, a report from another version or missing CAD dependencies.
 Keep generated files under `build/v7/`; source, saved checkpoint, real CAD
 views and report boundaries should agree when intentionally updated.

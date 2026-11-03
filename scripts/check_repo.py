@@ -57,20 +57,36 @@ def run() -> int:
     v7_files=('README.md','RibosomeV7.FCStd','RibosomeV7.FCMacro',
               'bracelet_v7.py','rna_path.py','coupling_v7.py','validation_v7.py',
               'assembly_v7.py','engineering_v7.py','presentation_v7.py',
+              'mechanical_v7.py','travel_v7.py','engineering.md',
               'checks.json','gui-checks.json','handheld.png','side.png',
-              'mechanism.png','pickup.png','return.png')
+              'mechanism.png','pickup.png','return.png','open.png','underside.png')
     for name in v7_files:
         if not (ROOT/'cad/v7'/name).is_file():errors.append('Missing V7 checkpoint file: '+name)
     try:
         v7=json.loads((ROOT/'cad/v7/checks.json').read_text(encoding='utf-8'))
         gui7=json.loads((ROOT/'cad/v7/gui-checks.json').read_text(encoding='utf-8'))
-        if v7.get('status')=='INCOMPLETE_HANDOFF':
+        if v7.get('status') in ('INCOMPLETE_HANDOFF','INCOMPLETE_CONTINUATION'):
             if not v7.get('unfinished_checks') or v7.get('functional_mechanism_established') is not False:
                 errors.append('V7 incomplete checkpoint must preserve its unfinished checks and functional boundary.')
         elif v7.get('status') not in ('REVIEW','FOCUSED_PASS','PASS'):
             errors.append('V7 has an unrecognized evidence status.')
         elif v7.get('status') in ('FOCUSED_PASS','PASS') and not (v7.get('logical_checks') and all(v7['logical_checks'].values())):
             errors.append('V7 PASS requires its own complete logical checks.')
+        if v7.get('version')=='7.1' and v7.get('status')!='INCOMPLETE_CONTINUATION':
+            mechanics=v7.get('mechanical_audit',{})
+            if not mechanics.get('required_mechanical_checks') or not mechanics.get('evaluation_status'):
+                errors.append('V7.1 requires an independent mechanical necessary-condition audit.')
+            if v7.get('status')=='REVIEW' and (v7.get('functional_mechanism_established') is not False or not mechanics.get('blockers')):
+                errors.append('V7.1 REVIEW must explicitly retain its mechanical blockers and nonfunctional boundary.')
+            if v7.get('status') in ('FOCUSED_PASS','PASS') and not all(mechanics.get('required_mechanical_checks',{}).values()):
+                errors.append('V7.1 cannot PASS failed or missing mechanical checks, regardless of animation or rigid clearance.')
+            if not gui7.get('normal_GUI_close_reopen') or not gui7.get('native_update_without_source_directory'):
+                errors.append('V7.1 requires its own saved-model GUI reopen and self-contained native update evidence.')
+        if v7.get('status')=='INCOMPLETE_CONTINUATION':
+            if not v7.get('saved_geometry_matches_generator_sources') or not v7.get('reason'):
+                errors.append('V7 continuation must identify its matching geometry and interrupted validation boundary.')
+            if not gui7.get('normal_GUI_close_reopen') or not gui7.get('native_update_without_source_directory'):
+                errors.append('V7 continuation requires native reopen evidence for the current saved geometry.')
         for evidence in (v7,gui7):
             if hashlib.sha256((ROOT/'cad/v7/RibosomeV7.FCStd').read_bytes()).hexdigest()!=evidence.get('model_sha256'):
                 errors.append('V7 checkpoint model/report hash mismatch.')
@@ -206,8 +222,10 @@ def run() -> int:
     print('This is repository integrity checking, not a fresh FreeCAD or physical-mechanism test.')
     if current.get('status') != 'PASS':
         print('V3 CAD validation is incomplete: '+current['status'])
-    if v7.get('status')=='INCOMPLETE_HANDOFF':
-        print('V7 remains INCOMPLETE_HANDOFF: integrated mechanism and physical operation unqualified.')
+    if v7.get('status') in ('INCOMPLETE_HANDOFF','INCOMPLETE_CONTINUATION'):
+        print('V7 remains '+v7['status']+': integrated mechanism and physical operation unqualified.')
+    elif v7.get('status')=='REVIEW':
+        print('V7 remains REVIEW: see its actual CAD failures and independent mechanical audit; no functional or physical PASS.')
     return 0
 
 

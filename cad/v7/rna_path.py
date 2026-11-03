@@ -19,7 +19,9 @@ QUARTER = math.pi*TOP_RADIUS/2
 BOTTOM_QUARTER = math.pi*BOTTOM_RADIUS/2
 RNA_PER_STEP = 3*PITCH
 TRAVEL = 22*RNA_PER_STEP
-JOIN_HOME = (LENGTH-TRAVEL)/2
+# Keep the rack phase integral when the material length has an odd number
+# of pitches. The open end reserves differ by one pitch; travel is unchanged.
+JOIN_HOME = math.floor((LENGTH-TRAVEL)/(2*PITCH)+1e-9)*PITCH
 S = (TOP_HALF, TOP_HALF+QUARTER, TOP_HALF+QUARTER+VERTICAL,
      TOP_HALF+QUARTER+VERTICAL+BOTTOM_QUARTER,
      TOP_HALF+QUARTER+VERTICAL+BOTTOM_QUARTER+2*BOTTOM_HALF,

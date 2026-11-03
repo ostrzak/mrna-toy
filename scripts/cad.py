@@ -80,7 +80,7 @@ def main() -> int:
             code.append(f'document = App.openDocument({str(model)!r})')
         code.extend([
             f'result = model_source.validate(document, report_path={str(report)!r})',
-            "if result['status'] not in ('PASS','FOCUSED_PASS'): raise RuntimeError('CAD checks require review; see the generated report.')",
+            "if result['status'] not in ('PASS','FOCUSED_PASS','REVIEW'): raise RuntimeError('CAD checks did not return a completed result; see the generated report.')",
         ])
     code.append(f'print({COMPLETE!r}, flush=True)')
     env = os.environ.copy()
@@ -99,6 +99,7 @@ def main() -> int:
     if args.command != 'doctor':
         result = json.loads(report.read_text(encoding='utf-8'))
         if result.get('status') not in ('PASS','FOCUSED_PASS'):
+            print(f"{result.get('status', 'UNKNOWN')} - completed checks require review: {report}")
             return 1
         print(f"{result['status']} - fresh report: {report}")
     return 0

@@ -4,7 +4,7 @@ A handheld mechanical fidget inspired by protein translation. Move a captive RNA
 
 **V6 is the current handheld CAD prototype.** It has open-or-closed captive RNA, an external underside return, direct reversal without a release lever, and a cap input that disengages at rest. See the [V6 guide](cad/v6/README.md) and [focused report](cad/v6/checks.json) for the exact evidence boundary. Physical operation, click feel, clasp retention and printing remain unqualified. V5 and all older versions are preserved.
 
-**V7 is an unfinished development checkpoint**, adding a proposed forward-pickup pawl/latch and a closer far-flank RNA route. It is **not established as functional** and does not replace V6's evidence. See the [V7 guide](cad/v7/README.md) and [cloud handoff](docs/v7-cloud-handoff.md). Work is on `codex/v7-forward-pickup`.
+**V7 remains unfinished after cloud CAD review.** It has corrected drive-guide and assembly geometry, a separately installed bidirectional detent and a higher far-flank RNA route. Its **INCOMPLETE_CONTINUATION** report records unfinished validation and mechanical blockers; it is not established as functional and does not replace V6's evidence. See the [V7 guide](cad/v7/README.md), [mechanical audit](cad/v7/engineering.md) and [continuation record](docs/v7-cloud-handoff.md). Work is on `codex/v7-forward-pickup`.
 
 ![Current V6 CAD](cad/v6/handheld.png)
 
@@ -35,7 +35,7 @@ is secondary to handling and compact guidance.
 
 | Version | Files | Role |
 | --- | --- | --- |
-| **V7 draft** | [Model](cad/v7/RibosomeV7.FCStd) · [Macro](cad/v7/RibosomeV7.FCMacro) · [Guide](cad/v7/README.md) | Incomplete forward-pickup and flank-route candidate; full validation unfinished. |
+| **V7 review** | [Model](cad/v7/RibosomeV7.FCStd) · [Macro](cad/v7/RibosomeV7.FCMacro) · [Guide](cad/v7/README.md) | Unfinished forward-pickup candidate; cloud CAD evidence and explicit mechanical failures. |
 | **V6** | [Model](cad/v6/RibosomeV6.FCStd) · [Macro](cad/v6/RibosomeV6.FCMacro) · [Guide](cad/v6/README.md) | Current: captive open/closed RNA, external underside return, direct reverse and idle-disengaged upper input. |
 | **V5** | [Model](cad/v5/RibosomeV5.FCStd) · [Macro](cad/v5/RibosomeV5.FCMacro) · [Guide](cad/v5/README.md) | Preserved handheld comparison: circular RNA, direct bead drum and external reverse release. |
 | **V4** | [Model](cad/v4/RibosomeV4.FCStd) · [Macro](cad/v4/RibosomeV4.FCMacro) · [Guide](cad/v4/README.md) | Preserved cuff comparison: covered mechanism and projecting RNA bases. |
