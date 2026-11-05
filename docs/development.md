@@ -2,6 +2,12 @@
 
 ## V6 updated candidate
 
+For grouped STEP/STL feasibility exports, see
+[the print review](v6-updated-print-review.md) and run
+`scripts/export_v6_updated_review.py` through FreeCAD's Python command. Check
+the resulting binary STLs with `python scripts/check_stl_exports.py build/v6-updated-print-review`.
+Exports stay in ignored `build/`; they are separate from the V4 Print prototype package.
+
 Select `--version 6-updated` for the separate candidate on `version6-updated`.
 It uses V6 mechanics and V7 RNA traversal, with explicit spring hardware and a
 folded detent. Its self-contained source is `cad/v6-updated/`; generated

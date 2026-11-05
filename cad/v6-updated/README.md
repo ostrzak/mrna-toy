@@ -69,6 +69,11 @@ CAD, not illustrations.
 
 ## Rebuild and evidence
 
+The [print/export and hardware review](../../docs/v6-updated-print-review.md)
+records the initial STEP/STL checks, user-owned TPU 90A, A1 mini/0.4 direction,
+hardware choices and manufacturing work still needed. These review exports
+are separate from a qualified Bambu Studio print package.
+
 ```sh
 python scripts/cad.py doctor --freecad PATH
 python scripts/cad.py build --version 6-updated --force --freecad PATH
