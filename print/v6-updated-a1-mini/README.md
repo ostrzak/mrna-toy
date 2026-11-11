@@ -19,8 +19,8 @@ saved `cad/v6-updated-print/` candidate in this repository. Extract the ZIP
 before using its relative folder paths; the sliced Bambu project is inside
 `fit-plate/`.
 
-For cloud continuation, check out **`version6-updated`** explicitly. The
-repository's `main` branch does not contain this candidate. Reading the BOM
+The candidate is available on **`main`** and **`version6-updated`**. For cloud
+continuation, fetch the latest repository and use `main`. Reading the BOM
 and opening package files does not require access to the original Windows
 computer. Regenerating geometry requires a compatible FreeCAD runtime with
 Part and fcgear; slicing requires Bambu Studio and the matching presets.
