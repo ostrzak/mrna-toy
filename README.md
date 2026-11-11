@@ -25,6 +25,9 @@ is secondary to handling and compact guidance.
 screws, keyed nuts and a low retaining cap, plus integral mounts for two
 selected standard Allegro springs. Open its [model guide](cad/v6-updated-print/README.md)
 and [A1 mini fit-test/BOM guide](print/v6-updated-a1-mini/README.md).
+The [prototype ZIP](print/V6-updated-print-prototype.zip) includes the
+checked STEP/STL exports and sliced PETG fit plate. For cloud continuation,
+check out `version6-updated` explicitly; this candidate is not on `main`.
 The original V6 updated is preserved. Physical fits, forces and operation
 remain unqualified; this is a prototype preparation, not a production release.
 
