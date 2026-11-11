@@ -1,5 +1,15 @@
 # Development and local handoff
 
+## V6 updated print candidate
+
+Select `--version 6-updated-print` for the printed-fastener and stock-spring
+derivative. Its source and native model live in `cad/v6-updated-print/`;
+builds and reports go to `build/v6-updated-print/`. The default remains V6.
+Use the doctor/build/validate commands below with the explicit version.
+The [A1 mini guide](../print/v6-updated-a1-mini/README.md) gives the
+STEP/STL exporter, mesh checker and Bambu fit-plate commands. Slicing never
+dispatches a print. Saved CAD/report promotion remains deliberate.
+
 ## V6 updated candidate
 
 For grouped STEP/STL feasibility exports, see

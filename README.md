@@ -21,6 +21,13 @@ is secondary to handling and compact guidance.
 
 ## Start here
 
+**V6 updated print** is the separate manufacturing candidate with printed
+screws, keyed nuts and a low retaining cap, plus integral mounts for two
+selected standard Allegro springs. Open its [model guide](cad/v6-updated-print/README.md)
+and [A1 mini fit-test/BOM guide](print/v6-updated-a1-mini/README.md).
+The original V6 updated is preserved. Physical fits, forces and operation
+remain unqualified; this is a prototype preparation, not a production release.
+
 **V6 updated** is a separate candidate on `version6-updated`, branched from
 `version7`: V6 mechanics, V7's clasped far-flank RNA route, explicit metal
 springs and their seats/cup, and a printed serpentine detent. See its

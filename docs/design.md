@@ -1,5 +1,17 @@
 # Purpose and conceptual mechanics
 
+## V6 updated print candidate
+
+The separate [print derivative](../cad/v6-updated-print/README.md) preserves
+V6 mechanics and the updated clasped route. It replaces bought fasteners
+with coarse printed screws, keyed nuts and a stopped spindle cap. A stock
+right-hand torsion spring in a fixed rear-left cup returns the upper; a
+stock left-hand torsion spring mounted horizontally in the upper presses
+the pawl downward. Integral seats and explicit wire legs show both force
+paths. Their conservative coil envelopes are nonprinted hardware parts.
+See the [stock BOM and fit trials](../print/v6-updated-a1-mini/README.md).
+Spring rates, folded-leaf holding force and physical operation need testing.
+
 ## V6 updated candidate
 
 The user chose V6's single-pawl mechanism with V7's clasped far-flank RNA

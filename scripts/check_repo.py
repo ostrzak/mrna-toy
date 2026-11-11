@@ -127,6 +127,49 @@ def run() -> int:
         except (OSError,ValueError,zipfile.BadZipFile) as error:
             errors.append('V6 updated evidence could not be read: '+str(error))
 
+    print_candidate=ROOT/'cad/v6-updated-print'
+    if print_candidate.is_dir():
+        try:
+            required_print=('RibosomeV6UpdatedPrint.FCStd','RibosomeV6UpdatedPrint.FCMacro',
+                'README.md','engineering.md','bracelet_v6_updated_print.py','rna_path.py',
+                'springs_v6_updated_print.py','stock_springs.py','printed_fasteners.py','cup_relief_validation.py',
+                'assembly_v6_updated_print.py','validation_v6_updated_print.py',
+                'engineering_v6_updated_print.py','presentation_v6_updated_print.py',
+                'checks.json','gui-checks.json','handheld.png','underside.png',
+                'mechanism.png','spring-installation.png','spring-loaded.png',
+                'stock-springs.png','printed-fasteners.png')
+            errors.extend('Missing V6 updated print artifact: '+name
+                          for name in required_print if not (print_candidate/name).is_file())
+            evidence=json.loads((print_candidate/'checks.json').read_text(encoding='utf-8'))
+            gui=json.loads((print_candidate/'gui-checks.json').read_text(encoding='utf-8'))
+            model=print_candidate/'RibosomeV6UpdatedPrint.FCStd'
+            digest=hashlib.sha256(model.read_bytes()).hexdigest()
+            if evidence.get('version')!='6-updated-print' or evidence.get('status') not in ('REVIEW','FOCUSED_PASS'):
+                errors.append('V6 updated print requires its own completed geometry report.')
+            if evidence.get('mechanical_status')!='REVIEW' or evidence.get('functional_mechanism_established') is not False:
+                errors.append('V6 updated print must retain its physical qualification boundary.')
+            if evidence.get('status')=='FOCUSED_PASS' and (not evidence.get('logical_checks') or
+                    not all(evidence['logical_checks'].values()) or evidence.get('invalid_objects') or
+                    evidence.get('collision_failures_mm3')):
+                errors.append('V6 updated print FOCUSED_PASS requires all its geometry checks.')
+            followup=evidence.get('incremental_geometry_validation')
+            if followup and (not followup.get('checks') or not all(followup['checks'].values()) or
+                    followup.get('differences') or followup.get('previous_model_sha256')!=
+                    evidence.get('full_sweep_evidence',{}).get('model_sha256')):
+                errors.append('V6 updated print cup follow-up lacks its unchanged-geometry and prior-sweep proof.')
+            for report in (evidence,gui):
+                if report.get('model_sha256')!=digest:errors.append('V6 updated print model/report mismatch.')
+                for name,expected in report.get('source_sha256',{}).items():
+                    if not source_matches(print_candidate/name,expected):
+                        errors.append('V6 updated print source/report mismatch: '+name)
+            if not gui.get('normal_GUI_close_reopen') or not gui.get('native_update_without_source_directory'):
+                errors.append('V6 updated print requires native GUI reopen and source-independent motion.')
+            with zipfile.ZipFile(model) as archive:
+                if not {'Document.xml','GuiDocument.xml'}<=set(archive.namelist()) or archive.testzip() is not None:
+                    errors.append('V6 updated print lacks valid native CAD/display data.')
+        except (OSError,ValueError,zipfile.BadZipFile) as error:
+            errors.append('V6 updated print evidence could not be read: '+str(error))
+
     code_count = 0
     for folder in (ROOT / 'cad', ROOT / 'scripts'):
         for path in folder.rglob('*'):

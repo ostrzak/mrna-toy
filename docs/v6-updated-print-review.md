@@ -1,13 +1,26 @@
 # V6 updated: export and hardware review
 
+Follow-up implementation lives in the separate
+[V6 updated print candidate](../cad/v6-updated-print/README.md), with printed
+fasteners, integral supports and two selected standard Allegro springs.
+Use its [current BOM and A1 mini fit-test guide](../print/v6-updated-a1-mini/README.md).
+This review below describes the preserved V6 updated baseline.
+
 Reviewed 2026-11-06 on `version6-updated`. The user confirmed **Bambu Lab A1
 mini, 0.4 mm nozzle**, ownership of the Skipping Stone BOM items, and corrected
-the available filament to **Bambu TPU 90A**. Copper-wire diameter remains to
+the available filament to **Bambu TPU 90A**. The user also owns Bambu PETG
+Translucent and PLA Matte. Copper-wire diameter remains to
 be confirmed; the current toy CAD represents a 0.36 mm core.
 
 This is an export/manufacturing review, not a print release. V6 updated CAD,
 its motion and its mechanical REVIEW boundary remain unchanged. V6, V7 and
 the V4 Print package remain preserved.
+
+The later [minimal purchased-parts proposal](v6-updated-minimal-bom.md)
+supersedes the initial metal-fastener preference below: target printed
+fasteners, replaceable printed nuts, a printed spindle cap and integral spring
+seats, leaving two bought springs and copper wire. These changes are proposed;
+they are not present in the saved CAD or current review exports.
 
 ## What was exported and checked
 
@@ -76,8 +89,8 @@ procurement specifications.
 | RNA | User-owned TPU 90A trial | Make a flat manufacturing layout and short rack/channel/clasp test; check pitch under hand loads and reverse pushing |
 | Protein beads | TPU 90A trial | Add bed-contact geometry, choose bore and fixation to the actual wire, and retain 6 mm pitch |
 | Two return/bias springs | Purchased metal springs | Match rate, force/torque, travel, OD/ID, end treatment and installation; adapt seats to selected hardware |
-| Housing and cap screws | Purchased steel/stainless screws | Select actual head drawings and a fastening method before changing pockets |
-| Retaining washer and spring-seat shims | Purchased/cut metal | Match real dimensions and preserve endplay and spring working lengths |
+| Housing and cap screws | Printed coarse fasteners/cap proposed; current CAD uses M2 metal envelopes | Redesign joints and test threads; see the minimal purchased-parts proposal |
+| Retaining washer and spring-seat shims | Integrate retention/seats into printed parts in the proposed derivative | Preserve endplay and the selected spring's working lengths |
 | 1.5 mm pawl guide pin | Printed PETG prototype or later retained metal pin | A metal pin requires a seating/retention redesign; the current pin is integral with the upper |
 | Cam contact | Manufacturing change or a tested printed prototype | The current 1 mm ball has a 0.5 mm neck; review a wider printed feature or properly retained metal contact |
 | Main 6 mm integral spindle | Retain the printed PETG candidate for initial tests | Do not substitute a plain metal shaft without redesigning its root, bearings, shoulder and screw retention |
@@ -101,8 +114,10 @@ particular the 0.15 mm spring seats are metal shim geometry, not useful
 single-layer printed parts. Choose available hardware and update the seats
 and screw stack to suit it.
 
-For repeated disassembly, my preference is metal machine screws with properly
-designed brass heat-set inserts or captive nuts where accessible. **The current
+The initial review suggested metal machine screws with properly designed brass
+heat-set inserts or captive nuts for repeated disassembly. The user's later
+preference is printed fasteners and inserts; use the linked minimal-hardware
+proposal as the current direction. **The current
 1.7 mm pilots are not insert pockets.** This requires a manufacturing
 derivative with the selected insert's hole, depth and surrounding material.
 A specified plastic thread-forming screw with tested pilots is an alternative
@@ -145,6 +160,11 @@ explicitly lists `Bambu Lab A1 mini 0.4 nozzle`. Bambu's
 [TPU 90A data sheet](https://store.bblcdn.com/s6/default/62f87cb83a1e47a58c73c73240f8410a/Bambu_TPU_90A_Technical_Data_Sheet_582bf8f6-1f0a-474c-aeda-9e72af3689dc.pdf)
 also lists a 0.4 mm nozzle. Use the external spool for ordinary flexible TPU;
 the AMS lite feed path is not the selected route.
+
+The installed `Bambu PETG Translucent @BBL A1M` (`GFSG01_02`) and
+`Bambu PLA Matte @BBL A1M` (`GFSA01_02`) profiles also explicitly list the
+A1 mini 0.4 nozzle. Local Studio preparation and slicing need no new MCP
+server.
 
 STL/STEP review exports are the starting point. The eventual deliverable can
 be a Bambu Studio `.3mf` project with named physical parts, separate PETG and

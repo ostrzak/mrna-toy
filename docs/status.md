@@ -1,5 +1,30 @@
 # Project status and next decisions
 
+## V6 updated print candidate — 2026-11-06
+
+The user authorized manufacturing changes with as few bought components as
+possible and standard stock springs only. The separate
+[print candidate](../cad/v6-updated-print/README.md) contains printed coarse
+housing screws, replaceable keyed nuts, a low stopped spindle cap and
+integral spring supports. Two selected TECH-AR Allegro torsion springs
+replace the illustrative spring pair. The prior models remain preserved.
+
+The native GUI model has been reopened and its saved motion tested without
+the generator sources. CAD status is **FOCUSED_PASS**: a complete sweep plus
+a focused 0.3 mm cup-wall trim follow-up, with 332 other local shapes and all
+native expressions unchanged within numerical serialization precision.
+The follow-up proves material-only removal, retained roots and clear spring
+contacts; zero unintended collisions remain reported. Its report retains
+the complete prior sweep and the correction's evidence separately.
+
+All 20 grouped model-part/coupon STEP/STL exports passed their checks and
+the independent mesh audit. Bambu Studio sliced the nine PETG fit-test
+objects for A1 mini / 0.4 mm using the exact PETG Translucent preset. The
+[A1 mini guide](../print/v6-updated-a1-mini/README.md) records the stock BOM,
+fit trials and remaining physical tests. RNA remains a nominal-layout
+reference, and the package is not a complete sliced toy. Mechanical status
+remains REVIEW; no physical print or operation is claimed.
+
 ## V6 updated candidate — 2026-11-04
 
 The user authorized a separate `version6-updated` branch from `version7` and

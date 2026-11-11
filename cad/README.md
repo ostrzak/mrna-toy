@@ -7,6 +7,7 @@ It is not a functional PASS; V6 remains the launcher default.
 
 Start with the [project overview](../README.md) for purpose and current status. This page covers viewing and operating the saved CAD.
 
+- **[V6 updated print](v6-updated-print/README.md):** separate printed-fastener and standard-stock-spring derivative with V6 mechanics and V7's clasped route. [Open model](v6-updated-print/RibosomeV6UpdatedPrint.FCStd). Physical fits and operation remain unqualified.
 - **[V6 — captive open/closed RNA](v6/README.md):** current design, with joined external underside return or open tails, direct RNA reversal, bidirectional detent and rest-disengaged cap input. [Open model](v6/RibosomeV6.FCStd), or run its adjacent macro.
 - **[V5 — handheld ribosome](v5/README.md):** preserved circular-loop comparison, with direct bead-storage drum, upper rocker and external reverse release. [Open model](v5/RibosomeV5.FCStd).
 - **[V4 Print - A1 mini](v4-print/README.md):** preserved cuff manufacturing prototype with TPU beads and calibration parts; physical tests pending. It is not a V5 print package.

@@ -1,0 +1,20 @@
+{
+  "normal_GUI_close_reopen": true,
+  "native_stock_return_envelope": true,
+  "native_horizontal_bias_envelope": true,
+  "native_integral_pawl_contact_tracks_lift": true,
+  "native_stock_spring_leg_motion": true,
+  "one_piece_serpentine_without_source": true,
+  "native_open_RNA_without_source": true,
+  "native_update_without_source_directory": true,
+  "model_sha256": "be672545786b883131211261731b670d06ab0b874a7681e4ba1cceac334d4172",
+  "source_sha256": {
+    "bracelet_v6_updated_print.py": "4a04edbc0fe942f66b335226d83583d28e8354da134a53399f131221ab82fc38",
+    "rna_path.py": "0277f20bd34d6888940446273dc41a7717179c1f5497899a14b268bdd3684c7c",
+    "springs_v6_updated_print.py": "e5ceb575eb98d4cfeec6fe69e13ee8e205f2fa6e145118d0368aa34e2b35ac8d",
+    "stock_springs.py": "c7107773b3761a33a1546a3a80b7b30aabf1ded6a00b6d27014fa07fe7745355",
+    "printed_fasteners.py": "ad9b71a80fd2b9e9b09f217a80d201fc7f6f59eaf7abe0b89360646ed5cdd8e0",
+    "presentation_v6_updated_print.py": "5c471c87f2274898f40ad4d6ed20d44f89a59ed901c2bc46dd4d9539ce119efe",
+    "RibosomeV6UpdatedPrint.FCMacro": "fc0ccbb840e3ff274236b22d68b4c1362f6c6be76abe161dd2ed56fdc80cce74"
+  }
+}

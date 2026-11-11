@@ -33,22 +33,23 @@ def executable(explicit: str | None) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command', choices=('doctor', 'validate', 'build'))
-    parser.add_argument('--version', choices=('3','4','4-print','5','6','6-updated','7'), default='6', help='CAD version; default: preserved V6. Select 6-updated for V6 mechanics with V7 routing and explicit springs, 7 for unfinished forward pickup, or 4-print for the A1 mini cuff prototype.')
+    parser.add_argument('--version', choices=('3','4','4-print','5','6','6-updated','6-updated-print','7'), default='6', help='CAD version; default: preserved V6. Select 6-updated-print for the printed-fastener derivative, 6-updated for its preserved baseline, 7 for unfinished forward pickup, or 4-print for the A1 mini cuff prototype.')
     parser.add_argument('--freecad', help='FreeCAD command-line executable (or set FREECAD_CMD).')
     parser.add_argument('--output', type=Path, help='Generated-output directory; default: build/v<VERSION>.')
     parser.add_argument('--model', type=Path, help='Model to open for validate; default: selected version model.')
     parser.add_argument('--force', action='store_true', help='Allow replacing a generated build model.')
     args = parser.parse_args()
     source=ROOT/'cad'/('v'+args.version)
-    stem={'4-print':'RibosomeV4Print','6-updated':'RibosomeV6Updated'}.get(args.version,'RibosomeV'+args.version)
+    stem={'4-print':'RibosomeV4Print','6-updated':'RibosomeV6Updated','6-updated-print':'RibosomeV6UpdatedPrint'}.get(args.version,'RibosomeV'+args.version)
     saved=source/(stem+'.FCStd')
     output = (args.output or ROOT/'build'/('v'+args.version)).expanduser().resolve()
     report = output / 'checks.json'
     generated = output / saved.name
     model = (args.model or saved).expanduser().resolve()
     if args.command != 'doctor':
-        protected_folders=('v2','v3','v4','v4-print','v5','v6','v6-updated','v7')
+        protected_folders=('v2','v3','v4','v4-print','v5','v6','v6-updated','v6-updated-print','v7')
         protected_models=[ROOT/'cad'/v/n for v,n in [('v2','Ribosome.FCStd'),('v3','RibosomeV3.FCStd'),('v4','RibosomeV4.FCStd'),('v4-print','RibosomeV4Print.FCStd'),('v5','RibosomeV5.FCStd'),('v6','RibosomeV6.FCStd'),('v7','RibosomeV7.FCStd'),('v6-updated','RibosomeV6Updated.FCStd')]]
+        protected_models.append(ROOT/'cad/v6-updated-print/RibosomeV6UpdatedPrint.FCStd')
         if any(report == ROOT/'cad'/v/'checks.json' for v in protected_folders) or generated in protected_models:
             parser.error('Refusing to overwrite saved CAD artifacts. Use build/ or another output directory.')
         if args.command == 'validate' and not model.is_file():
